@@ -17,4 +17,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
+
+    // 화면 이동
+    fun startDevice(){
+
+
+    }
+
 }
