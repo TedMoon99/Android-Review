@@ -1,5 +1,6 @@
 package com.example.android_review01_tedmoon
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,11 @@ class CustomAdapter(private val dataSet: ArrayList<List<String>>): RecyclerView.
 
     // Adapter 화면이 다시 호출될 때 실행됨
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView_id.text = dataSet[position][0] // 아이디 전송
-        holder.textView_name.text = dataSet[position][1] // 이름 전송
+        if (dataSet[position].size == 2){
+            holder.textView_id.text = "ID : ${dataSet[position][0]}" // 아이디 전송
+            holder.textView_name.text = "이름 : ${dataSet[position][1]}" // 이름 전송
+        } else {
+            Log.d("TedMoon", "잘못된 입력입니다")
+        }
     }
 }
