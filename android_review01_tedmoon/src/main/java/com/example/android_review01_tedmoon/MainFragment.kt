@@ -46,9 +46,9 @@ class MainFragment : Fragment() {
                 isLastItemDecorated = false // 마지막 구분선 제거
             }
             recyclerViewMain.apply {
-                adapter = CustomAdapter(dataList)
+                adapter = CustomAdapter(dataList) // 어댑터 연결
                 layoutManager = LinearLayoutManager(context)
-                addItemDecoration(deco)
+                addItemDecoration(deco) // 구분선 추가
             }
         }
     }
