@@ -33,9 +33,13 @@ class MainFragment : Fragment() {
 
             // 버튼 클릭 리스너
             buttonMainComplete.setOnClickListener {
-                // 유효성 검사 결과가 true이면
+                val inputResult = validateInput()
 
-                // RecyclerView 어댑터에 데이터를 전송해준다.
+                if (inputResult){ // 유효성 검사 결과가 true이면
+                    // RecyclerView 어댑터에 데이터를 전송해준다.
+
+                }
+
 
             }
 
@@ -43,7 +47,45 @@ class MainFragment : Fragment() {
     }
 
     // 입력 유효성 검사
-    fun validateInput(){
+    fun validateInput(): Boolean{
+        var resultID = false
+        var resultName = false
+        binding.apply {
+            // 입력을 받아온다
+            val id = editTextMainId.text.toString()
+            val name = editTextMainName.text.toString()
 
+            // id 관련 오류 처리
+            if (id.isNotEmpty()){ // id 입력을 했다면
+                if (id.length < 9){ // 입력한 id가 8자 이하라면
+                    editTextMainId.error = "아이디는 최소한 9자 이상 입력해주세요"
+                    resultID = false
+                } else { // 입력 확인
+                    editTextMainId.error = null // Error 제거
+                    resultID = true
+                }
+
+            } else { // id 입력을 안 했다면
+                editTextMainId.error = "id를 입력해주세요"
+                resultID = false
+            }
+
+            // 이름 관련 오류 처리
+            if (name.isNotEmpty()){ // 이름 입력을 했다면
+                if (name.length < 2){ // 입력한 이름이 1자 이하라면
+                    editTextMainName.error = "이름은 최소한 2자 이상 입력해주세요"
+                    resultName = false
+                } else { // 입력 확인
+                    editTextMainName.error = null // Error 제거
+                    resultName = true
+                }
+
+            } else { // 이름 입력을 안 했다면
+                editTextMainName.error = "이름을 입력해주세요"
+                resultID = false
+            }
+        }
+
+        return resultID && resultName
     }
 }
