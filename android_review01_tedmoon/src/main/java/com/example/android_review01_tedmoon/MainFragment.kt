@@ -1,14 +1,12 @@
 package com.example.android_review01_tedmoon
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.android_review01_tedmoon.databinding.FragmentMainBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
 
@@ -34,7 +32,6 @@ class MainFragment : Fragment() {
 
         settingView()
         settingEvent()
-
     }
     // View 설정
     fun settingView(){
