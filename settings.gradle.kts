@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Android-Review"
 include(":app")
 include(":android_review01_tedmoon")
+include(":android_review01_baek08102")
