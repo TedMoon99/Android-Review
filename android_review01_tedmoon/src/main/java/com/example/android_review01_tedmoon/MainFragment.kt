@@ -26,4 +26,16 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
     }
+
+    // 이벤트 처리
+    fun settingEvent(){
+        binding.apply {
+
+        }
+    }
+
+    // 입력 유효성 검사
+    fun validateInput(){
+
+    }
 }
