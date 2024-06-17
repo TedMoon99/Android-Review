@@ -31,6 +31,14 @@ class MainFragment : Fragment() {
     fun settingEvent(){
         binding.apply {
 
+            // 버튼 클릭 리스너
+            buttonMainComplete.setOnClickListener {
+                // 유효성 검사 결과가 true이면
+
+                // RecyclerView 어댑터에 데이터를 전송해준다.
+
+            }
+
         }
     }
 
