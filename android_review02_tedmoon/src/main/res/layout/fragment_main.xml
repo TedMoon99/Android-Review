@@ -17,8 +17,10 @@
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:hintAnimationEnabled="false"
-        app:hintEnabled="false">
-
+        app:hintEnabled="false"
+        app:errorEnabled="true"
+        app:counterEnabled="true"
+        app:counterMaxLength="5">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText_main_name"
             android:layout_width="match_parent"
