@@ -48,8 +48,6 @@ class MainFragment : Fragment() {
 
             // recyclerView 설정
             recyclerViewMain.apply {
-                // adapter 연결
-                adapter = CustomAdapter(dataList)
                 // layoutManager 연결
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 // 구분선 추가
@@ -70,6 +68,10 @@ class MainFragment : Fragment() {
                     val name = textInputEditTextMainName.text.toString()
                     // dataList에 값을 넣어준다
                     dataList.add(name)
+
+                    // adapter 연결
+                    recyclerViewMain.adapter = CustomAdapter(dataList)
+
                     // Adapter에게 값이 변경되었음을 알려준다
                     recyclerViewMain.adapter?.notifyDataSetChanged()
 
