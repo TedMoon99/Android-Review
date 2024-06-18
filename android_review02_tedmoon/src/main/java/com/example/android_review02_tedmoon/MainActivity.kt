@@ -16,5 +16,16 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // 화면이동
+        startDevice()
+    }
+
+    // 화면이동
+    fun startDevice(){
+        supportFragmentManager
+            .beginTransaction() // 트랜잭션을 생성한다
+            .replace(R.id.containerMain, MainFragment()) // FragmentContainer -> MainFragment() 화면 출력
+            .commit() // 실행한다
     }
 }
