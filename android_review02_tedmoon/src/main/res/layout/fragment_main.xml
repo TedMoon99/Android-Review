@@ -25,6 +25,7 @@
             android:id="@+id/textInputEditText_main_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="이름"
             android:textSize="16dp"
             android:textColor="@color/black"/>
@@ -58,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="검색"
+            android:inputType="text"
             android:textSize="16dp"
             android:textColor="@color/black"/>
 
