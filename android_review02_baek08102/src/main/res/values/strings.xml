@@ -3,5 +3,6 @@
     <string name="input_name">입력하고자 하는 이름을 입력하세요.</string>
     <string name="add">추가</string>
     <string name="input_search">검색어를 입력하세요.</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
