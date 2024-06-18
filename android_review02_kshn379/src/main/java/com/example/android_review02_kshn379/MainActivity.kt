@@ -15,14 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var researchAdapter: ResearchAdapter
 
     private var researchList = mutableListOf<Research>()
-
-    private val searchList = arrayListOf(
-        Research(R.drawable.ic_launcher_foreground, "name1", "word1"),
-        Research(R.drawable.ic_launcher_foreground, "name2", "word2"),
-        Research(R.drawable.ic_launcher_foreground, "name3", "word3")
-    )
-
-    private val displayedSearchList = arrayListOf<Research>()
+    private var displayedSearchList = mutableListOf<Research>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,19 +35,19 @@ class MainActivity : AppCompatActivity() {
             val word = inputWord.text.toString().trim()
 
             if (name.isNotEmpty()) {
-                researchList.clear()
-                researchList.addAll(searchList)
+                val research = Research(R.drawable.ic_launcher_foreground, name, word)
+                researchList.add(research)
+                displayedSearchList.add(research)
+                displayedSearchList.addAll(researchList)
                 researchAdapter.notifyDataSetChanged()
                 inputName.text.clear()
+
             } else if (word.isNotEmpty()) {
-                filterList(word)
+                Research(R.drawable.ic_launcher_foreground, name, word)
+                researchAdapter.notifyDataSetChanged()
                 inputWord.text.clear()
             }
         }
-    }
-
-    private fun filterList(s: String) {
-
     }
 }
 
