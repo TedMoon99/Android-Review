@@ -41,10 +41,12 @@ class MainActivity : AppCompatActivity() {
                 displayedSearchList.addAll(researchList)
                 researchAdapter.notifyDataSetChanged()
                 inputName.text.clear()
+                inputWord.text.clear()
 
             } else if (word.isNotEmpty()) {
                 Research(R.drawable.ic_launcher_foreground, name, word)
                 researchAdapter.notifyDataSetChanged()
+                inputName.text.clear()
                 inputWord.text.clear()
             }
         }
