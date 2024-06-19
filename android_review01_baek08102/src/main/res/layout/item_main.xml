@@ -1,0 +1,28 @@
+<LinearLayout
+    android:id="@+id/inputItem_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    >
+
+    <TextView
+        android:id="@+id/name_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:textStyle="bold"
+        android:text="textview : id"
+        android:textSize="16dp" />
+    <TextView
+        android:id="@+id/id_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:textStyle="bold"
+        android:layout_marginStart="26dp"
+        android:text="textview : name"
+        android:textSize="16dp" />
+
+</LinearLayout>
