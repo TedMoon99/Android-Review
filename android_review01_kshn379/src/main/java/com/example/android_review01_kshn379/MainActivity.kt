@@ -6,71 +6,100 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android_review01_kshn379.databinding.ActivityMainBinding
+import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var inputId: EditText
-    private lateinit var inputName: EditText
-    private lateinit var checkProfileButton: Button
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var profileAdapter: ProfileAdapter
+    private lateinit var binding: ActivityMainBinding
 
-    // 기존 프로필 목록
-    private val profileList = arrayListOf(
-        Profiles(R.drawable.profile, "KSH","Android0", "*asnjgh12!"),
-        Profiles(R.drawable.profile, "MTJ","Android1", "1235a945!"),
-        Profiles(R.drawable.profile, "BDS","Android2", "321657!*"),
-        Profiles(R.drawable.profile, "HSH","Android3", "gnjf53a1!*"),
-        Profiles(R.drawable.profile, "KNY","Android4", "rnjfd0109**"),
-        Profiles(R.drawable.profile, "KMS","Android5", "hk526ctb*!"),
-        Profiles(R.drawable.profile, "JMG","Android6", "g5f3z5n6!"),
-        Profiles(R.drawable.profile, "CSW","Android7", "gnfjh395!*"),
-        Profiles(R.drawable.profile, "KJM","Android8", "hnjkf0912*"),
-        Profiles(R.drawable.profile, "YNA","Android9", "6815hf2t*")
-    )
+    val dataList: MutableList<Profiles> = mutableListOf()
+    // [ [히히, 안녕], [안녕, 히히] ]
 
-    // 출력할 프로필 목록
-    private val displayedProfileList = arrayListOf<Profiles>()
-
+    /*
+    ### ID 설정 규칙
+    1. what_where_desription
+    : 무엇을 / 어디에서 / 뭐에 대한 내용인지
+    :
+    2. where_what_description
+    : 어디에서 / 무엇이고 / 뭐에 대한 내용인지
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        inputId = findViewById(R.id.input_id)
-        inputName = findViewById(R.id.input_name)
-        checkProfileButton = findViewById(R.id.checkprofile)
-        recyclerView = findViewById(R.id.rv_profile)
+        // 바인딩 초기화
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        profileAdapter = ProfileAdapter(displayedProfileList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = profileAdapter
+        // 뷰 설정
+        settingView()
+        // 이벤트 설정
+        settingEvent()
+    }
 
-        checkProfileButton.setOnClickListener {
-            val id = inputId.text.toString().trim()
-            val name = inputName.text.toString().trim()
+    // 이벤트 설정
+    fun settingEvent() {
+        binding.apply {
+            // 버튼 클릭시 작동
+            buttonMainCheck.setOnClickListener {
+                // 유효성 검사
+                val resultCheck = validateInput()
 
-            if (id.isNotEmpty() && name.isNotEmpty()) {
-                val matchingProfile = profileList.find { profile ->
-                    profile.id == id && profile.name == name
-                }
+                if (resultCheck){
+                    val id = textInputEditTextMainId.text.toString()
+                    val name = textInputEditTextMainName.text.toString()
+                    val pwd = textInputEditTextMainPwd.text.toString()
+                    // 리스트로 만든다
+                    val data = Profiles(0, name, id, pwd)
+                    // datalist에 담아준다
+                    dataList.add(data)
 
-                if (matchingProfile != null) {
-                    // 리사이클러 뷰 리스트 삭제
-//                    displayedProfileList.clear()
-                    displayedProfileList.add(matchingProfile)
-                    profileAdapter.notifyDataSetChanged()
+                    // 어댑터에 변경을 알린다
+                    recyclerViewMain.adapter?.notifyDataSetChanged()
 
-                    // 입력 후 EditText 초기화
-                    inputId.text.clear()
-                    inputName.text.clear()
-                } else {
-                    // 일치하는 항목이 없을 때 처리
-                    inputId.error = "일치하는 아이디가 없습니다."
-                    inputName.error = "일치하는 이름이 없습니다."
                 }
             }
         }
     }
+    // 뷰 설정
+    fun settingView() {
+        binding.apply {
+            recyclerViewMain.apply {
+                adapter = ProfileAdapter(dataList)
+                layoutManager = LinearLayoutManager(context)
+            }
+        }
+
+    }
+
+    // 유효성 검사
+    fun validateInput(): Boolean {
+        var resultId = false
+        var resultName = false
+        var resultPwd = false
+        binding.apply {
+            val id = textInputEditTextMainId.text.toString()
+            val name = textInputEditTextMainName.text.toString()
+            val pwd = textInputEditTextMainPwd.text.toString()
+
+            if (id.isNotEmpty()){
+                resultId = true
+            } else {
+                resultId = false
+            }
+
+            if (name.isNotEmpty()){
+                resultName = true
+            } else {
+                resultName = false
+            }
+
+            if (pwd.isNotEmpty()){
+                resultPwd = true
+            } else {
+                resultPwd = false
+            }
+        }
+        return resultId && resultName && resultPwd
+    }
 }
-
-
