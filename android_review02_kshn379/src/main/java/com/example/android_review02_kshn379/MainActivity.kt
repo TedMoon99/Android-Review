@@ -6,51 +6,73 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android_review02_kshn379.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var inputName: EditText
-    private lateinit var checkAddButton: Button
-    private lateinit var inputWord: EditText
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var researchAdapter: ResearchAdapter
+    private lateinit var binding: ActivityMainBinding
 
-    private var researchList = mutableListOf<Research>()
-    private var displayedSearchList = mutableListOf<Research>()
+    val dataList: MutableList<Research> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        inputName = findViewById(R.id.input_name)
-        checkAddButton = findViewById(R.id.check_add)
-        inputWord = findViewById(R.id.input_word)
-        recyclerView = findViewById(R.id.search_item)
+        // 바인딩 초기화
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        // 뷰 설정
+        settingView()
+        // 이벤트 설정
+        settingEvent()
 
-        researchAdapter = ResearchAdapter(researchList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = researchAdapter
+    }
 
-        checkAddButton.setOnClickListener {
-            val name = inputName.text.toString().trim()
-            val word = inputWord.text.toString().trim()
 
-            if (name.isNotEmpty()) {
-                val research = Research(R.drawable.ic_launcher_foreground, name, word)
-                researchList.add(research)
-                displayedSearchList.add(research)
-                displayedSearchList.addAll(researchList)
-                researchAdapter.notifyDataSetChanged()
-                inputName.text.clear()
-                inputWord.text.clear()
+    // 이벤트 설정
+    fun settingEvent() {
+        binding.apply {
+            // 버튼 클릭시 작동
+            buttonMainAdd.setOnClickListener {
+                // 유효성 검사
+                val resultCheck = validateInput()
 
-            } else if (word.isNotEmpty()) {
-                Research(R.drawable.ic_launcher_foreground, name, word)
-                researchAdapter.notifyDataSetChanged()
-                inputName.text.clear()
-                inputWord.text.clear()
+                if (resultCheck) {
+                    val name = textInputEditTextMainName.text.toString()
+                    // 리스트로 만든다
+                    val data = Research(name)
+                    // datalist에 담아준다
+                    dataList.add(data)
+
+                    // 어댑터에 변경을 알린다
+                    recyclerViewMain.adapter?.notifyDataSetChanged()
+                }
             }
         }
     }
+
+    // 뷰 설정
+    fun settingView() {
+        binding.apply {
+            recyclerViewMain.apply {
+                adapter = ResearchAdapter(dataList)
+                layoutManager = LinearLayoutManager(context)
+            }
+        }
+
+    }
+
+    // 유효성 검사
+    fun validateInput(): Boolean {
+        var resultName = false
+        binding.apply {
+            val name = textInputEditTextMainName.text.toString()
+
+            if (name.isNotEmpty()) {
+                resultName = true
+            } else {
+                resultName = false
+            }
+        }
+        return resultName
+    }
 }
-
-
