@@ -22,6 +22,9 @@
       <SelectionState runConfigName="android_review01_kshn379">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="android_review02_tedmoon">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
