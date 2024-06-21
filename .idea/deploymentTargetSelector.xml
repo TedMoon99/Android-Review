@@ -5,24 +5,22 @@
       <SelectionState runConfigName="android_review01_tedmoon">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="android_review01_baek08102">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="android_review01_baek08102">
+      <SelectionState runConfigName="android_review02_tedmoon">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-06-17T16:16:42.947562800Z">
-          <Target type="DEFAULT_BOOT">
-            <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=R3CN7020V9L" />
-            </handle>
-          </Target>
-        </DropdownSelection>
-        <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="android_review01_kshn379">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="android_review02_tedmoon">
+      <SelectionState runConfigName="android_review02_baek08102">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="android_review03_baek08102">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
