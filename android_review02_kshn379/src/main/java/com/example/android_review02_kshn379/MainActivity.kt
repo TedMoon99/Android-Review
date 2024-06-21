@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             textInputEditTextMainSearch.addTextChangedListener {
                 filteredList.clear()
                 filteredList.addAll(dataList.filter {
+
                     it.name.contains(textInputEditTextMainSearch.text.toString(), true)
 
                 })
