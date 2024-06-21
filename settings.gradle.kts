@@ -2,8 +2,8 @@ pluginManagement {
     repositories {
         google {
             content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("com\.android.")
+                includeGroupByRegex("com\.google.")
                 includeGroupByRegex("androidx.*")
             }
         }
@@ -25,5 +25,6 @@ include(":android_review01_tedmoon")
 include(":android_review01_kshn379")
 include(":android_review01_baek08102")
 include(":android_review02_tedmoon")
+include(":android_review02_kshn379")
 include(":android_review02_baek08102")
 include(":android_review03_baek08102")
