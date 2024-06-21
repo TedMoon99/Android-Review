@@ -9,12 +9,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/android_review01_tedmoon" />
             <option value="$PROJECT_DIR$/android_review01_kshn379" />
             <option value="$PROJECT_DIR$/android_review01_baek08102" />
-            <option value="$PROJECT_DIR$/android_review01_tedmoon" />
             <option value="$PROJECT_DIR$/android_review02_tedmoon" />
             <option value="$PROJECT_DIR$/android_review02_kshn379" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/android_review02_baek08102" />
+            <option value="$PROJECT_DIR$/android_review03_tedmoon" />
+            <option value="$PROJECT_DIR$/android_review03_baek08102" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
