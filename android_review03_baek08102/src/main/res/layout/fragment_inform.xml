@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:layout_marginBottom="16dp"
+        >
+        <TextView
+            android:id="@+id/inform_textView_namePrint"
+            android:text="@string/student_name_print"
+            android:textSize="16sp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            />
+        <TextView
+            android:id="@+id/inform_textView_nameInput"
+            android:text="@string/student_name_input"
+            android:textSize="16sp"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:id="@+id/inform_textView_gradePrint"
+            android:text="@string/student_grade_print"
+            android:textSize="16sp"
+            android:layout_marginEnd="10dp"
+            />
+        <TextView
+            android:id="@+id/inform_textView_gradeInput"
+            android:text="@string/student_grade_input"
+            android:textSize="16sp"
+            android:layout_gravity="fill_horizontal"
+            />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:layout_marginBottom="16dp"
+        >
+        <TextView
+            android:id="@+id/inform_textView_koreanScorePrint"
+            android:text="@string/korean_score_print"
+            android:textSize="16sp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            />
+        <TextView
+            android:id="@+id/inform_textView_koreanScoreInput"
+            android:text="@string/korean_score_input"
+            android:textSize="16sp"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:id="@+id/inform_textView_englishScorePrint"
+            android:text="@string/english_score_print"
+            android:textSize="16sp"
+            android:layout_marginEnd="10dp"
+            />
+        <TextView
+            android:id="@+id/inform_textView_englishScoreInput"
+            android:text="@string/english_score_input"
+            android:textSize="16sp"
+            android:layout_gravity="fill_horizontal"
+            />
+
+        <TextView
+            android:id="@+id/inform_textView_mathScorePrint"
+            android:text="@string/math_score_print"
+            android:textSize="16sp"
+            android:layout_marginEnd="10dp"
+            />
+        <TextView
+            android:id="@+id/inform_textView_mathScoreInput"
+            android:text="@string/math_score_input"
+            android:textSize="16sp"
+            android:layout_gravity="fill_horizontal"
+            />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:layout_marginBottom="16dp"
+        >
+        <TextView
+            android:id="@+id/inform_textView_totalPrint"
+            android:text="@string/totalScore_print"
+            android:textSize="16sp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            />
+        <TextView
+            android:id="@+id/inform_textView_totalInput"
+            android:text="@string/totalScore_input"
+            android:textSize="16sp"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:id="@+id/inform_textView_averagePrint"
+            android:text="@string/averageScore_print"
+            android:textSize="16sp"
+            android:layout_marginEnd="10dp"
+            />
+        <TextView
+            android:id="@+id/inform_textView_averageInput"
+            android:text="@string/averageScore_input"
+            android:textSize="16sp"
+            android:layout_gravity="fill_horizontal"
+            />
+    </GridLayout>
+
+    <Button
+        android:id="@+id/inform_button_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/confirm"
+        />
+
+
+</LinearLayout>
