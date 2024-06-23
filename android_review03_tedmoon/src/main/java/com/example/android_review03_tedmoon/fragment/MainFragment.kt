@@ -5,12 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_review03_tedmoon.R
+import com.example.android_review03_tedmoon.adapter.CustomAdapter
 import com.example.android_review03_tedmoon.databinding.FragmentMainBinding
+import com.example.android_review03_tedmoon.model.ScoreInfo
 import com.example.android_review03_tedmoon.utils.FragmentName
+import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
+    val dataList: MutableList<ScoreInfo> = mutableListOf()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,6 +61,18 @@ class MainFragment : Fragment() {
     }
 
     fun settingView(){
+        binding.apply {
+            recyclerViewMain.apply {
+                // 구분선 생성
+                val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+                // 어댑터 연결
+                adapter = CustomAdapter(dataList)
+                // 레이아웃 매니저 연결
+                layoutManager = LinearLayoutManager(context)
+                // 구분선 적용
+                addItemDecoration(deco)
+            }
+        }
 
     }
 }
