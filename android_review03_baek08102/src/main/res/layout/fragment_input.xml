@@ -36,7 +36,7 @@
         app:errorEnabled="true"
         >
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_textInputEdittext_year"
+            android:id="@+id/input_textInputEdittext_grade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/student_grade"
