@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rv_items"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/rv_main_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp" />
+    <TextView
+        android:id="@+id/rv_main_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp" />
+
+    <LinearLayout
+        android:id="@+id/student_main_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/student_main_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="\n이름 : 홍길동 \n학년 : 3학년 \n국어 점수 : 100점 \n영어 점수 : 80점 \n수학 점수 : 70점 \n\n총점 : 300점 \n평균 : 70점\n"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/return_main_first"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="확인"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:background="@android:color/holo_blue_dark"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text" />
+
+    </LinearLayout>
+</LinearLayout>

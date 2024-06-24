@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_main_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "학생 정보 입력"
+            android:textSize = "16dp"
+            android:textColor="@color/black"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_main_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "총점 및 평균"
+            android:textSize = "16dp"
+            android:textColor="@color/black"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!--     리사이클러 뷰 위 student_info-->
+    <LinearLayout
+        android:id="@+id/type_main_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/student_main_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="학생 이름"
+            android:textSize="16dp"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text" />
+
+        <EditText
+            android:id="@+id/student_main_grade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="학년"
+            android:textSize="16dp"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text" />
+        <EditText
+            android:id="@+id/korean_main_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="국어 점수"
+            android:textSize="16dp"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text" />
+        <EditText
+            android:id="@+id/english_main_score"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="영어 점수"
+            android:textSize="16dp"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text" />
+        <EditText
+            android:id="@+id/math_main_score"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="수학 점수"
+            android:textSize="16dp"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text" />
+
+        <Button
+            android:id="@+id/student_main_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="확인"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:background="@android:color/holo_blue_dark"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/score_main_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/score_main_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\n국어 총점 : 000 점 \n국어 평균 : 000 점 \n영어 총점 : 000 점 \n영어 평균 : 000 점 \n수학 총점 : 000 점 \n수학 평균 : 000 점 \n\n전체 평균 : 000 점 \n전체 평균 : 000 점 \n"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/check_main_score"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="확인"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:background="@android:color/holo_blue_dark"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text" />
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/item_main_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/student_main_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="\n이름 : 홍길동 \n학년 : 3학년 \n국어 점수 : 100점 \n영어 점수 : 80점 \n수학 점수 : 70점 \n\n총점 : 300점 \n평균 : 70점\n"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/return_main_first"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="확인"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:background="@android:color/holo_blue_dark"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text" />
+    </LinearLayout>
+</LinearLayout>
