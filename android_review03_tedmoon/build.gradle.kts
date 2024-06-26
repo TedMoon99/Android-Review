@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    // Fragment Result API 사용하기 위한 라이브러리 추가
+    implementation(libs.androidx.fragment.ktx)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
