@@ -33,6 +33,7 @@ class MainFragment : Fragment() {
     // View 설정
     fun settingView(){
 
+
     }
     // Event 설정
     fun settingEvent(){
