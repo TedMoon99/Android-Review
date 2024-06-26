@@ -4,8 +4,6 @@ import com.example.android_review03_tedmoon.model.ScoreInfo
 
 class Tools {
     companion object{
-        // 학생 정보 객체를 담을 리스트
-        val scoreList = mutableListOf<ScoreInfo>()
 
     }
 }
