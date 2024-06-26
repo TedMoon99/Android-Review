@@ -1,10 +1,12 @@
 package com.example.android_review03_tedmoon.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_review03_tedmoon.R
 import com.example.android_review03_tedmoon.adapter.CustomAdapter
@@ -44,6 +46,19 @@ class MainFragment : Fragment() {
                         .replace(R.id.containerMain, SubFragment1()) // containerMain SubFragment2 출력
                         .addToBackStack(FragmentName.SUB_FRAGMENT1.name) // 백스택에 추가
                         .commit() // 실행
+                }
+                childFragmentManager.apply {
+                    // SubFragment가 종료되고 돌아오면 실행되는 콜백 리스너
+                    setFragmentResultListener("SubFragment1"){ requestKey, bundle ->
+                        val result = bundle.getParcelable<ScoreInfo>("scoreInfo")
+                        result?.let { data ->
+                            Log.d("test1234", "MainFragment에서 받아온 데이터 : ${data}")
+                            // dataList에 정보를 저장한
+                            dataList.add(data)
+                            // adapter에게 데이터가 변경되었음을 알린다
+                            recyclerViewMain.adapter?.notifyDataSetChanged()
+                        }
+                    }
                 }
             }
 
