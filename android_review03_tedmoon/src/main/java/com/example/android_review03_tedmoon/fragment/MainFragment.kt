@@ -35,6 +35,8 @@ class MainFragment : Fragment() {
         settingView()
         // Event 설정
         settingEvent()
+        // Fragment에서 데이터 받아옴
+        gettingData()
     }
 
     fun settingEvent(){
@@ -46,19 +48,6 @@ class MainFragment : Fragment() {
                         .replace(R.id.containerMain, SubFragment1()) // containerMain SubFragment2 출력
                         .addToBackStack(FragmentName.SUB_FRAGMENT1.name) // 백스택에 추가
                         .commit() // 실행
-                }
-                childFragmentManager.apply {
-                    // SubFragment가 종료되고 돌아오면 실행되는 콜백 리스너
-                    setFragmentResultListener("SubFragment1"){ requestKey, bundle ->
-                        val result = bundle.getParcelable<ScoreInfo>("scoreInfo")
-                        result?.let { data ->
-                            Log.d("test1234", "MainFragment에서 받아온 데이터 : ${data}")
-                            // dataList에 정보를 저장한
-                            dataList.add(data)
-                            // adapter에게 데이터가 변경되었음을 알린다
-                            recyclerViewMain.adapter?.notifyDataSetChanged()
-                        }
-                    }
                 }
             }
 
@@ -89,5 +78,20 @@ class MainFragment : Fragment() {
             }
         }
 
+    }
+
+    fun gettingData(){
+
+        // SubFragment1에서 데이터를 받아온다
+        setFragmentResultListener("Input Complete"){ requestKey, bundle ->
+            val result = bundle.getParcelable<ScoreInfo>("scoreInfo")
+            result?.let { data ->
+                Log.d("test1234", "MainFragment에서 받아온 데이터 : ${data}")
+                // dataList에 정보를 저장한
+                dataList.add(data)
+                // adapter에게 데이터가 변경되었음을 알린다
+                binding.recyclerViewMain.adapter?.notifyDataSetChanged()
+            }
+        }
     }
 }
