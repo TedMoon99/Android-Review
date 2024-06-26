@@ -26,7 +26,7 @@ class CustomAdapter(val dataSet: List<ScoreInfo>): RecyclerView.Adapter<CustomAd
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.rowMainBinding.textViewRowName.text = dataSet[position].name
-        holder.rowMainBinding.textViewRowGrade.text = dataSet[position].grade.toString()
+        holder.rowMainBinding.textViewRowName.text = "이름 : ${dataSet[position].name}"
+        holder.rowMainBinding.textViewRowGrade.text = "학년 : ${dataSet[position].grade}학년"
     }
 }
