@@ -2,17 +2,15 @@ package com.example.android_review03_tedmoon.fragment
 
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.example.android_review03_tedmoon.R
+import androidx.fragment.app.setFragmentResult
 import com.example.android_review03_tedmoon.databinding.FragmentSub1Binding
 import com.example.android_review03_tedmoon.model.ScoreInfo
 import com.example.android_review03_tedmoon.utils.FragmentName
-import com.example.android_review03_tedmoon.utils.Tools
 
 class SubFragment1 : Fragment() {
 
@@ -57,9 +55,12 @@ class SubFragment1 : Fragment() {
                     // ScoreInfo 객체를 만들어준다
                     val data = ScoreInfo(name, grade, korean, english, math)
 
-                    // 정보를 저장한다
-                    Tools.scoreList.add(data)
-                    Log.d("TedMoon", "현재 데이터 : ${Tools.scoreList}")
+                    val bundle = Bundle().apply {
+                        putParcelable("scoreInfo", data)
+                    }
+                    // MainFragment로 돌아가면서 전달할 데이터 설정 -> MainFragment가 STARTED 상태가 될 때 result를 받아온다
+                    setFragmentResult("Input Complete", bundle)
+
                     // Fragment를 종료한다
                     removeFragment()
                 }
