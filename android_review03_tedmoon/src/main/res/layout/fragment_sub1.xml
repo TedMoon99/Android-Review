@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".fragment.SubFragment1">
@@ -12,15 +12,15 @@
         android:id="@+id/textInputLayout_sub1_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
-        app:errorEnabled="true"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
         app:counterEnabled="true"
         app:counterMaxLength="5"
-        app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp">
+        app:errorEnabled="true"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText_sub1_name"
@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             android:hint="이름 : "
             android:inputType="text"
-            android:textSize="16dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="16dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -38,15 +38,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
-        app:errorEnabled="true"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
         app:counterEnabled="true"
         app:counterMaxLength="1"
-        app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp">
+        app:errorEnabled="true"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText_sub1_grade"
@@ -54,8 +54,8 @@
             android:layout_height="wrap_content"
             android:hint="학년 : "
             android:inputType="number"
-            android:textSize="16dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="16dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,15 +64,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
-        app:errorEnabled="true"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
         app:counterEnabled="true"
         app:counterMaxLength="4"
-        app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp">
+        app:errorEnabled="true"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText_sub1_korean"
@@ -80,8 +80,8 @@
             android:layout_height="wrap_content"
             android:hint="국어 점수 : "
             android:inputType="numberDecimal"
-            android:textSize="16dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="16dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,15 +90,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
-        app:errorEnabled="true"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
         app:counterEnabled="true"
         app:counterMaxLength="4"
-        app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp">
+        app:errorEnabled="true"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText_sub1_english"
@@ -106,8 +106,8 @@
             android:layout_height="wrap_content"
             android:hint="영어 점수 : "
             android:inputType="numberDecimal"
-            android:textSize="16dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="16dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,15 +116,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
-        app:errorEnabled="true"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
         app:counterEnabled="true"
         app:counterMaxLength="4"
-        app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp">
+        app:errorEnabled="true"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText_sub1_math"
@@ -132,18 +132,19 @@
             android:layout_height="wrap_content"
             android:hint="수학 점수 : "
             android:inputType="numberDecimal"
-            android:textSize="16dp"
-            android:textColor="@color/black"/>
-
-        <Button
-            android:id="@+id/button_sub1_complete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:text="확인"
-            android:textSize="16dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="16dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button_sub1_complete"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="확인"
+        android:textColor="@color/black"
+        android:textSize="16dp" />
+
 </LinearLayout>

@@ -1,13 +1,18 @@
 package com.example.android_review03_tedmoon.fragment
 
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.example.android_review03_tedmoon.R
 import com.example.android_review03_tedmoon.databinding.FragmentSub1Binding
 import com.example.android_review03_tedmoon.model.ScoreInfo
+import com.example.android_review03_tedmoon.utils.FragmentName
+import com.example.android_review03_tedmoon.utils.Tools
 
 class SubFragment1 : Fragment() {
 
@@ -38,19 +43,26 @@ class SubFragment1 : Fragment() {
     // Event 설정
     fun settingEvent(){
         binding.apply {
-            val resultCheck = validateInput()
+            buttonSub1Complete.setOnClickListener {
+                val resultCheck = validateInput()
 
-            if (resultCheck){
-                // 입력을 받아온다
-                val name = textInputEditTextSub1Name.text.toString()
-                val grade = textInputEditTextSub1Grade.text.toString().toInt()
-                val korean = textInputEditTextSub1Korean.text.toString().toLong()
-                val english = textInputEditTextSub1English.text.toString().toLong()
-                val math = textInputEditTextSub1Math.text.toString().toLong()
+                if (resultCheck){
+                    // 입력을 받아온다
+                    val name = textInputEditTextSub1Name.text.toString()
+                    val grade = textInputEditTextSub1Grade.text.toString().toInt()
+                    val korean = textInputEditTextSub1Korean.text.toString().toDouble()
+                    val english = textInputEditTextSub1English.text.toString().toDouble()
+                    val math = textInputEditTextSub1Math.text.toString().toDouble()
 
-                // ScoreInfo 객체를 만들어준다
-                val data = ScoreInfo(name, grade, korean, english, math)
+                    // ScoreInfo 객체를 만들어준다
+                    val data = ScoreInfo(name, grade, korean, english, math)
 
+                    // 정보를 저장한다
+                    Tools.scoreList.add(data)
+                    Log.d("TedMoon", "현재 데이터 : ${Tools.scoreList}")
+                    // Fragment를 종료한다
+                    removeFragment()
+                }
             }
         }
     }
@@ -66,9 +78,9 @@ class SubFragment1 : Fragment() {
             // 입력을 받아온다
             val name = textInputEditTextSub1Name.text.toString()
             val grade = textInputEditTextSub1Grade.text.toString().toInt()
-            val korean = textInputEditTextSub1Korean.text.toString().toLong()
-            val english = textInputEditTextSub1English.text.toString().toLong()
-            val math = textInputEditTextSub1Math.text.toString().toLong()
+            val korean = textInputEditTextSub1Korean.text.toString().toDouble()
+            val english = textInputEditTextSub1English.text.toString().toDouble()
+            val math = textInputEditTextSub1Math.text.toString().toDouble()
 
             // 학생 이름 유효성 검사
             if (name.isNotEmpty()){
@@ -99,8 +111,8 @@ class SubFragment1 : Fragment() {
             }
 
             // 국어 점수 유효성 검사
-            if (korean != 0L){
-                if (korean in 0 .. 100){
+            if (!korean.isNaN()){
+                if (korean in 0.0 .. 100.0){
                     textInputLayoutSub1Korean.error = null
                     resultKorean = true
                 } else {
@@ -113,8 +125,8 @@ class SubFragment1 : Fragment() {
             }
 
             // 영어 점수 유효성 검사
-            if (english != 0L){
-                if (english in 0 .. 100){
+            if (!english.isNaN()){
+                if (english in 0.0 .. 100.0){
                     textInputLayoutSub1English.error = null
                     resultEnglish = true
                 } else {
@@ -127,8 +139,8 @@ class SubFragment1 : Fragment() {
             }
 
             // 수학 점수 유효성 검사
-            if (math != 0L){
-                if (math in 0 .. 100){
+            if (!math.isNaN()){
+                if (math in 0.0 .. 100.0){
                     textInputLayoutSub1Math.error = null
                     resultMath = true
                 } else {
@@ -143,5 +155,11 @@ class SubFragment1 : Fragment() {
         }
 
         return resultName && resultGrade && resultKorean && resultEnglish && resultMath
+    }
+
+    // 뒤로가기
+    fun removeFragment(){
+        SystemClock.sleep(200)
+        parentFragmentManager.popBackStack(FragmentName.SUB_FRAGMENT1.name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 }
