@@ -11,6 +11,7 @@ import androidx.fragment.app.setFragmentResult
 import com.example.android_review03_tedmoon.databinding.FragmentSub1Binding
 import com.example.android_review03_tedmoon.model.ScoreInfo
 import com.example.android_review03_tedmoon.utils.FragmentName
+import com.example.android_review03_tedmoon.utils.Tools
 
 class SubFragment1 : Fragment() {
 
@@ -61,7 +62,7 @@ class SubFragment1 : Fragment() {
                     // MainFragment로 돌아가면서 전달할 데이터 설정 -> MainFragment가 STARTED 상태가 될 때 result를 받아온다
                     setFragmentResult("Input Complete", bundle)
 
-                    // Fragment를 종료한다
+                    // 확인 버튼 클릭 시 MainFragment로 이동한다
                     removeFragment()
                 }
             }
@@ -78,10 +79,10 @@ class SubFragment1 : Fragment() {
         binding.apply {
             // 입력을 받아온다
             val name = textInputEditTextSub1Name.text.toString()
-            val grade = textInputEditTextSub1Grade.text.toString().toInt()
-            val korean = textInputEditTextSub1Korean.text.toString().toDouble()
-            val english = textInputEditTextSub1English.text.toString().toDouble()
-            val math = textInputEditTextSub1Math.text.toString().toDouble()
+            val grade = textInputEditTextSub1Grade.text.toString().toIntOrNull() ?: 0
+            val korean = textInputEditTextSub1Korean.text.toString().toDoubleOrNull() ?: Double.NaN
+            val english = textInputEditTextSub1English.text.toString().toDoubleOrNull() ?: Double.NaN
+            val math = textInputEditTextSub1Math.text.toString().toDoubleOrNull() ?: Double.NaN
 
             // 학생 이름 유효성 검사
             if (name.isNotEmpty()){
