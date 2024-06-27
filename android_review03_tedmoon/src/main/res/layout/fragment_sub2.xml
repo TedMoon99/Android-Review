@@ -1,14 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".fragment.SubFragment2">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView_sub2_koreanTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:text="TextView"/>
+
+    <TextView
+        android:id="@+id/textView_sub2_koreanAverage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16dp"
+        android:text="TextView"/>
+
+    <TextView
+        android:id="@+id/textView_sub2_englishTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16dp"
+        android:text="TextView"/>
+    <TextView
+        android:id="@+id/textView_sub2_englishAverage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16dp"
+        android:text="TextView"/>
+    <TextView
+        android:id="@+id/textView_sub2_mathTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16dp"
+        android:text="TextView"/>
+    <TextView
+        android:id="@+id/textView_sub2_mathAverage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16dp"
+        android:text="TextView"/>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="화면2 입니다" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text=""/>
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/textView_sub2_wholeTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16dp"
+        android:text="TextView"/>
+    <TextView
+        android:id="@+id/textView_sub2_wholeAverage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16dp"
+        android:text="TextView"/>
+
+    <Button
+        android:id="@+id/button_sub2_complete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16dp"
+        android:text="확인"
+        android:textColor="@color/black"
+        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+
+</LinearLayout>
