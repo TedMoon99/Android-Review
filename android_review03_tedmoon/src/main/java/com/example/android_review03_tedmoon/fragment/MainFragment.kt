@@ -17,48 +17,39 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
-    val dataList: MutableList<ScoreInfo> = mutableListOf()
+    val dataList: ArrayList<ScoreInfo> = arrayListOf()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = FragmentMainBinding.inflate(inflater)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        // 데이터 받아오기
+        gettingData()
         // View 설정
         settingView()
         // Event 설정
         settingEvent()
-        // Fragment에서 데이터 받아옴
-        gettingData()
     }
 
     fun settingEvent(){
         binding.apply {
+
             // 학생 정보 입력 버튼 리스너 설정
             buttonMainAdd.setOnClickListener {
-                parentFragmentManager.apply {
-                    beginTransaction() // 트랜잭션 생성
-                        .replace(R.id.containerMain, SubFragment1()) // containerMain SubFragment2 출력
-                        .addToBackStack(FragmentName.SUB_FRAGMENT1.name) // 백스택에 추가
-                        .commit() // 실행
-                }
+                // 화면 이동
+                moveFragment(FragmentName.SUB_FRAGMENT1)
             }
 
             // 총점 및 평균
             buttonMainTotalAverage.setOnClickListener {
-                parentFragmentManager.apply {
-                    beginTransaction() // 트랜잭션 생성
-                        .replace(R.id.containerMain, SubFragment2()) // containerMain SubFragment2 출력
-                        .addToBackStack(FragmentName.SUB_FRAGMENT2.name) // 백스택에 추가
-                        .commit() // 실행
-                }
+                // 화면 이동
+                moveFragment(FragmentName.SUB_FRAGMENT2)
             }
         }
 
@@ -79,6 +70,38 @@ class MainFragment : Fragment() {
         }
 
     }
+    fun moveFragment(name: FragmentName){
+        when(name){
+
+            // 입력 추가 화면으로 이동
+            FragmentName.SUB_FRAGMENT1 -> {
+                parentFragmentManager.apply {
+                    beginTransaction() // 트랜잭션 생성
+                        .replace(R.id.containerMain, SubFragment1()) // containerMain SubFragment2 출력
+                        .addToBackStack(FragmentName.SUB_FRAGMENT1.name) // 백스택에 추가
+                        .commit() // 실행
+                }
+
+            }
+
+            // 총점 및 평균 화면으로 이동
+            FragmentName.SUB_FRAGMENT2 -> {
+                val subFragment2 = SubFragment2().apply {
+                    arguments = Bundle().apply {
+                        putParcelableArrayList("dataList", dataList)
+                    }
+                }
+                Log.d("test1234", "MainFragment에서 전송한 데이터 확인 : ${dataList}")
+
+                parentFragmentManager.apply {
+                    beginTransaction() // 트랜잭션 생성
+                        .replace(R.id.containerMain, subFragment2) // containerMain SubFragment2 출력
+                        .addToBackStack(FragmentName.SUB_FRAGMENT2.name) // 백스택에 추가
+                        .commit() // 실행
+                }
+            }
+        }
+    }
 
     fun gettingData(){
 
@@ -86,11 +109,12 @@ class MainFragment : Fragment() {
         setFragmentResultListener("Input Complete"){ requestKey, bundle ->
             val result = bundle.getParcelable<ScoreInfo>("scoreInfo")
             result?.let { data ->
-                Log.d("test1234", "MainFragment에서 받아온 데이터 : ${data}")
+                Log.d("test1234", "받아온 data 확인 : ${data}")
                 // dataList에 정보를 저장한
                 dataList.add(data)
                 // adapter에게 데이터가 변경되었음을 알린다
                 binding.recyclerViewMain.adapter?.notifyDataSetChanged()
+                Log.d("test1234", "저장한 data 확인 : ${dataList}")
             }
         }
     }
