@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android_review03_tedmoon.databinding.RowMainBinding
 import com.example.android_review03_tedmoon.model.ScoreInfo
 
-class CustomAdapter(val dataSet: List<ScoreInfo>): RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
+class CustomAdapter(val dataSet: ArrayList<ScoreInfo>): RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
     class CustomViewHolder(rowMainBinding: RowMainBinding): RecyclerView.ViewHolder(rowMainBinding.root){
         val rowMainBinding: RowMainBinding
         init {
