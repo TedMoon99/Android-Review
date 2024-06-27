@@ -77,7 +77,7 @@ class MainFragment : Fragment() {
             FragmentName.SUB_FRAGMENT1 -> {
                 parentFragmentManager.apply {
                     beginTransaction() // 트랜잭션 생성
-                        .replace(R.id.containerMain, SubFragment1()) // containerMain SubFragment2 출력
+                        .replace(R.id.containerMain, SubFragment1()) // containerMain -> SubFragment1 출력
                         .addToBackStack(FragmentName.SUB_FRAGMENT1.name) // 백스택에 추가
                         .commit() // 실행
                 }
@@ -86,16 +86,16 @@ class MainFragment : Fragment() {
 
             // 총점 및 평균 화면으로 이동
             FragmentName.SUB_FRAGMENT2 -> {
+                val data = dataList
                 val subFragment2 = SubFragment2().apply {
                     arguments = Bundle().apply {
-                        putParcelableArrayList("dataList", dataList)
+                        putParcelableArrayList("dataList", data)
                     }
                 }
-                Log.d("test1234", "MainFragment에서 전송한 데이터 확인 : ${dataList}")
 
                 parentFragmentManager.apply {
                     beginTransaction() // 트랜잭션 생성
-                        .replace(R.id.containerMain, subFragment2) // containerMain SubFragment2 출력
+                        .replace(R.id.containerMain, subFragment2) // containerMain -> SubFragment2 출력
                         .addToBackStack(FragmentName.SUB_FRAGMENT2.name) // 백스택에 추가
                         .commit() // 실행
                 }
@@ -109,12 +109,10 @@ class MainFragment : Fragment() {
         setFragmentResultListener("Input Complete"){ requestKey, bundle ->
             val result = bundle.getParcelable<ScoreInfo>("scoreInfo")
             result?.let { data ->
-                Log.d("test1234", "받아온 data 확인 : ${data}")
                 // dataList에 정보를 저장한
                 dataList.add(data)
                 // adapter에게 데이터가 변경되었음을 알린다
                 binding.recyclerViewMain.adapter?.notifyDataSetChanged()
-                Log.d("test1234", "저장한 data 확인 : ${dataList}")
             }
         }
     }
