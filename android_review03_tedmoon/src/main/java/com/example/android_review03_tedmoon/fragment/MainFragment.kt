@@ -61,7 +61,7 @@ class MainFragment : Fragment() {
                 // 구분선 생성
                 val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL)
                 // 어댑터 연결
-                adapter = CustomAdapter(dataList)
+                adapter = CustomAdapter(dataList, parentFragmentManager)
                 // 레이아웃 매니저 연결
                 layoutManager = LinearLayoutManager(context)
                 // 구분선 적용
@@ -99,6 +99,10 @@ class MainFragment : Fragment() {
                         .addToBackStack(FragmentName.SUB_FRAGMENT2.name) // 백스택에 추가
                         .commit() // 실행
                 }
+            }
+
+            else -> {
+                Log.d("test1234", "잘못된 이동입니다")
             }
         }
     }
