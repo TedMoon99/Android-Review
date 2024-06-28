@@ -38,10 +38,9 @@ class MainFragment : Fragment() {
 
     // View 설정
     fun settingView(){
-        binding.apply {
-                rvMainList.layoutManager = LinearLayoutManager(context)
+        binding.rvMainList.apply {
+                layoutManager = LinearLayoutManager(context)
                 adapter = StudentAdapter(studentInfoList)
-                rvMainList.adapter = adapter
             }
 
 
@@ -67,6 +66,8 @@ class MainFragment : Fragment() {
                     .commit()
             }
         }
+        // 리사이클러 뷰 어댑터에 데이터 변경 알림
+        binding.rvMainList.adapter?.notifyDataSetChanged()
 
     }
 

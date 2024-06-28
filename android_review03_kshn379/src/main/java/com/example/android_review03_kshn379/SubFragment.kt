@@ -17,7 +17,6 @@ class SubFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentSubBinding.inflate(inflater)
         return binding.root
     }
@@ -27,7 +26,7 @@ class SubFragment : Fragment() {
 
         settingView()
 
-        settingEvent()
+//        settingEvent()
 
     }
 
@@ -47,9 +46,9 @@ class SubFragment : Fragment() {
 
 
         }
-    }
-
-
-    fun settingEvent() {
 
     }
+
+
+//    fun settingEvent() {
+//    }

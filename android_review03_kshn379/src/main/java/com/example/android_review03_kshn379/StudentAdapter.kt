@@ -9,7 +9,6 @@ import com.example.android_review03_kshn379.databinding.ItemStudentsBinding
 class StudentAdapter(val studentInfoList: MutableList<Student>) :
     RecyclerView.Adapter<StudentAdapter.CustomViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentAdapter.CustomViewHolder {
         val binding = ItemStudentsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CustomViewHolder(binding)
@@ -45,3 +44,4 @@ class StudentAdapter(val studentInfoList: MutableList<Student>) :
     class CustomViewHolder(val binding: ItemStudentsBinding) : RecyclerView.ViewHolder(binding.root) {
     }
     }
+
