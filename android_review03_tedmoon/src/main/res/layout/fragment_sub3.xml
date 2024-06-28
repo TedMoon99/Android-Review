@@ -8,22 +8,14 @@
     tools:context=".fragment.SubFragment3">
 
     <TextView
-        android:id="@+id/button_sub3_name"
+        android:id="@+id/textView_sub3_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="16dp"/>
 
     <TextView
-        android:id="@+id/button_sub3_grade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="16dp"/>
-
-    <TextView
-        android:id="@+id/button_sub3_korean"
+        android:id="@+id/textView_sub3_grade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -31,7 +23,7 @@
         android:textSize="16dp"/>
 
     <TextView
-        android:id="@+id/button_sub3_english"
+        android:id="@+id/textView_sub3_korean"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -39,7 +31,7 @@
         android:textSize="16dp"/>
 
     <TextView
-        android:id="@+id/button_sub3_math"
+        android:id="@+id/textView_sub3_english"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -47,7 +39,7 @@
         android:textSize="16dp"/>
 
     <TextView
-        android:id="@+id/button_sub3_total"
+        android:id="@+id/textView_sub3_math"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -55,7 +47,15 @@
         android:textSize="16dp"/>
 
     <TextView
-        android:id="@+id/button_sub3_average"
+        android:id="@+id/textView_sub3_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView_sub3_average"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
