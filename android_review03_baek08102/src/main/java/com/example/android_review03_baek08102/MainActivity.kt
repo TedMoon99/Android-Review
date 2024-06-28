@@ -1,6 +1,7 @@
 package com.example.android_review03_baek08102
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 화면 출력 
+        // 화면 출력
         startDevice()
     }
 
@@ -28,5 +29,41 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.main_container, MainFragment())
             .commit()
+    }
+
+    // 프래그먼트 전환 함수
+    fun switchFragment(name: FragmentName) {
+        when (name) {
+            FragmentName.MAIN_FRAGMENT -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, MainFragment())
+                    .commit()
+            }
+
+            FragmentName.INPUT_FRAGMENT -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, InputFragment())
+                    .addToBackStack(FragmentName.MAIN_FRAGMENT.name)
+                    .commit()
+            }
+
+            FragmentName.SCORE_FRAGMENT -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, ScoreFragment())
+                    .addToBackStack(FragmentName.MAIN_FRAGMENT.name)
+                    .commit()
+            }
+
+            FragmentName.INFORM_FRAGMENT -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, InformFragment())
+                    .addToBackStack(FragmentName.MAIN_FRAGMENT.name)
+                    .commit()
+            }
+        }
     }
 }
