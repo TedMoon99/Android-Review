@@ -11,5 +11,6 @@ class Tools {
 enum class FragmentName(name: String){
     SUB_FRAGMENT1("SubFragment1"),
     SUB_FRAGMENT2("SubFragment2"),
+    SUB_FRAGMENT3("SubFragment3"),
 
 }
