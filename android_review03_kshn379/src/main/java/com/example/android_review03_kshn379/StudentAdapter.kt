@@ -22,19 +22,19 @@ class StudentAdapter(val studentInfoList: MutableList<Student>) :
         holder.binding.gradeRecyclerView.text = student.grade.toString()
 
         holder.itemView.setOnClickListener{
-            val total = ThirdFragment()
+            val total = LastFragment()
             val bundle = Bundle().apply {
-                putString("name", student.name)
-                putInt("grade", student.grade)
+                putParcelable("student", student)
             }
             total.arguments = bundle
             (it.context as MainActivity).supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.containerMain, total)
-                .addToBackStack("ThirdFragment")
+                .addToBackStack("LastFragment")
                 .commit()
         }
     }
+
 
     override fun getItemCount(): Int {
         return studentInfoList.size
