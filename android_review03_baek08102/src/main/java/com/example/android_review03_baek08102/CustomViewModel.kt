@@ -7,30 +7,19 @@ import androidx.lifecycle.ViewModel
 
 class CustomViewModel : ViewModel() {
 
-    // viewModel 안에서만 사용, 쓰기 전용
-    private val _studentName = MutableLiveData<String>()
-    // viewModel 밖에서 사용, 읽기 전용
-    val studentName: LiveData<String> = _studentName
+    // 쓰기 전용, 리스트 초기화 작업
+    private val _studentList = MutableLiveData<List<StudentData>>(mutableListOf())
 
-    private val _studentGrade = MutableLiveData<Int>()
-    val studentGrade: LiveData<Int> = _studentGrade
+    // 읽기 전용
+    val studentList: LiveData<List<StudentData>> get() = _studentList
 
-    private val _studentKoreanScore = MutableLiveData<Int>()
-    val studentKoreanScore: LiveData<Int> = _studentKoreanScore
+    // 데이터 입력 받기 위한 함수
+    fun getData(student: StudentData) {
+        val inputList = _studentList.value.orEmpty().toMutableList()
 
-    private val _studentEnglishScore = MutableLiveData<Int>()
-    val studentEnglishScore: LiveData<Int> = _studentEnglishScore
+        inputList.add(student)
 
-    private val _studentMathScore = MutableLiveData<Int>()
-    val studentMathScore: LiveData<Int> = _studentMathScore
-
-
-    fun getData(name: String, grade: Int, koreanScore: Int, englishScore: Int, mathScore: Int) {
-        _studentName.value = name
-        _studentGrade.value = grade
-        _studentKoreanScore.value = koreanScore
-        _studentEnglishScore.value = englishScore
-        _studentMathScore.value = mathScore
+        _studentList.value = inputList
     }
 
-}
+    }
