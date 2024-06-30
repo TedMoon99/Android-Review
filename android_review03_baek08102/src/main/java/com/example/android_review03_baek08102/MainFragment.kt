@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_review03_baek08102.databinding.FragmentMainBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
-
 
 
 class MainFragment : Fragment() {
@@ -40,6 +40,7 @@ class MainFragment : Fragment() {
 
         settingView()
         settingEvent()
+
     }
 
 
@@ -71,6 +72,22 @@ class MainFragment : Fragment() {
 
                 mainActivity.switchFragment(FragmentName.INFORM_FRAGMENT)
             }
+
+            // viewModel에 입력된 liveData 타입 list 관측
+            viewModel.studentList.observe(viewLifecycleOwner, Observer { name ->
+                // 변경된 데이터 adapter로 전달해주기 위한 새로운 list
+                val newStudentList = name.map {
+                    StudentData(
+                        it.name,
+                        it.grade,
+                        it.koreanScore,
+                        it.englishScore,
+                        it.mathScore
+                    )
+                }
+                // adater 연결 (데이터 전달)
+                mainRecyclerView.adapter = CustomAdapter(newStudentList)
+            })
         }
     }
 }
