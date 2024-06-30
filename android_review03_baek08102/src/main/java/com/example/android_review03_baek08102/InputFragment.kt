@@ -8,14 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import com.example.android_review03_baek08102.databinding.FragmentInputBinding
 
 class InputFragment : Fragment() {
 
     private lateinit var binding: FragmentInputBinding
     private lateinit var mainActivity: MainActivity
-    val dataList: MutableList<String> = mutableListOf()
 
     private val viewModel: CustomViewModel by activityViewModels()
 
@@ -53,13 +51,16 @@ class InputFragment : Fragment() {
                     val korean = inputTextInputEdittextKoreanScore.text.toString().toInt()
                     val english = inputTextInputEdittextEnglishScore.text.toString().toInt()
                     val math = inputTextInputEdittextMathScore.text.toString().toInt()
+
                     // viewModel 내에 선언한 함수로 데이터 입력
-                    viewModel.getData(name, grade, korean, english, math)
+                    val student = StudentData(name, grade, korean, english, math)
+                    viewModel.getData(student)
 
                     Log.d(
                         "test1234",
-                        "name : ${viewModel.studentName.value}, grade: ${viewModel.studentGrade.value}"
+                        "data : ${viewModel.studentList.value}}"
                     )
+
                     mainActivity.switchFragment(FragmentName.MAIN_FRAGMENT)
                 }
             }
