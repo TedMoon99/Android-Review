@@ -17,7 +17,7 @@ class SubFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSubBinding.inflate(inflater)
+        binding = FragmentSubBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -26,7 +26,6 @@ class SubFragment : Fragment() {
 
         settingView()
 
-//        settingEvent()
 
     }
 
@@ -35,9 +34,20 @@ class SubFragment : Fragment() {
             studentMainButton.setOnClickListener {
                 val studentMainName = binding.studentMainName.text.toString()
                 val studentMainGrade = binding.studentMainGrade.text.toString().toIntOrNull()
-                if (studentMainName.isNotEmpty() && studentMainGrade != null) {
-                    val mainFragment = parentFragmentManager.findFragmentById(R.id.containerMain) as? MainFragment
-                    mainFragment?.saveStudentData(studentMainName, studentMainGrade)
+                val koreanMainScore = binding.koreanMainScore.text.toString().toIntOrNull()
+                val mathMainScore = binding.mathMainScore.text.toString().toIntOrNull()
+                val englishMainScore = binding.englishMainScore.text.toString().toIntOrNull()
+
+                if (studentMainName.isNotEmpty() && studentMainGrade != null && koreanMainScore != null && englishMainScore != null && mathMainScore != null) {
+                    val total = koreanMainScore + englishMainScore + mathMainScore
+                    val average = total / 3
+
+                    val mainFragment = parentFragmentManager.findFragmentByTag("MainFragment") as? MainFragment
+                    mainFragment?.saveStudentData(studentMainName, studentMainGrade,
+                        koreanMainScore.toDouble(),
+                        englishMainScore.toDouble(), mathMainScore.toDouble(),
+                        total.toDouble(), average.toDouble()
+                    )
                     parentFragmentManager.popBackStack()
                 }
                 }
@@ -48,7 +58,3 @@ class SubFragment : Fragment() {
         }
 
     }
-
-
-//    fun settingEvent() {
-//    }
