@@ -15,7 +15,6 @@ class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     val studentInfoList = mutableListOf<Student>()
-    lateinit var adapter: StudentAdapter
 
     // binding 관련 초기화를 해준다
     override fun onCreateView(
@@ -29,7 +28,6 @@ class MainFragment : Fragment() {
     // 일반 함수를 호출해준다
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // View
         settingView()
         // Event
@@ -53,7 +51,7 @@ class MainFragment : Fragment() {
                 // 화면 전환
                 parentFragmentManager
                     .beginTransaction() // 트랜잭션 생성
-                    .replace(R.id.containerMain, SubFragment())
+                    .replace(R.id.containerMain, SubFragment(), "SubFragment")
                     .addToBackStack("SubFragment")
                     .commit() // 실행
             }
@@ -61,23 +59,19 @@ class MainFragment : Fragment() {
                 // 화면 전환
                 parentFragmentManager
                     .beginTransaction()
-                    .replace(R.id.containerMain, ThirdFragment())
+                    .replace(R.id.containerMain, ThirdFragment(), "ThirdFragment")
                     .addToBackStack("ThirdFragment")
                     .commit()
             }
         }
-        // 리사이클러 뷰 어댑터에 데이터 변경 알림
-        binding.rvMainList.adapter?.notifyDataSetChanged()
 
     }
 
     // 학생 정보 데이터 저장
-    fun saveStudentData(name: String, grade: Int) {
+    fun saveStudentData(name: String, grade: Int, kor: Double, eng: Double, math: Double, total: Double, average: Double) {
         // 학생 정보를 리사이클러 뷰에 추가
-        studentInfoList.add(Student(name, grade))
+        studentInfoList.add(Student(name, grade, kor, eng, math, total, average))
         // 리사이클러 뷰 어댑터에 데이터 변경 알림
         binding.rvMainList.adapter?.notifyItemInserted(studentInfoList.size - 1)
     }
-
-
 }
