@@ -22,8 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction() // 트랜잭션 생성
-            .replace(R.id.containerMain, MainFragment())
-//            .addToBackStack("MainFragment") -> 첫 화면은 사용하지 않는다
+            .replace(R.id.containerMain, MainFragment(), "MainFragment")
             .commit() // 실행
     }
 }
