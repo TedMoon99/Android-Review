@@ -25,7 +25,7 @@
             />
 
         <Button
-            android:id="@+id/button_main_Score"
+            android:id="@+id/button_main_Inform"
             android:backgroundTint="#cd853f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

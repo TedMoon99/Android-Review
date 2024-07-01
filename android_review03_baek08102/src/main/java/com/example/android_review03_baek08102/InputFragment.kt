@@ -14,6 +14,7 @@ class InputFragment : Fragment() {
 
     private lateinit var binding: FragmentInputBinding
     private lateinit var mainActivity: MainActivity
+
     private val viewModel: CustomViewModel by activityViewModels()
 
     // 바인딩 관련
@@ -47,9 +48,9 @@ class InputFragment : Fragment() {
                 if (result) {
                     val name = inputTextInputEdittextName.text.toString()
                     val grade = inputTextInputEdittextGrade.text.toString().toInt()
-                    val korean = inputTextInputEdittextKoreanScore.text.toString().toDouble()
-                    val english = inputTextInputEdittextEnglishScore.text.toString().toDouble()
-                    val math = inputTextInputEdittextMathScore.text.toString().toDouble()
+                    val korean = inputTextInputEdittextKoreanScore.text.toString().toInt()
+                    val english = inputTextInputEdittextEnglishScore.text.toString().toInt()
+                    val math = inputTextInputEdittextMathScore.text.toString().toInt()
 
                     // viewModel 내에 선언한 함수로 데이터 입력
                     val student = StudentData(name, grade, korean, english, math)

@@ -22,18 +22,4 @@ class CustomViewModel : ViewModel() {
         _studentList.value = inputList
     }
 
-    fun getKoreanTotal(): Double {
-        return _studentList.value.orEmpty().sumOf { it.koreanScore }
     }
-
-    fun getEnglishTotal(): Double {
-        return _studentList.value.orEmpty().sumOf { it.englishScore }
-    }
-
-    fun getMathTotal(): Double {
-        return _studentList.value.orEmpty().sumOf { it.mathScore }
-    }
-
-
-
-}

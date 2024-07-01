@@ -68,9 +68,9 @@ class MainFragment : Fragment() {
                 mainActivity.switchFragment(FragmentName.INPUT_FRAGMENT)
             }
 
-            buttonMainScore.setOnClickListener {
+            buttonMainInform.setOnClickListener {
 
-                mainActivity.switchFragment(FragmentName.SCORE_FRAGMENT)
+                mainActivity.switchFragment(FragmentName.INFORM_FRAGMENT)
             }
 
             // viewModel에 입력된 liveData 타입 list 관측
