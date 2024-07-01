@@ -8,17 +8,19 @@
     android:padding="16dp"
     tools:context=".ThirdFragment">
 
-        <TextView
-            android:id="@+id/kor_main_total"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@android:color/black"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/kor_main_total"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/kor_main_average"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:textColor="@android:color/black"
         android:textSize="16dp"
         android:textStyle="bold" />
@@ -26,6 +28,7 @@
         android:id="@+id/eng_main_total"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:textColor="@android:color/black"
         android:textSize="16dp"
         android:textStyle="bold" />
@@ -33,6 +36,7 @@
         android:id="@+id/eng_main_average"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:textColor="@android:color/black"
         android:textSize="16dp"
         android:textStyle="bold" />
@@ -40,6 +44,7 @@
         android:id="@+id/math_main_total"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:textColor="@android:color/black"
         android:textSize="16dp"
         android:textStyle="bold" />
@@ -47,6 +52,7 @@
         android:id="@+id/math_main_average"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:textColor="@android:color/black"
         android:textSize="16dp"
         android:textStyle="bold" />
@@ -54,6 +60,7 @@
         android:id="@+id/all_main_total"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:textColor="@android:color/black"
         android:textSize="16dp"
         android:textStyle="bold" />
@@ -61,6 +68,7 @@
         android:id="@+id/all_main_average"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:textColor="@android:color/black"
         android:textSize="16dp"
         android:textStyle="bold" />
