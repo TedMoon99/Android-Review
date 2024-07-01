@@ -22,4 +22,19 @@ class CustomViewModel : ViewModel() {
         _studentList.value = inputList
     }
 
+    // 과목별 총점 계산 함수
+    fun getKoreanTotal(): Double {
+        return _studentList.value.orEmpty().sumOf { it.koreanScore }
     }
+
+    fun getEnglishTotal(): Double {
+        return _studentList.value.orEmpty().sumOf { it.englishScore }
+    }
+
+    fun getMathTotal(): Double {
+        return _studentList.value.orEmpty().sumOf { it.mathScore }
+    }
+
+
+
+}
