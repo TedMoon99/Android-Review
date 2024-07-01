@@ -1,15 +1,12 @@
 package com.example.android_review03_kshn379
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_review03_kshn379.databinding.FragmentMainBinding
-import com.example.android_review03_kshn379.databinding.ItemStudentsBinding
 
 class MainFragment : Fragment() {
 
@@ -37,7 +34,10 @@ class MainFragment : Fragment() {
     // View 설정
     fun settingView(){
         binding.rvMainList.apply {
+
+                // 레이아웃 매니저 연결
                 layoutManager = LinearLayoutManager(context)
+                // 어댑터 연결
                 adapter = StudentAdapter(studentInfoList)
             }
 
@@ -56,12 +56,20 @@ class MainFragment : Fragment() {
                     .commit() // 실행
             }
             btnMainScore.setOnClickListener {
+
+                // 데이터 출력
+                val thirdFragment = ThirdFragment()
+                val bundle = Bundle().apply {
+                    putParcelableArrayList("studentList", ArrayList(studentInfoList))
+                }
+                thirdFragment.arguments = bundle
+
                 // 화면 전환
                 parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.containerMain, ThirdFragment(), "ThirdFragment")
+                    .beginTransaction() // 트랜잭션 생성
+                    .replace(R.id.containerMain, thirdFragment, "ThirdFragment")
                     .addToBackStack("ThirdFragment")
-                    .commit()
+                    .commit() // 실행
             }
         }
 
@@ -74,4 +82,6 @@ class MainFragment : Fragment() {
         // 리사이클러 뷰 어댑터에 데이터 변경 알림
         binding.rvMainList.adapter?.notifyItemInserted(studentInfoList.size - 1)
     }
-}
+
+
+    }
