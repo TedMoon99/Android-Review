@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/score_korean"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/score_english"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -94,11 +94,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/score_math"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/input_button_confirm"
+        android:backgroundTint="#BDB76B"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/confirm"
