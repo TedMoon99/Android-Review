@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">android_review03_baek08102</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="input_student_data">학생 정보 입력</string>
     <string name="grade_and_average">총점 및 평균</string>
     <string name="student_name">학생 이름</string>
@@ -9,35 +8,15 @@
     <string name="score_english">영어 점수</string>
     <string name="score_math">수학 점수</string>
     <string name="confirm">확인</string>
-    <string name="korean_total_print">국어 총점 :</string>
-    <string name="english_total_print">영어 총점 :</string>
-    <string name="math_total_print">수학 총점 :</string>
-    <string name="math_average_print">수학 평균 :</string>
-    <string name="english_average_print">영어 평균 :</string>
-    <string name="korean_average_print">국어 평균 :</string>
-    <string name="korean_total_input">국어 총점 입력</string>
-    <string name="english_total_input">영어 총점 입력</string>
-    <string name="math_total_input">수학 총점 입력</string>
-    <string name="math_average_input">수학 평균 입력</string>
-    <string name="english_average_input">영어 평균 입력</string>
-    <string name="korean_average_input">국어 평균 입력</string>
-    <string name="all_total_print">전체 총점 :</string>
-    <string name="all_total_input">전체 총점 입력</string>
-    <string name="all_average_print">전체 평균 :</string>
-    <string name="all_average_input">전체 평균 입력</string>
-    <string name="student_name_print">이름 :</string>
-    <string name="student_name_input">이름 입력</string>
-    <string name="student_grade_print">학년 :</string>
-    <string name="student_grade_input">학년 입력</string>
-    <string name="korean_score_print">국어 점수 :</string>
-    <string name="korean_score_input">국어 점수 입력</string>
-    <string name="english_score_print">영어 점수 :</string>
-    <string name="english_score_input">영어 점수 입력</string>
-    <string name="math_score_print">수학 점수 :</string>
-    <string name="math_score_input">수학 점수 입력</string>
-    <string name="totalScore_print">총점 :</string>
-    <string name="totalScore_input">총점 입력</string>
-    <string name="averageScore_print">평균 :</string>
-    <string name="averageScore_input">평균 입력</string>
+    <string name="korean_total">국어 총점</string>
+    <string name="korean_average">국어 평균</string>
+    <string name="english_total">영어 총점</string>
+    <string name="english_average">영어 평균</string>
+    <string name="math_total">수학 총점</string>
+    <string name="math_average">수학 평균</string>
+    <string name="all_total">전체 총점</string>
+    <string name="all_average">전체 평균</string>
+    <string name="total">총점</string>
+    <string name="average">평균</string>
 
 </resources>
