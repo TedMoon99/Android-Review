@@ -1,13 +1,10 @@
 package com.example.android_review03_kshn379
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import com.example.android_review03_kshn379.databinding.FragmentMainBinding
 import com.example.android_review03_kshn379.databinding.FragmentSubBinding
 
 class SubFragment : Fragment() {
@@ -24,6 +21,7 @@ class SubFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // View 설정
         settingView()
 
 
@@ -32,12 +30,14 @@ class SubFragment : Fragment() {
     fun settingView() {
         binding.apply {
             studentMainButton.setOnClickListener {
+                // 데이터 입력 및 출력
                 val studentMainName = binding.studentMainName.text.toString()
                 val studentMainGrade = binding.studentMainGrade.text.toString().toIntOrNull()
                 val koreanMainScore = binding.koreanMainScore.text.toString().toIntOrNull()
                 val mathMainScore = binding.mathMainScore.text.toString().toIntOrNull()
                 val englishMainScore = binding.englishMainScore.text.toString().toIntOrNull()
 
+                // 총점 및 평균 데이터 입력 및 출력
                 if (studentMainName.isNotEmpty() && studentMainGrade != null && koreanMainScore != null && englishMainScore != null && mathMainScore != null) {
                     val total = koreanMainScore + englishMainScore + mathMainScore
                     val average = total / 3
