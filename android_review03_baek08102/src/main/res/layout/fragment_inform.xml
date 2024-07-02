@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+    <TextView
+        android:id="@+id/inform_textView_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/student_name"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/inform_textView_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/student_grade"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp"
+        />
+    <TextView
+        android:id="@+id/inform_textView_koreanScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/score_korean"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp"
+        />
+    <TextView
+        android:id="@+id/inform_textView_englishScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/score_english"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/inform_textView_mathScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/score_math"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp"
+        />
+    <TextView
+        android:id="@+id/inform_textView_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/total"
+        android:textSize="16sp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        />
+    <TextView
+        android:id="@+id/inform_textView_average"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/average"
+        android:textSize="16sp"
+        android:layout_marginEnd="10dp"
+        />
+
+    <Button
+        android:id="@+id/inform_button_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/confirm"
+        />
+</LinearLayout>
