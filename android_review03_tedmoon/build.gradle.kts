@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.android_review03_baek08102"
+    namespace = "com.example.android_review03_tedmoon"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.android_review03_baek08102"
+        applicationId = "com.example.android_review03_tedmoon"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -34,14 +34,14 @@ android {
         jvmTarget = "1.8"
     }
     buildToolsVersion = "34.0.0"
-
     buildFeatures {
         viewBinding = true
-        dataBinding = true
     }
 }
 
 dependencies {
+    // Fragment Result API 사용하기 위한 라이브러리 추가
+    implementation(libs.androidx.fragment.ktx)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -51,8 +51,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
-    implementation("androidx.fragment:fragment-ktx:1.8.0")
 }

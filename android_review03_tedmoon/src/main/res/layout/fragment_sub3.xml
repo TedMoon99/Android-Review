@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".fragment.SubFragment3">
+
+    <TextView
+        android:id="@+id/textView_sub3_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView_sub3_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView_sub3_korean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView_sub3_english"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView_sub3_math"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView_sub3_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView_sub3_average"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="16dp"/>
+
+    <Button
+        android:id="@+id/button_sub3_complete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:text="확인"
+        android:textSize="16dp"
+        android:textColor="@color/black"/>
+
+</LinearLayout>
