@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.example.android_review03_tedmoon.R
 import com.example.android_review03_tedmoon.databinding.FragmentSub3Binding
 import com.example.android_review03_tedmoon.model.ScoreInfo
+import com.example.android_review03_tedmoon.utils.FragmentName
 
 class SubFragment3 : Fragment() {
 
@@ -73,6 +75,18 @@ class SubFragment3 : Fragment() {
     }
     // Event 설정
     fun settingEvent(){
+        binding.apply {
+            // 버튼 클릭 시
+            buttonSub3Complete.setOnClickListener {
+                // 뒤로 가기
+                removeFragment()
+            }
+        }
 
+    }
+
+    // 뒤로가기
+    fun removeFragment(){
+        parentFragmentManager.popBackStack(FragmentName.SUB_FRAGMENT3.name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 }
