@@ -20,8 +20,8 @@ class StudentAdapter(val studentInfoList: MutableList<Student>) :
 
         // 리사이클러 뷰 아이템 이름, 학년 출력
         val student = studentInfoList[position]
-        holder.binding.nameRecyclerView.text = student.name
-        holder.binding.gradeRecyclerView.text = student.grade.toString()
+        holder.binding.nameRecyclerView.text = "이름 : ${student.name}"
+        holder.binding.gradeRecyclerView.text = "학년 : ${student.grade}학년"
 
         // 리사이클러 뷰 아이템 클릭 시 LastFragment 화면 및 데이터 출력
         holder.itemView.setOnClickListener{
