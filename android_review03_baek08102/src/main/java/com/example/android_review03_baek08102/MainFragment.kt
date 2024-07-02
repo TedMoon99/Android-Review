@@ -18,7 +18,6 @@ class MainFragment : Fragment() {
 
     private lateinit var mainActivity: MainActivity
     private lateinit var binding: FragmentMainBinding
-    val dataList: MutableList<StudentData> = mutableListOf()
 
     private val viewModel: CustomViewModel by activityViewModels()
 
@@ -48,13 +47,14 @@ class MainFragment : Fragment() {
     fun settingView() {
         binding.apply {
             val context = requireContext()
+            // 가로 구분선 선언
             val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL).apply {
                 isLastItemDecorated = false
             }
 
             mainRecyclerView.apply {
                 layoutManager = LinearLayoutManager(context)
-                addItemDecoration(deco)
+                addItemDecoration(deco) // 구분선 리사이클러뷰에 추가
             }
         }
     }
@@ -86,7 +86,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 // adater 연결 (데이터 전달)
-                mainRecyclerView.adapter = CustomAdapter(newStudentList)
+                mainRecyclerView.adapter = CustomAdapter(newStudentList, viewModel, mainActivity)
             })
         }
     }
