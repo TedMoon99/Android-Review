@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.android_review03_kshn379.databinding.FragmentSubBinding
+import kotlin.math.roundToInt
 
 class SubFragment : Fragment() {
 
@@ -33,14 +34,15 @@ class SubFragment : Fragment() {
                 // 데이터 입력 및 출력
                 val studentMainName = binding.studentMainName.text.toString()
                 val studentMainGrade = binding.studentMainGrade.text.toString().toIntOrNull()
-                val koreanMainScore = binding.koreanMainScore.text.toString().toIntOrNull()
-                val mathMainScore = binding.mathMainScore.text.toString().toIntOrNull()
-                val englishMainScore = binding.englishMainScore.text.toString().toIntOrNull()
+                val koreanMainScore = binding.koreanMainScore.text.toString().toDouble().roundToInt()
+                val mathMainScore = binding.mathMainScore.text.toString().toDouble().roundToInt()
+                val englishMainScore = binding.englishMainScore.text.toString().toDouble().roundToInt()
 
                 // 총점 및 평균 데이터 입력 및 출력
                 if (studentMainName.isNotEmpty() && studentMainGrade != null && koreanMainScore != null && englishMainScore != null && mathMainScore != null) {
-                    val total = koreanMainScore + englishMainScore + mathMainScore
-                    val average = total / 3
+                    val total = (koreanMainScore + englishMainScore + mathMainScore).toDouble().roundToInt()
+                    val average = (total / 3).toDouble().roundToInt()
+
 
                     val mainFragment = parentFragmentManager.findFragmentByTag("MainFragment") as? MainFragment
                     mainFragment?.saveStudentData(studentMainName, studentMainGrade,
