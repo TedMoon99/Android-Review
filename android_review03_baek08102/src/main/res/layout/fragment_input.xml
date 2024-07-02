@@ -30,6 +30,7 @@
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:hintAnimationEnabled="false"
         app:hintEnabled="false"
         app:endIconMode="clear_text"
@@ -39,6 +40,7 @@
             android:id="@+id/input_textInputEdittext_grade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="16dp"
             android:hint="@string/student_grade"
             android:inputType="number"
             />
@@ -48,6 +50,7 @@
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:hintAnimationEnabled="false"
         app:hintEnabled="false"
         app:endIconMode="clear_text"
@@ -66,6 +69,7 @@
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:hintAnimationEnabled="false"
         app:hintEnabled="false"
         app:endIconMode="clear_text"
@@ -84,6 +88,7 @@
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:hintAnimationEnabled="false"
         app:hintEnabled="false"
         app:endIconMode="clear_text"
@@ -101,6 +106,7 @@
         android:id="@+id/input_button_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/confirm"
         />
 
