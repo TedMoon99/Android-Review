@@ -54,7 +54,7 @@ class ThirdFragment : Fragment() {
 
 
     fun settingView() {
-    binding.apply {
+        binding.apply {
             // 인원 수 구하기
             val num = dataList?.size ?: 1
             // 과목별 총점 구하기
@@ -75,7 +75,7 @@ class ThirdFragment : Fragment() {
             allMainAverage.text = "전체 평균 : ${formatAverage(total, num)}점"
 
         }
-            }
+    }
 
     fun settingEvent() {
         binding.apply {
@@ -101,4 +101,4 @@ class ThirdFragment : Fragment() {
         }
     }
 
-        }
+}

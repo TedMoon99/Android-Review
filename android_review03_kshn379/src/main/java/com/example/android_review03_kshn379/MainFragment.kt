@@ -39,11 +39,11 @@ class MainFragment : Fragment() {
             val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL)
             // 구분선 적용
             addItemDecoration(deco)
-                // 레이아웃 매니저 연결
-                layoutManager = LinearLayoutManager(context)
-                // 어댑터 연결
-                adapter = StudentAdapter(studentInfoList)
-            }
+            // 레이아웃 매니저 연결
+            layoutManager = LinearLayoutManager(context)
+            // 어댑터 연결
+            adapter = StudentAdapter(studentInfoList)
+        }
 
 
 
@@ -88,4 +88,4 @@ class MainFragment : Fragment() {
     }
 
 
-    }
+}

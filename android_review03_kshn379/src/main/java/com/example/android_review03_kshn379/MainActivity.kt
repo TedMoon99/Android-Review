@@ -26,4 +26,3 @@ class MainActivity : AppCompatActivity() {
             .commit() // 실행
     }
 }
-

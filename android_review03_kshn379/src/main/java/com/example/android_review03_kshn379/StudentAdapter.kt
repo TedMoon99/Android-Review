@@ -46,5 +46,4 @@ class StudentAdapter(val studentInfoList: MutableList<Student>) :
 
     class CustomViewHolder(val binding: ItemStudentsBinding) : RecyclerView.ViewHolder(binding.root) {
     }
-    }
-
+}
