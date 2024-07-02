@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_review03_kshn379.databinding.FragmentMainBinding
+import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class MainFragment : Fragment() {
 
@@ -34,7 +35,10 @@ class MainFragment : Fragment() {
     // View 설정
     fun settingView(){
         binding.rvMainList.apply {
-
+            // 구분선 생성
+            val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+            // 구분선 적용
+            addItemDecoration(deco)
                 // 레이아웃 매니저 연결
                 layoutManager = LinearLayoutManager(context)
                 // 어댑터 연결
