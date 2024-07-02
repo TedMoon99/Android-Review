@@ -10,77 +10,82 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/student_main_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
-                    android:inputType="text"
+                    android:inputType="textPersonName"
                     android:hint="학생 이름"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp"
+                    android:maxLength="4"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/student_main_grade"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
                     android:inputType="number"
                     android:hint="학년"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp"
+                    android:maxLength="2"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/korean_main_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
                     android:inputType="numberDecimal"
                     android:hint="국어 점수"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp"
+                    android:maxLength="5"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/english_main_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
                     android:inputType="numberDecimal"
                     android:hint="영어 점수"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp"
+                    android:maxLength="5"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/math_main_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
                     android:inputType="numberDecimal"
                     android:hint="수학 점수"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp"
+                    android:maxLength="5"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
