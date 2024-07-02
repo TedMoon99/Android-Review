@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.main_container, MainFragment())
+                    .addToBackStack(FragmentName.MAIN_FRAGMENT.name)
                     .commit()
             }
 
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.main_container, InputFragment())
-                    .addToBackStack(FragmentName.MAIN_FRAGMENT.name)
+                    .addToBackStack(FragmentName.INPUT_FRAGMENT.name)
                     .commit()
             }
 
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.main_container, ScoreFragment())
-                    .addToBackStack(FragmentName.MAIN_FRAGMENT.name)
+                    .addToBackStack(FragmentName.SCORE_FRAGMENT.name)
                     .commit()
             }
 
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.main_container, InformFragment())
-                    .addToBackStack(FragmentName.MAIN_FRAGMENT.name)
+                    .addToBackStack(FragmentName.INFORM_FRAGMENT.name)
                     .commit()
             }
         }
