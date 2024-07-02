@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,8 +49,14 @@ class MainFragment : Fragment() {
 
             // 총점 및 평균
             buttonMainTotalAverage.setOnClickListener {
-                // 화면 이동
-                moveFragment(FragmentName.SUB_FRAGMENT2)
+                if (dataList.size != 0){ // 입력된 내용이 있는 경우
+                    // 화면 이동
+                    moveFragment(FragmentName.SUB_FRAGMENT2)
+                } else {
+                    // 입력된 내용이 없는 경우
+                    val toast = Toast.makeText(context, "학생 정보를 먼저 입력해주세요", Toast.LENGTH_SHORT)
+                    toast.show()
+                }
             }
         }
 
