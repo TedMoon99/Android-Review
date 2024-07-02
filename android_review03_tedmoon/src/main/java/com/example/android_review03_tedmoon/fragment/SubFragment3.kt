@@ -12,6 +12,7 @@ import com.example.android_review03_tedmoon.R
 import com.example.android_review03_tedmoon.databinding.FragmentSub3Binding
 import com.example.android_review03_tedmoon.model.ScoreInfo
 import com.example.android_review03_tedmoon.utils.FragmentName
+import com.example.android_review03_tedmoon.utils.Tools
 
 class SubFragment3 : Fragment() {
 
@@ -67,9 +68,9 @@ class SubFragment3 : Fragment() {
             // 수학
             textViewSub3Math.text = "수학 점수 : ${data?.math}점"
             // 총점
-            textViewSub3Total.text = "총점 test"
+            textViewSub3Total.text = "전체 총점 : ${Tools.total}점"
             // 평균
-            textViewSub3Average.text = "평균 test"
+            textViewSub3Average.text = "평균 총점 : ${Tools.average}점"
         }
 
     }

@@ -53,6 +53,11 @@ class SubFragment1 : Fragment() {
                     val english = textInputEditTextSub1English.text.toString().toDouble()
                     val math = textInputEditTextSub1Math.text.toString().toDouble()
 
+                    // 전체 총점을 구해서 Tools.kt에 저장한다
+                    Tools.gettingTotal(korean, english, math)
+                    // 전체 평균을 구해서 Tools.kt에 저장한다
+                    Tools.gettingAverage()
+
                     // ScoreInfo 객체를 만들어준다
                     val data = ScoreInfo(name, grade, korean, english, math)
 

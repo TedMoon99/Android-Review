@@ -65,11 +65,9 @@ class SubFragment2 : Fragment() {
     // View 설정
     fun settingView() {
         // 인원 수 구하기
-        val num = dataList?.size?: 1 // dataList의 크기를 반환하고 dataList가 null이면 1을 반환한다
+        val num = Tools.num
         // 과목별 총점 구하기
         settingTotalAndAverage()
-        // 전체 총점 구하기
-        val total = scoreArray.sum()
 
         // textView에 연결
         binding.apply {
@@ -84,10 +82,10 @@ class SubFragment2 : Fragment() {
             textViewSub2MathAverage.text = "수학 평균 : ${((scoreArray[2] / num) * 100.0).roundToInt() / 100.0}점"
 
             // 전체 총점 설정
-            textViewSub2WholeTotal.text = "전체 총점 : ${total}점"
+            textViewSub2WholeTotal.text = "전체 총점 : ${Tools.total}점"
 
             // 전체 평균 설정
-            textViewSub2WholeAverage.text = "전체 평균 : ${((total / num) * 100.0).roundToInt() / 100.0}점"
+            textViewSub2WholeAverage.text = "전체 평균 : ${Tools.average}점"
 
         }
 
