@@ -18,6 +18,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
+                    android:inputType="text"
                     android:hint="학생 이름"
                     android:textSize="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -32,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
+                    android:inputType="number"
                     android:hint="학년"
                     android:textSize="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -46,6 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
+                    android:inputType="numberDecimal"
                     android:hint="국어 점수"
                     android:textSize="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -60,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
+                    android:inputType="numberDecimal"
                     android:hint="영어 점수"
                     android:textSize="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -74,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
+                    android:inputType="numberDecimal"
                     android:hint="수학 점수"
                     android:textSize="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
