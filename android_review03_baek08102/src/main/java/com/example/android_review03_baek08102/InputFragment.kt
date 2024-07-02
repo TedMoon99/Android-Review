@@ -7,13 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.example.android_review03_baek08102.databinding.FragmentInputBinding
 
 class InputFragment : Fragment() {
 
     private lateinit var binding: FragmentInputBinding
-    private lateinit var mainActivity: MainActivity
     private val viewModel: CustomViewModel by activityViewModels()
 
     // 바인딩 관련
@@ -21,7 +21,6 @@ class InputFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentInputBinding.inflate(inflater)
-        mainActivity = activity as MainActivity
 
         return binding.root
     }
@@ -33,6 +32,7 @@ class InputFragment : Fragment() {
         settingEvent()
 
     }
+
     fun settingEvent() {
 
         // 버튼 클릭 이벤트
@@ -60,7 +60,10 @@ class InputFragment : Fragment() {
                         "data : ${viewModel.studentList.value}}"
                     )
 
-                    mainActivity.switchFragment(FragmentName.MAIN_FRAGMENT)
+                    parentFragmentManager.popBackStack(
+                        FragmentName.INPUT_FRAGMENT.name,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE
+                    )
                 }
             }
         }
@@ -79,6 +82,7 @@ class InputFragment : Fragment() {
 
         binding.apply {
 
+            // 이름 항목에 대한 유효성 검사
             val name = inputTextInputEdittextName.text.toString()
             if (name.isNotEmpty()) {                      // 입력값이 비어있지 않고
                 if (name.length in 2 until 6) {     // 입력 문자열 길이가 2자 이상 6자 미만 일시
@@ -93,6 +97,7 @@ class InputFragment : Fragment() {
                 resultName = false
             }
 
+            // 학년 항목에 대한 유효성 검사
             val grade = inputTextInputEdittextGrade.text.toString()
             if (grade.isNotEmpty()) {
                 if (grade.toInt() in 1..6) {
@@ -107,6 +112,7 @@ class InputFragment : Fragment() {
                 resultGrade = false
             }
 
+            // 국어 점수 항목에 대한 유효성 검사
             val koreanScore = inputTextInputEdittextKoreanScore.text.toString()
             if (koreanScore.isNotEmpty()) {
                 if (koreanScore.toFloat() in (0.0..100.0)) {
@@ -121,6 +127,7 @@ class InputFragment : Fragment() {
                 resultKoreanScore = false
             }
 
+            // 영어 점수 항목에 대한 유효성 검사
             val englishScore = inputTextInputEdittextEnglishScore.text.toString()
             if (englishScore.isNotEmpty()) {
                 if (englishScore.toFloat() in (0.0..100.0)) {
@@ -135,6 +142,7 @@ class InputFragment : Fragment() {
                 resultEnglishScore = false
             }
 
+            // 수학 점수 항목에 대한 유효성 검사
             val mathScore = inputTextInputEdittextMathScore.text.toString()
             if (mathScore.isNotEmpty()) {
                 if (mathScore.toFloat() in (0.0..100.0)) {
