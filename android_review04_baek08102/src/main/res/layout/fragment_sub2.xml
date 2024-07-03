@@ -4,8 +4,82 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
     >
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/main_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#deb887"
+        app:navigationIcon="@drawable/arrow_back_24px"
+        app:titleCentered="true"
+        />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/sub2_textView_koreanTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/print_score"
+            />
+        <TextView
+            android:id="@+id/sub2_textView_koreanAverage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/print_score"
+            />
 
+        <TextView
+            android:id="@+id/sub2_textView_englishTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:text="@string/print_score"
+            />
+        <TextView
+            android:id="@+id/sub2_textView_englishAverage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/print_score"
+            />
+
+        <TextView
+            android:id="@+id/sub2_textView_mathTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:text="@string/print_score"
+            />
+        <TextView
+            android:id="@+id/sub2_textView_mathAverage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/print_score"
+            />
+
+        <TextView
+            android:id="@+id/sub2_textView_allTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:text="@string/print_score"
+            />
+        <TextView
+            android:id="@+id/sub2_textView_allAverage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/print_score"
+            />
+    </LinearLayout>
 </LinearLayout>
