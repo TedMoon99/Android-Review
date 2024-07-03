@@ -4,35 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
     >
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/main_toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp"
-        >
+        android:background="#deb887"
+        app:navigationIcon="@drawable/photo_camera_24px"
+        app:titleCentered="true"
+        />
 
-        <Button
-            android:id="@+id/main_button_input"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="학생 정보 입력"
-            android:textSize="16sp"
-            android:textColor="@color/black" />
-        <Button
-            android:id="@+id/main_button_total"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="총점 및 평균"
-            android:textSize="16sp"
-            android:textColor="@color/black"/>
-    </LinearLayout>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp" />
 
 </LinearLayout>
 
