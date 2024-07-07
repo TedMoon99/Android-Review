@@ -12,7 +12,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/containerMain"
-            android:name="com.example.android_review04_tedmoon.MainFragment"
+            android:name="com.example.android_review04_tedmoon.fragment.MainFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
