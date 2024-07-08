@@ -14,14 +14,17 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.example.android_review04_tedmoon.R
 import com.example.android_review04_tedmoon.dao.ScoreDao
+import com.example.android_review04_tedmoon.dao.TotalDao
 import com.example.android_review04_tedmoon.databinding.FragmentAddBinding
 import com.example.android_review04_tedmoon.model.ScoreInfo
+import com.example.android_review04_tedmoon.model.TotalInfo
 import com.example.android_review04_tedmoon.utils.FragmentName
 import com.example.android_review04_tedmoon.viewmodel.AddViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.roundToInt
 
 class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
@@ -121,11 +124,35 @@ class AddFragment : Fragment() {
                 val english = viewModel.studentEnglish.value!!.toDouble()
                 val math = viewModel.studentMath.value!!.toDouble()
 
+                // 총점과 평균 불러오기
+                val totalInfo = withContext(Dispatchers.IO){ TotalDao.gettingTotalData() }
+
+                // 갯수
+                val num = totalInfo.totalIdx + 1
+                // 각 총점 구하기
+                val koreanTotal = totalInfo.koreanTotal + korean
+                val englishTotal = totalInfo.englishTotal + english
+                val mathTotal = totalInfo.mathTotal + math
+                // 각 평균 구하기
+                val koreanAverage = ((koreanTotal / num) * 100.0).roundToInt() / 100.0
+                val englishAverage = ((englishTotal / num) * 100.0).roundToInt() / 100.0
+                val mathAverage = ((mathTotal / num) * 100.0).roundToInt() / 100.0
+                // 전체 총점 구하기
+                val wholeTotal = koreanTotal + englishTotal + mathTotal
+                // 전체 평균 구하기
+                val wholeAverage = koreanAverage + englishAverage + mathAverage
+
+
+
                 // 저장할 데이터를 객체에 담는다
                 val data = ScoreInfo(studentIdx, name, grade, korean, english, math)
+                val totalData = TotalInfo(num, koreanTotal, englishTotal, mathTotal, koreanAverage, englishAverage, mathAverage, wholeTotal, wholeAverage)
+
 
                 // 사용자 정보를 저장한다
                 withContext(Dispatchers.IO) { ScoreDao.insertStudentData(data) }
+                withContext(Dispatchers.IO) { TotalDao.settingTotalData(totalData)}
+
 
                 Toast.makeText(Fcontext, "데이터 저장 성공", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
