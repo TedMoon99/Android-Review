@@ -2,6 +2,7 @@ package com.example.android_review04_tedmoon.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -107,7 +108,6 @@ class AddFragment : Fragment() {
             try {
                 // scoreIdx 불러오기
                 val studentSequence = withContext(Dispatchers.IO) { ScoreDao.getSequence() }
-                Log.d("sequenceCheck", "불러온 시퀀스 번호 : ${studentSequence}")
                 // DB에 Sequence를 업데이트 해준다
                 withContext(Dispatchers.IO) { ScoreDao.updateSequence(studentSequence + 1) }
 
@@ -237,6 +237,7 @@ class AddFragment : Fragment() {
 
     // 뒤로가기
     fun removeFragment() {
+        SystemClock.sleep(200)
         parentFragmentManager.popBackStack(
             FragmentName.ADD_FRAGMENT.str,
             FragmentManager.POP_BACK_STACK_INCLUSIVE
