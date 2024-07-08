@@ -13,13 +13,15 @@
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/restart_alt_24px"
             app:titleCentered="true"
             app:title="학생 정보 조회" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
 
     </LinearLayout>
 </layout>
