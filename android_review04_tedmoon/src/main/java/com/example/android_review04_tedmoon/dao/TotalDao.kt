@@ -1,14 +1,9 @@
 package com.example.android_review04_tedmoon.dao
 
 import android.util.Log
-import com.example.android_review04_tedmoon.model.ScoreInfo
 import com.example.android_review04_tedmoon.model.TotalInfo
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
-import com.google.firebase.firestore.ktx.firestore
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class TotalDao {
@@ -16,7 +11,7 @@ class TotalDao {
 
         // 총점과 평균을 불러온다(국어, 영어, 수학, 전체)
         suspend fun gettingTotalData(): TotalInfo {
-            var totalInfo: TotalInfo = TotalInfo()
+            var totalInfo = TotalInfo()
             try {
                 val querySnapshot = Firebase.firestore.collection("TotalData").get().await()
                 querySnapshot.forEach {
@@ -24,7 +19,7 @@ class TotalDao {
                     totalInfo = it.toObject(TotalInfo::class.java)
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
+                Log.e("TotalDao", "데이터 조회 실패 : ${e.message}")
             }
             return totalInfo
         }
@@ -52,7 +47,7 @@ class TotalDao {
                 collectionReference.documents[0].reference.update(map)
 
             } catch (e: Exception){
-                e.printStackTrace()
+                Log.e("TotalDao", "업데이트 실패 : ${e.message}")
             }
         }
     }
