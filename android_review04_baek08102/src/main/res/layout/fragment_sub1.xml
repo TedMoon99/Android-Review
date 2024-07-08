@@ -6,7 +6,7 @@
     android:orientation="vertical"
     >
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/main_toolBar"
+        android:id="@+id/sub1_toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#deb887"
@@ -20,6 +20,7 @@
         android:padding="16dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sub1_textInputLayout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
@@ -39,6 +40,7 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sub1_textInputLayout_grade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
@@ -52,10 +54,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/grade"
-                android:inputType="text"
+                android:inputType="number"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sub1_textInputLayout_koreanScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
@@ -69,10 +72,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/korean_score"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sub1_textInputLayout_englishScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
@@ -87,9 +91,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/english_score"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 />
-        </com.google.android.material.textfield.TextInputLayout><com.google.android.material.textfield.TextInputLayout
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sub1_textInputLayout_mathScore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
@@ -103,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/math_score"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             />
     </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
