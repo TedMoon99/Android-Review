@@ -1,82 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
-            name="mainViewModel"
-            type="com.example.android_review04_tedmoon.viewmodel.MainViewModel" />
+            name="infoViewModel"
+            type="com.example.android_review04_tedmoon.viewmodel.InfoViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
         tools:context=".fragment.InfoFragment">
 
-        <TextView
-            android:id="@+id/textView_info_koreanTotal"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="국어 총점" />
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:titleCentered="true"
+            app:title="총점 및 평균 정보 조회"/>
 
-        <TextView
-            android:id="@+id/textView_info_koreanAverage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="16dp"
-            android:text="국어 평균" />
-
-        <TextView
-            android:id="@+id/textView_info_englishTotal"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textSize="16dp"
-            android:text="영어 총점" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/textView_info_englishAverage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="16dp"
-            android:text="영어 평균" />
+            <TextView
+                android:id="@+id/textView_info_koreanTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@{infoViewModel.totalKorean}" />
 
-        <TextView
-            android:id="@+id/textView_info_mathTotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="16dp"
-            android:text="수학 총점" />
+            <TextView
+                android:id="@+id/textView_info_koreanAverage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:text="@{infoViewModel.totalEnglish}" />
 
-        <TextView
-            android:id="@+id/textView_info_mathAverage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="16dp"
-            android:text="수학 평균" />
+            <TextView
+                android:id="@+id/textView_info_englishTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:text="@{infoViewModel.totalMath}" />
 
-        <TextView
-            android:id="@+id/textView_info_wholeTotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="16dp"
-            android:text="전체 총점" />
+            <TextView
+                android:id="@+id/textView_info_englishAverage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:text="@{infoViewModel.averageKorean}"/>
 
-        <TextView
-            android:id="@+id/textView_info_wholeAverage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="16dp"
-            android:text="전체 평균" />
+            <TextView
+                android:id="@+id/textView_info_mathTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:text="@{infoViewModel.averageEnglish}"/>
 
+            <TextView
+                android:id="@+id/textView_info_mathAverage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:text="@{infoViewModel.averageMath}"/>
+
+            <TextView
+                android:id="@+id/textView_info_wholeTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:text="@{infoViewModel.wholeTotal}"/>
+
+            <TextView
+                android:id="@+id/textView_info_wholeAverage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:text="@{infoViewModel.wholeAverage}"/>
+
+        </LinearLayout>
     </LinearLayout>
 </layout>
