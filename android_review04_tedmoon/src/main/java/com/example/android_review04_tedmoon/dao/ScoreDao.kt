@@ -1,5 +1,6 @@
 package com.example.android_review04_tedmoon.dao
 
+import android.util.Log
 import com.example.android_review04_tedmoon.model.ScoreInfo
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -62,13 +63,15 @@ class ScoreDao {
         suspend fun getAllData(): ArrayList<ScoreInfo> {
             val scoreData = arrayListOf<ScoreInfo>()
             try {
-                val querySnapshot = Firebase.firestore.collection("ScoreInfo").get().await()
+                val querySnapshot = Firebase.firestore.collection("ScoreData").get().await()
                 querySnapshot.forEach {
+                    // ScoreInfo 객채에 담아준다
                     val scoreInfo = it.toObject(ScoreInfo::class.java)
+                    // 리스트에 담아준다
                     scoreData.add(scoreInfo)
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
+                Log.e("getAllData", "데이터 조회 실패 : ${e.message}")
             }
             return scoreData
         }
