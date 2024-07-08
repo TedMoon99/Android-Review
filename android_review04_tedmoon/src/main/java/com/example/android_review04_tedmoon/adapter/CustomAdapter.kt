@@ -1,18 +1,25 @@
 package com.example.android_review04_tedmoon.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android_review04_tedmoon.R
 import com.example.android_review04_tedmoon.databinding.RowBinding
+import com.example.android_review04_tedmoon.fragment.ShowFragment
 import com.example.android_review04_tedmoon.model.ScoreInfo
+import com.example.android_review04_tedmoon.utils.FragmentName
 
-class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>, val manager: FragmentManager): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     class ViewHolder(val rowBinding: RowBinding): RecyclerView.ViewHolder(rowBinding.root){
         // ViewHolder 클릭 시 작동
-        fun clickListenr(){
-//            FragmentManager.findFragmentManager()
-
+        fun clickListenr(manager: FragmentManager){
+            manager
+                .beginTransaction() // 트랜잭션 생성
+                .replace(R.id.containerMain, ShowFragment()) // ShowFragment로 변경
+                .addToBackStack(FragmentName.SHOW_FRAGMENT.str) // 백스택에 추가
+                .commit() // 실행
         }
     }
 
@@ -32,6 +39,10 @@ class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>): RecyclerView.Ada
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.rowBinding.textViewRowName.text = "이름 : ${dataSet[position].name}"
         holder.rowBinding.textViewRowGrade.text = "학년 : ${dataSet[position].grade}학년"
+        // 항목 클릭시 리스너 설정
+        holder.itemView.setOnClickListener {
+            holder.clickListenr(manager)
+        }
 
     }
 }
