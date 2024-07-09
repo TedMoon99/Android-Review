@@ -31,13 +31,23 @@ class ShowFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initData()
         settingToolbar()
+        gettingData()
+    }
+
+    // 데이터 초기화
+    fun initData(){
+        viewModel.initData()
     }
 
     // 데이터 가져오기
     fun gettingData(){
-        val position = arguments?.getInt("position")
+        val position = arguments?.getInt("position") ?: -1
 
+        viewLifecycleOwner.lifecycle.apply {
+            viewModel.gettingData(position + 1)
+        }
     }
 
     // Toolbar
