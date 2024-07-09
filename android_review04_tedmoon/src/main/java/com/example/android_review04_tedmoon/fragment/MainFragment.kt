@@ -64,7 +64,7 @@ class MainFragment : Fragment() {
                     isLastItemDecorated = false
                 }
                 // 어댑터 연결
-                adapter = CustomAdapter(dataList)
+                adapter = CustomAdapter(dataList, parentFragmentManager)
                 // 레이아웃 매니저 적용
                 layoutManager = LinearLayoutManager(context)
                 // 구분선 적용

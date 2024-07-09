@@ -1,6 +1,7 @@
 package com.example.android_review04_tedmoon.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
@@ -14,10 +15,16 @@ import com.example.android_review04_tedmoon.utils.FragmentName
 class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>, val manager: FragmentManager): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     class ViewHolder(val rowBinding: RowBinding): RecyclerView.ViewHolder(rowBinding.root){
         // ViewHolder 클릭 시 작동
-        fun clickListenr(manager: FragmentManager){
+        fun clickListenr(manager: FragmentManager, position: Int){
+            val showFragment = ShowFragment().apply {
+                val data = Bundle().apply {
+                    putInt("position", position)
+                }
+                arguments = data
+            }
             manager
                 .beginTransaction() // 트랜잭션 생성
-                .replace(R.id.containerMain, ShowFragment()) // ShowFragment로 변경
+                .replace(R.id.containerMain, showFragment) // ShowFragment로 변경
                 .addToBackStack(FragmentName.SHOW_FRAGMENT.str) // 백스택에 추가
                 .commit() // 실행
         }
@@ -41,7 +48,7 @@ class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>, val manager: Frag
         holder.rowBinding.textViewRowGrade.text = "학년 : ${dataSet[position].grade}학년"
         // 항목 클릭시 리스너 설정
         holder.itemView.setOnClickListener {
-            holder.clickListenr(manager)
+            holder.clickListenr(manager, position)
         }
 
     }
