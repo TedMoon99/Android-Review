@@ -33,7 +33,7 @@
                 android:id="@+id/textView_show_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="국어 점수 :"
+                android:text="@{showViewModel.studentName}"
                 android:textSize="16dp" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="국어 점수 :"
+                android:text="@{showViewModel.studentGrade}"
                 android:textSize="16dp" />
 
             <TextView
@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="국어 점수 :"
+                android:text="@{showViewModel.studentKorean}"
                 android:textSize="16dp" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="국어 점수 :"
+                android:text="@{showViewModel.studentEnglish}"
                 android:textSize="16dp" />
 
             <TextView
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="국어 점수 :"
+                android:text="@{showViewModel.studentMath}"
                 android:textSize="16dp" />
 
             <TextView
@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="국어 점수 :"
+                android:text="@{showViewModel.studentTotal}"
                 android:textSize="16dp" />
 
             <TextView
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="국어 점수 :"
+                android:text="@{showViewModel.studentAverage}"
                 android:textSize="16dp" />
 
         </LinearLayout>
