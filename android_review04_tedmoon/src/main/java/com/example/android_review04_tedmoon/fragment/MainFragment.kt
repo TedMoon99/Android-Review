@@ -26,7 +26,6 @@ import kotlinx.coroutines.withContext
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private lateinit var viewModel: MainViewModel
     val dataList: ArrayList<ScoreInfo> = arrayListOf()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +43,14 @@ class MainFragment : Fragment() {
         settingView()
         // Event 설정
         settingEvent()
-        // 서버로부터 데이터를 가져와 리사이클러뷰를 갱신한다
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Fragment가 다시 화면에 나타날 때마다 데이터를 갱신합니다.
         gettingAdapterData()
+        Log.d("onResume", "작동")
     }
 
     // View 설정
@@ -82,7 +87,8 @@ class MainFragment : Fragment() {
 
                 dataList.clear()
                 dataList.addAll(data)
-
+                // studentIdx로 정렬해줌
+                dataList.sortBy { it.studentIdx }
                 // 어댑터에게 데이터 변경 알림
                 binding.recyclerViewMain.adapter?.notifyDataSetChanged()
 
