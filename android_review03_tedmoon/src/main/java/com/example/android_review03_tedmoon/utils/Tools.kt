@@ -15,7 +15,7 @@ class Tools {
             // 전체 데이터 갯수 + 1
             num += 1
             val sum = korean + english + math
-            total = sum // 총점 저장
+            total += sum // 총점 저장
             Log.d("test1234", "${total}")
         }
 
