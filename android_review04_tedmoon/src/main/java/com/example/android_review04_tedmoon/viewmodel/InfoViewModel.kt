@@ -1,5 +1,6 @@
 package com.example.android_review04_tedmoon.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -45,7 +46,7 @@ class InfoViewModel: ViewModel() {
                 // 전체 평균
                 wholeAverage.value = "전체 평균 : ${totalInfo.wholeAverage}점"
             } catch (e: Exception){
-                e.printStackTrace()
+                Log.d("InfoViewModel", "데이터 설정 실패 : ${e.message}")
             }
         }
     }
