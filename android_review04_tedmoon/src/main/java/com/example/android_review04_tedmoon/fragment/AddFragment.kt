@@ -128,7 +128,7 @@ class AddFragment : Fragment() {
                 val totalInfo = withContext(Dispatchers.IO){ TotalDao.gettingTotalData() }
 
                 // 갯수
-                val num = totalInfo.totalIdx + 1
+                val num = if (totalInfo.totalIdx == -100 ) 1 else totalInfo.totalIdx + 1 // 불러온 데이터가 없다면 num을 1로 설정하고 그게 아니라면 num은 데이터의 갯수를 의미한다
                 // 각 총점 구하기
                 val koreanTotal = totalInfo.koreanTotal + korean
                 val englishTotal = totalInfo.englishTotal + english
@@ -151,7 +151,12 @@ class AddFragment : Fragment() {
 
                 // 사용자 정보를 저장한다
                 withContext(Dispatchers.IO) { ScoreDao.insertStudentData(data) }
-                withContext(Dispatchers.IO) { TotalDao.settingTotalData(totalData)}
+                if (totalInfo.totalIdx == -100 ){ // 저장되어 있는 데이터가 없다면~
+                    // 데이터를 새로 저장한다
+                    withContext(Dispatchers.IO) { TotalDao.saveTotalData(totalData)}
+                } else {
+                    withContext(Dispatchers.IO) { TotalDao.settingTotalData(totalData)}
+                }
 
 
                 Toast.makeText(Fcontext, "데이터 저장 성공", Toast.LENGTH_SHORT).show()

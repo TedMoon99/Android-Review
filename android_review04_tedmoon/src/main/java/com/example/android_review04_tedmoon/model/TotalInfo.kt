@@ -10,5 +10,5 @@ data class TotalInfo(
     val mathAverage: Double,
     val wholeTotal: Double,
     val wholeAverage: Double){
- constructor(): this(0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+ constructor(): this(-100, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 }

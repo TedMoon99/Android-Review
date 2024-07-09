@@ -23,6 +23,16 @@ class TotalDao {
             }
             return totalInfo
         }
+        // 총점과 평균을 저장한다
+        suspend fun saveTotalData(totalData: TotalInfo){
+            try {
+                // 컬랙션에 접근할 수 있는 객체를 가져온다
+                val collectionReference = Firebase.firestore.collection("TotalData")
+                collectionReference.add(totalData).await()
+            } catch (e: Exception){
+                Log.e("TotalDao", "데이터 저장 실패 : ${e.message}")
+            }
+        }
 
         // 총점과 평균을 업데이트한다
         suspend fun settingTotalData(totalInfo: TotalInfo){
