@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ThirdFragment">
+
+    <TextView
+        android:id="@+id/kor_main_total"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/kor_main_average"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/eng_main_total"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/eng_main_average"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/math_main_total"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/math_main_average"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/all_main_total"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/all_main_average"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/check_main_score"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:text="확인"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        style="@style/MaterialAlertDialog.Material3" />
+
+
+</LinearLayout>
