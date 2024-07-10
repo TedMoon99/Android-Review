@@ -16,9 +16,7 @@ import com.example.android_review04_tedmoon.dao.ScoreDao
 import com.example.android_review04_tedmoon.databinding.FragmentMainBinding
 import com.example.android_review04_tedmoon.model.ScoreInfo
 import com.example.android_review04_tedmoon.utils.FragmentName
-import com.example.android_review04_tedmoon.viewmodel.MainViewModel
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
