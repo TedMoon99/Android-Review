@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "792806681511",
+    "project_id": "boardapp-85ac7",
+    "storage_bucket": "boardapp-85ac7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792806681511:android:ad057ae48e38388bd12482",
+        "android_client_info": {
+          "package_name": "com.example.android_review04_tedmoon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_8bZFHXDnUSfTSyA9QSq68smfK8jfNQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
