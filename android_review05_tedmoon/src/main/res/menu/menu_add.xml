@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuItem_add_complete"
+        android:icon="@drawable/done_24px"
+        android:title="입력완료" />
+</menu>
