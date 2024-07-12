@@ -8,4 +8,7 @@ class Tools {
 
 enum class FragmentName(var str: String){
     ADD_FRAGMENT("AddFragment"),
+    TOTAL_FRAGMENT("TotalFragment"),
+    INFO_FRAGMENT("InfoFragment"),
 }
+
