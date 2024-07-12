@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".TotalFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolBar_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="총점 및 평균"
+        app:titleCentered="true"
+        android:background="#ff9898"
+        app:navigationIcon="@drawable/ic_launcher_foreground"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textView_total_koreanTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="국어 총점"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textView_total_koreanAverage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="국어 평균"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textView_total_englishTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="영어 총점"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textView_total_englishAverage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="영어 평균"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textView_total_mathTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="수학 총점"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textView_total_mathAverage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="수학 평균"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textView_total_allTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="전체 총점"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textView_total_allAverage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="전체 평균"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+</LinearLayout>
