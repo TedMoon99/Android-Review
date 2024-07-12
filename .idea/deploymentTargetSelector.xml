@@ -32,6 +32,9 @@
       <SelectionState runConfigName="android_review04_baek08102">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="android_review04_kshn3792">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
