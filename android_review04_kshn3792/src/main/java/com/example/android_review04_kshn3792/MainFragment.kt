@@ -44,7 +44,6 @@ class MainFragment : Fragment() {
             recyclerViewMain.apply {
                 // deco
                 val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL)
-
                 // adapter
 
                 // layoutManager
@@ -71,7 +70,7 @@ class MainFragment : Fragment() {
                         }
                         R.id.menuItem_main_total -> {
                             // TotalFragment 로 이동
-
+                            moveFragment(FragmentName.TOTAL_FRAGMENT)
                         }
                     }
                     true
@@ -91,9 +90,21 @@ class MainFragment : Fragment() {
                     .commit()
             }
             // TotalFragment 로 이동
-
-
+            FragmentName.TOTAL_FRAGMENT -> {
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.containerMain, TotalFragment())
+                    .addToBackStack(FragmentName.TOTAL_FRAGMENT.str)
+                    .commit()
+            }
+            // InfoFragment 로 이동
+            FragmentName.INFO_FRAGMENT -> {
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.containerMain, InfoFragment())
+                    .addToBackStack(FragmentName.INFO_FRAGMENT.str)
+                    .commit()
+            }
         }
-
     }
 }
