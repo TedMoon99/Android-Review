@@ -45,7 +45,7 @@ class MainFragment : Fragment() {
                 // deco
                 val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL)
                 // adapter
-
+                adapter = StudentAdpater(arrayListOf(StudentInfo("KSH", 1,100.0, 87.2, 98.5)), parentFragmentManager)
                 // layoutManager
                 layoutManager = LinearLayoutManager(context)
                 // 구분선 적용
@@ -60,7 +60,9 @@ class MainFragment : Fragment() {
             // toolbar
             toolBarMain.apply {
                 // navigationIcon 설정
-
+                setNavigationOnClickListener {
+                    Toast.makeText(context, "데이터", Toast.LENGTH_SHORT).show()
+                }
                 // menu ClickListener
                 setOnMenuItemClickListener { menu ->
                     when(menu.itemId) {

@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".MainFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolBar_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="학생 정보 조회"
-        app:titleCentered="true"
-        android:background="#ff9898"
-        app:navigationIcon="@drawable/ic_launcher_foreground" />
+    <data>
+
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        tools:context=".MainFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_main"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="#ff9898"
+            app:navigationIcon="@drawable/ic_launcher_foreground"
+            app:title="학생 정보 조회"
+            app:titleCentered="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
-
-
-
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

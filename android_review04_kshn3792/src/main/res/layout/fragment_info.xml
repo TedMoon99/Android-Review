@@ -1,81 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".InfoFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolBar_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="학생 정보집"
-        app:titleCentered="true"
-        android:background="#ff9898"
-        app:navigationIcon="@drawable/ic_launcher_foreground"/>
+    <data>
+        <variable
+            name="infoViewModel"
+            type="com.example.android_review04_kshn3792.InfoViewModel" />
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        tools:context=".InfoFragment">
 
-        <TextView
-            android:id="@+id/textView_info_name"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="학생 이름"
-            android:textSize="16dp" />
+            android:background="#ff9898"
+            app:navigationIcon="@drawable/ic_launcher_foreground"
+            app:title="학생 정보집"
+            app:titleCentered="true" />
 
-        <TextView
-            android:id="@+id/textView_info_grade"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="학년"
-            android:textSize="16dp" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/textView_info_korean"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="국어 점수"
-            android:textSize="16dp" />
+            <TextView
+                android:id="@+id/textView_info_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{infoViewModel.studentName}"
+                android:textSize="16dp" />
 
-        <TextView
-            android:id="@+id/textView_info_english"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="영어 점수"
-            android:textSize="16dp" />
+            <TextView
+                android:id="@+id/textView_info_grade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{infoViewModel.studentGrade}"
+                android:textSize="16dp" />
 
-        <TextView
-            android:id="@+id/textView_info_math"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="수학 점수"
-            android:textSize="16dp" />
+            <TextView
+                android:id="@+id/textView_info_korean"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@{infoViewModel.studentKor}"
+                android:textSize="16dp" />
 
-        <TextView
-            android:id="@+id/textView_info_total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="총점"
-            android:textSize="16dp" />
+            <TextView
+                android:id="@+id/textView_info_english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{infoViewModel.studentEng}"
+                android:textSize="16dp" />
 
-        <TextView
-            android:id="@+id/textView_info_average"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="평균"
-            android:textSize="16dp" />
+            <TextView
+                android:id="@+id/textView_info_math"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{infoViewModel.studentMath}"
+                android:textSize="16dp" />
 
+            <TextView
+                android:id="@+id/textView_info_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@{infoViewModel.studentTotal}"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/textView_info_average"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{infoViewModel.studentAvr}"
+                android:textSize="16dp" />
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

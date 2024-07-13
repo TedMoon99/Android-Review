@@ -6,17 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.activityViewModels
 import com.example.android_review04_kshn3792.databinding.FragmentInfoBinding
 
 class InfoFragment : Fragment() {
 
     private lateinit var binding: FragmentInfoBinding
+    private val viewModel: InfoViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentInfoBinding.inflate(inflater)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.infoViewModel = viewModel
         return binding.root
     }
 
