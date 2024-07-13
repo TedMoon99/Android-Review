@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.example.android_review04_kshn3792.databinding.FragmentInfoBinding
@@ -18,7 +19,7 @@ class InfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentInfoBinding.inflate(inflater)
+        binding = DataBindingUtil.inflate(inflater, R.id.containerMain, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.infoViewModel = viewModel
         return binding.root
@@ -27,11 +28,29 @@ class InfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // View 설정
-
+        // 데이터 초기화
+        dataInit()
+        // 데이터 가져오기
+        getData()
         // Event 설정
         settingEvent()
     }
+
+    // 데이터 초기화
+    fun dataInit() {
+        viewModel.dataInit()
+    }
+
+    // 데이터 가져오기
+    fun getData() {
+        val position = arguments?.getInt("position") ?: -1
+
+        viewLifecycleOwner.lifecycle.apply {
+            viewModel.getData(position + 1)
+        }
+    }
+
+
     // Event 설정
     fun settingEvent() {
         binding.apply {
@@ -39,10 +58,12 @@ class InfoFragment : Fragment() {
                 // navigationIcon 설정
                 setNavigationOnClickListener {
                     // 뒤로 가기
-                    parentFragmentManager.popBackStack(FragmentName.INFO_FRAGMENT.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    parentFragmentManager.popBackStack(
+                        FragmentName.INFO_FRAGMENT.str,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE
+                    )
                 }
             }
         }
     }
-
 }
