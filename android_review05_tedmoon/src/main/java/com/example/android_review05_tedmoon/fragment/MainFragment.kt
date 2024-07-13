@@ -48,11 +48,11 @@ class MainFragment : Fragment() {
                     // 마지막 구분선 제거
                     isLastItemDecorated = false
                 }
-                // adapter
                 // menuInflater 받아오기
                 val menuInflater = requireActivity().menuInflater
                 // FragmentManager 받아오기
                 val manager = parentFragmentManager
+                // adapter
                 // 임시 연결
                 adapter = CustomAdapter(arrayListOf(ScoreInfo(-1, "name", 3, 98.7, 78.9, 100.0)), menuInflater, manager)
 
