@@ -3,12 +3,15 @@ package com.example.android_review05_tedmoon.adapter
 import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_review05_tedmoon.R
 import com.example.android_review05_tedmoon.databinding.RowMainBinding
+import com.example.android_review05_tedmoon.fragment.ShowFragment
 import com.example.android_review05_tedmoon.model.ScoreInfo
+import com.example.android_review05_tedmoon.utils.FragmentName
 
-class CustomAdapter(val dataSet: ArrayList<ScoreInfo>, val menuInflater: MenuInflater): RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
+class CustomAdapter(val dataSet: ArrayList<ScoreInfo>, val menuInflater: MenuInflater, val manager: FragmentManager): RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
 
     class CustomViewHolder(rowMainBinding: RowMainBinding, menuInflater: MenuInflater): RecyclerView.ViewHolder(rowMainBinding.root){
         val rowMainBinding: RowMainBinding
@@ -35,6 +38,15 @@ class CustomAdapter(val dataSet: ArrayList<ScoreInfo>, val menuInflater: MenuInf
                 }
             }
         }
+
+        // Adapter 항목 클릭 시 화면 이동
+        fun onClicked(manager: FragmentManager){
+            manager
+                .beginTransaction()
+                .replace(R.id.containerMain, ShowFragment())
+                .addToBackStack(FragmentName.SHOW_FRAGMENT.str)
+                .commit()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -48,5 +60,10 @@ class CustomAdapter(val dataSet: ArrayList<ScoreInfo>, val menuInflater: MenuInf
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.rowMainBinding.textViewRowMainName.text = "이름 : ${dataSet[position].name}"
         holder.rowMainBinding.textViewRowMainGrade.text = "학년 : ${dataSet[position].grade}학년"
+
+        // 항목 클릭 시 화면 전환
+        holder.itemView.setOnClickListener {
+            holder.onClicked(manager)
+        }
     }
 }

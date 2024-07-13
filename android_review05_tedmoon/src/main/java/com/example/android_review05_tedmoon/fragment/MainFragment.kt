@@ -1,6 +1,7 @@
 package com.example.android_review05_tedmoon.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,8 +49,12 @@ class MainFragment : Fragment() {
                     isLastItemDecorated = false
                 }
                 // adapter
+                // menuInflater 받아오기
+                val menuInflater = requireActivity().menuInflater
+                // FragmentManager 받아오기
+                val manager = parentFragmentManager
                 // 임시 연결
-                adapter = CustomAdapter(arrayListOf(ScoreInfo(-1, "name", 3, 98.7, 78.9, 100.0)), requireActivity().menuInflater)
+                adapter = CustomAdapter(arrayListOf(ScoreInfo(-1, "name", 3, 98.7, 78.9, 100.0)), menuInflater, manager)
 
                 // layoutManager
                 layoutManager = LinearLayoutManager(context)
@@ -87,6 +92,7 @@ class MainFragment : Fragment() {
                     .addToBackStack(FragmentName.ADD_FRAGMENT.str)
                     .commit()
             }
+            else -> { Log.d("MainFragment", "잘못된 입력")}
         }
 
     }
