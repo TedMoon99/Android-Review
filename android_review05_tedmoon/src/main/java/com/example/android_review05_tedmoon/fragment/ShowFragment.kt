@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.example.android_review05_tedmoon.R
 import com.example.android_review05_tedmoon.databinding.FragmentShowBinding
+import com.example.android_review05_tedmoon.utils.FragmentName
 
 class ShowFragment : Fragment() {
 
@@ -23,24 +25,29 @@ class ShowFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // View 설정
-        settingView()
         // Event 설정
         settingEvent()
     }
+    // 데이터를 불러와서 화면에 띄워준다
+    fun gettingData(){
 
-    // View 설정
-    fun settingView(){
-        binding.apply {
-
-        }
     }
 
     // Event 설정
-    fun settingEvent(){
+    fun settingEvent() {
         binding.apply {
-
+            toolbarShow.setNavigationOnClickListener {
+                // 뒤로가기
+                removeFragment()
+            }
         }
     }
 
+    // 뒤로가기
+    private fun removeFragment() {
+        parentFragmentManager.popBackStack(
+            FragmentName.SHOW_FRAGMENT.str,
+            FragmentManager.POP_BACK_STACK_INCLUSIVE
+        )
+    }
 }
