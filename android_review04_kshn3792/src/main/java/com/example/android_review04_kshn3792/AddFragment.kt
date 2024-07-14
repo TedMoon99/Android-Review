@@ -1,5 +1,6 @@
 package com.example.android_review04_kshn3792
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,11 +16,20 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.roundToInt
 
 class AddFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBinding
     private val viewModel: MainViewModel by activityViewModels()
+    lateinit var Fcontext: Context
+
+    // Fragment가 Activity에 연결될 때 호출
+    // context는 Fragment가 UI를 조작하거나 Resource에 접근할 때 사용
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Fcontext = context
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +55,7 @@ class AddFragment : Fragment() {
     }
 
     // View 설정
-    fun settingView() {
+    private fun settingView() {
         // toolbar 설정
         binding.apply {
             toolBarAdd.apply {
@@ -57,7 +67,7 @@ class AddFragment : Fragment() {
     }
 
     // Event 설정
-    fun settingEvent() {
+    private fun settingEvent() {
         binding.apply {
             toolBarAdd.apply {
                 // navigationIcon 설정
@@ -87,15 +97,23 @@ class AddFragment : Fragment() {
     }
 
     // 입력 요소 초기화
-    fun settingInput() {
+    private fun settingInput() {
         viewModel.clearText()
     }
 
 
     // 데이터 저장
-    fun saveData() {
-        try {
-            CoroutineScope(Dispatchers.Main).launch {
+    private fun saveData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                // scoreIdx 불러오기
+                val studentSequence = withContext(Dispatchers.IO) { AddDao.getSequence() }
+                // DB에 Sequence 업데이트
+                withContext(Dispatchers.IO) { AddDao.updateSequence(studentSequence + 1) }
+
+                // index 저장
+                val studentIdx = studentSequence + 1
+
                 // 입력 요소를 가져온다
                 val name = viewModel.studentName.value ?: ""
                 val grade = viewModel.studentGrade.value!!.toInt()
@@ -103,27 +121,58 @@ class AddFragment : Fragment() {
                 val eng = viewModel.studentEng.value!!.toDouble()
                 val math = viewModel.studentMath.value!!.toDouble()
 
+                // 총점과 평균 불러오기
+                val totalInfo = withContext(Dispatchers.IO) { TotalDao.gettingTotalData() }
+
+                // 갯수
+                val num =
+                    if (totalInfo.totalIdx == -100) 1 else totalInfo.totalIdx + 1 // 불러온 데이터가 없다면 num을 1로 설정 그게 아니면 num은 데이터의 갯수를 의미
+                // 총점 구하기
+                val korTotal = totalInfo.korTotal + kor
+                val engTotal = totalInfo.engTotal + eng
+                val mathTotal = totalInfo.mathTotal + math
+                // 평균 구하기
+                val korAverage = ((korTotal / num) * 100.0).roundToInt() / 100.0
+                val engAverage = ((engTotal / num) * 100.0).roundToInt() / 100.0
+                val mathAverage = ((mathTotal / num) * 100.0).roundToInt() / 100.0
+                // 전체 총점 구하기
+                val allTotal = korTotal + engTotal + mathTotal
+                // 전체 평균 구하기
+                val allAverage = korAverage + engAverage + mathAverage
+
                 // 저장할 데이터를 만든다
-                val data = StudentInfo(name, grade, kor, eng, math)
+                val data = StudentInfo(studentIdx, name, grade, kor, eng, math)
+                val totalData = TotalInfo(
+                    num,
+                    korTotal,
+                    korAverage,
+                    engTotal,
+                    engAverage,
+                    mathTotal,
+                    mathAverage,
+                    allTotal,
+                    allAverage
+                )
 
-                // DB에 전송한다
-                val sequence = withContext(Dispatchers.IO) {
-                    //DAO 함수 호출
-                    AddDao.getSequence()
+                // 사용자 정보 저장
+                withContext(Dispatchers.IO) { AddDao.saveStudentData(data) }
+                if (totalInfo.totalIdx == -100) { // 저장되어 있는 데이터가 없으면
+                    // 데이터 새로 저장한다
+                    withContext(Dispatchers.IO) { TotalDao.saveTotalData(totalData) }
+                } else {
+                    withContext(Dispatchers.IO) { TotalDao.settingTotalData(totalData) }
                 }
-                Log.d("test1234", "${sequence}")
 
-
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("AddFragment", "${e.message}")
             }
 
-        } catch (e: Exception) {
-            Log.e("AddFragment", "${e.message}")
         }
-
     }
 
     // 유효성 검사
-    fun validateInput(): Boolean {
+    private fun validateInput(): Boolean {
         // 입력 요소를 가져온다
         val name = viewModel.studentName.value ?: ""
         val grade = viewModel.studentGrade.value ?: ""
@@ -160,7 +209,7 @@ class AddFragment : Fragment() {
     }
 
     // 에러 설정
-    fun settingError() {
+    private fun settingError() {
         binding.apply {
             // 이름
             viewModel.studentName.observe(viewLifecycleOwner) { name ->
@@ -227,7 +276,7 @@ class AddFragment : Fragment() {
 
 
     // 뒤로 가기 설정
-    fun removeFragment() {
+    private fun removeFragment() {
         parentFragmentManager.popBackStack(
             FragmentName.ADD_FRAGMENT.str,
             FragmentManager.POP_BACK_STACK_INCLUSIVE
