@@ -1,25 +1,32 @@
 package com.example.android_review04_kshn3792
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_review04_kshn3792.databinding.FragmentMainBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
+    private val dataList: ArrayList<StudentInfo> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = FragmentMainBinding.inflate(inflater)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -32,8 +39,15 @@ class MainFragment : Fragment() {
         settingEvent()
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Fragment가 다시 화면에 나타날 때마다 데이터 갱신
+        gettingAdapterData()
+        Log.d("onResume", "Activate")
+    }
+
     // View 설정
-    fun settingView() {
+    private fun settingView() {
         binding.apply {
             // toolbar
             toolBarMain.apply {
@@ -44,9 +58,9 @@ class MainFragment : Fragment() {
             recyclerViewMain.apply {
                 // deco
                 val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL)
-                // adapter
-                adapter = StudentAdpater(arrayListOf(StudentInfo("KSH", 1,100.0, 87.2, 98.5)), parentFragmentManager)
-                // layoutManager
+                // adapter 연결
+                adapter = StudentAdpater(dataList, parentFragmentManager)
+                // layoutManager 적용
                 layoutManager = LinearLayoutManager(context)
                 // 구분선 적용
                 addItemDecoration(deco)
@@ -54,8 +68,26 @@ class MainFragment : Fragment() {
         }
     }
 
+    private fun gettingAdapterData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                // 백그라운드 스레드에서 데이터를 가져온다
+                val data = withContext(Dispatchers.IO){AddDao.getAllData()}
+
+                dataList.clear()
+                dataList.addAll(data)
+                // studentIdx로 정렬
+                dataList.sortBy { it.studentIdx }
+                // 어댑터 변경 알림
+                binding.recyclerViewMain.adapter?.notifyDataSetChanged()
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
     // Event 설정
-    fun settingEvent() {
+    private fun settingEvent() {
         binding.apply {
             // toolbar
             toolBarMain.apply {
@@ -81,14 +113,14 @@ class MainFragment : Fragment() {
         }
     }
     // 화면 이동
-    fun moveFragment(name: FragmentName){
+    private fun moveFragment(name: FragmentName){
         when(name){
             // AddFragment 로 이동
             FragmentName.ADD_FRAGMENT -> {
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.containerMain, AddFragment())
-                    .addToBackStack(FragmentName.ADD_FRAGMENT.str)
+                    .addToBackStack(name.str)
                     .commit()
             }
             // TotalFragment 로 이동
@@ -96,17 +128,11 @@ class MainFragment : Fragment() {
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.containerMain, TotalFragment())
-                    .addToBackStack(FragmentName.TOTAL_FRAGMENT.str)
+                    .addToBackStack(name.str)
                     .commit()
             }
-            // InfoFragment 로 이동
-            FragmentName.INFO_FRAGMENT -> {
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.containerMain, InfoFragment())
-                    .addToBackStack(FragmentName.INFO_FRAGMENT.str)
-                    .commit()
-            }
+
+            else -> Log.d("test", "Wrong Page")
         }
     }
 }
