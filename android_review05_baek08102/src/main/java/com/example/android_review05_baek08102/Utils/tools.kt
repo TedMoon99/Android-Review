@@ -1,4 +1,4 @@
-package com.example.android_review05_baek08102
+package com.example.android_review05_baek08102.Utils
 
 enum class FragmentName(name: String) {
     Input_Fragment("InputFragment"),
