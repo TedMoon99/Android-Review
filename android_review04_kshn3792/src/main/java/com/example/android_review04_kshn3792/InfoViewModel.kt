@@ -37,16 +37,19 @@ class InfoViewModel: ViewModel() {
                 // 불러온 데이터 연결
                 if (studentInfo != null) {
                     // 학생이 받은 총점 계산
-                    val total = studentInfo.kor + studentInfo.eng + studentInfo.math
+                    val total = studentInfo.studentKor + studentInfo.studentEng + studentInfo.studentMath
                     // 학생이 받은 평균 계산
                     val average = round(total / 3 * 100.0) / 100.0
-                    studentName.value = "이름 : ${studentInfo.name}"
-                    studentGrade.value = "학년 : ${studentInfo.grade}학년"
-                    studentKor.value = "국어 점수 : ${studentInfo.kor}점"
-                    studentEng.value = "영어 점수 : ${studentInfo.eng}점"
-                    studentMath.value = "수학 점수 : ${studentInfo.math}점"
+                    studentName.value = "이름 : ${studentInfo.studentName}"
+                    studentGrade.value = "학년 : ${studentInfo.studentGrade}학년"
+                    studentKor.value = "국어 점수 : ${studentInfo.studentKor}점"
+                    studentEng.value = "영어 점수 : ${studentInfo.studentEng}점"
+                    studentMath.value = "수학 점수 : ${studentInfo.studentMath}점"
                     studentTotal.value = "총점 : ${total}점"
                     studentAvr.value = "평균 : ${average}점"
+                    Log.d("InfoViewModel", "데이터 설정 완료: ${studentInfo.studentName}")
+                } else {
+                    Log.d("InfoViewModel", "Error")
                 }
             } catch (e: Exception){
                 Log.e("InfoViewModel", "데이터 조회 실패 : ${e.message}")
