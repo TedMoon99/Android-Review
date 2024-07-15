@@ -1,10 +1,11 @@
 package com.example.android_review05_tedmoon.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.android_review05_tedmoon.R
 import com.example.android_review05_tedmoon.databinding.FragmentShowBinding
@@ -19,7 +20,7 @@ class ShowFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentShowBinding.inflate(inflater)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_show, container, false)
         return binding.root
     }
 
@@ -28,8 +29,9 @@ class ShowFragment : Fragment() {
         // Event 설정
         settingEvent()
     }
+
     // 데이터를 불러와서 화면에 띄워준다
-    fun gettingData(){
+    fun gettingData() {
 
     }
 

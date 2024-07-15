@@ -2,11 +2,11 @@ package com.example.android_review05_tedmoon.fragment
 
 import android.content.DialogInterface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.android_review05_tedmoon.R
 import com.example.android_review05_tedmoon.databinding.DialogAddCustomBinding
@@ -23,7 +23,7 @@ class AddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddBinding.inflate(inflater)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add, container, false)
         return binding.root
     }
 
@@ -36,7 +36,7 @@ class AddFragment : Fragment() {
     }
 
     // View 설정
-    fun settingView(){
+    fun settingView() {
         binding.apply {
             toolbarAdd.apply {
                 // menu를 띄워준다
@@ -45,8 +45,9 @@ class AddFragment : Fragment() {
         }
 
     }
+
     // Event 설정
-    fun settingEvent(){
+    fun settingEvent() {
         binding.apply {
             toolbarAdd.apply {
                 // navigation
@@ -56,7 +57,7 @@ class AddFragment : Fragment() {
                 }
                 // menu
                 setOnMenuItemClickListener { menu ->
-                    when(menu.itemId){
+                    when (menu.itemId) {
                         R.id.menuItem_add_complete -> {
                             // 유효성 체크 후
 
@@ -73,9 +74,10 @@ class AddFragment : Fragment() {
             }
         }
     }
+
     // 메시지 설정
-    fun showMessage(result: Boolean){
-        if (result){ // 모든 항목이 입력되어 있다면
+    fun showMessage(result: Boolean) {
+        if (result) { // 모든 항목이 입력되어 있다면
             // 스낵바를 통해 "등록되었습니다"라는 메시지를 보여준다
             showSnackbar()
         } else { // 입력되지 않은 항목이 있다면
@@ -86,7 +88,7 @@ class AddFragment : Fragment() {
     }
 
     // 다이얼로그 만들기
-    fun showDialog(){
+    fun showDialog() {
         // Dialog : 애플리케이션 화면에 메시지를 띄울 때 사용한다
         // 사용자가 버튼을 눌러야지만 없어지는 메시지이다
         val builder = MaterialAlertDialogBuilder(requireContext()).apply {
@@ -97,7 +99,7 @@ class AddFragment : Fragment() {
             setView(dialogAddCustomBinding.root)
 
             // Navigation Button을 설정한다
-            setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+            setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
                 // 필요 시 작성
             }
         }
@@ -105,7 +107,7 @@ class AddFragment : Fragment() {
     }
 
     // Snackbar 만들기
-    fun showSnackbar(){
+    fun showSnackbar() {
         // Snackbar : 잠깐 보여줬다가 사라지는 메시지
         // 어플 화면이 떠있을 경우 사용한다
         // Toast와 다르게 지속적으로 띄울 수 있으며 Action을 넣어 이벤트를 설정할 수 있다
@@ -118,7 +120,10 @@ class AddFragment : Fragment() {
 
 
     // 뒤로가기
-    fun removeFragment(){
-        parentFragmentManager.popBackStack(FragmentName.ADD_FRAGMENT.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+    fun removeFragment() {
+        parentFragmentManager.popBackStack(
+            FragmentName.ADD_FRAGMENT.str,
+            FragmentManager.POP_BACK_STACK_INCLUSIVE
+        )
     }
 }
