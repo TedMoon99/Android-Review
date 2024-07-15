@@ -2,6 +2,7 @@ package com.example.android_review05_tedmoon.fragment
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +11,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.example.android_review05_tedmoon.R
+import com.example.android_review05_tedmoon.dao.ScoreDao
 import com.example.android_review05_tedmoon.databinding.DialogAddCustomBinding
 import com.example.android_review05_tedmoon.databinding.FragmentAddBinding
+import com.example.android_review05_tedmoon.model.ScoreInfo
 import com.example.android_review05_tedmoon.utils.FragmentName
 import com.example.android_review05_tedmoon.viewmodel.AddViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AddFragment : Fragment() {
 
@@ -70,7 +77,7 @@ class AddFragment : Fragment() {
                             // 유효한 입력이면
                             if (result){
                                 // 데이터를 저장하고
-
+                                saveData()
                                 // 화면을 종료한다
                                 removeFragment()
                             }
@@ -83,6 +90,32 @@ class AddFragment : Fragment() {
             }
         }
     }
+    // 데이터 저장
+    fun saveData(){
+        try {
+            CoroutineScope(Dispatchers.Main).launch{
+                // 입력 요소를 받아온다
+                val name = viewModel.studentName.value!!
+                val grade = viewModel.studentGrade.value!!.toInt()
+                val korean = viewModel.studentKorean.value!!.toDouble()
+                val english = viewModel.studentEnglish.value!!.toDouble()
+                val math = viewModel.studnetMath.value!!.toDouble()
+
+                // DB에서 Sequence 정보를 불러온다
+                val sequence = withContext(Dispatchers.IO){ ScoreDao.getSequence() }
+                // DB에 Sequence 정보를 업데이트 한다
+                withContext(Dispatchers.IO){ ScoreDao.updateSequence(sequence + 1) }
+
+                // data에 담아준다
+                val studentData = ScoreInfo(-1, name, grade, korean, english, math, true)
+
+                // DB에 정보를 저장한다
+                withContext(Dispatchers.IO){ ScoreDao.insertStudentData(studentData)}
+            }
+        } catch (e: Exception){
+            Log.e("AddFragment", "${e.message}")
+        }
+    }
 
     // 유효성 검사
     fun validateInput(): Boolean{
@@ -92,11 +125,11 @@ class AddFragment : Fragment() {
         val english = viewModel.studentEnglish.value ?: ""
         val math = viewModel.studnetMath.value ?: ""
 
-        if (name.isEmpty()) return false
-        if (grade.isEmpty()) return false
-        if (korean.isEmpty()) return false
-        if (english.isEmpty()) return false
-        if (math.isEmpty()) return false
+        if (name.isEmpty()) { return false }
+        if (grade.isEmpty()) { return false }
+        if (korean.isEmpty()) { return false }
+        if (english.isEmpty()) { return false }
+        if (math.isEmpty()) { return false }
 
         return true
     }
