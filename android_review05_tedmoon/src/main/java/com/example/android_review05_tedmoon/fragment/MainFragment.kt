@@ -18,6 +18,7 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
+    private val dataList: ArrayList<ScoreInfo> = arrayListOf()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -56,7 +57,7 @@ class MainFragment : Fragment() {
                 // adapter
                 // 임시 연결
                 adapter = CustomAdapter(
-                    arrayListOf(ScoreInfo(-1, "name", 3, 98.7, 78.9, 100.0)), menuInflater, manager
+                    dataList, menuInflater, manager
                 )
 
                 // layoutManager
