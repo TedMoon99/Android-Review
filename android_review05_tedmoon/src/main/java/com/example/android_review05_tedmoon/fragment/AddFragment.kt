@@ -65,19 +65,40 @@ class AddFragment : Fragment() {
                     when (menu.itemId) {
                         R.id.menuItem_add_complete -> {
                             // 유효성 체크 후
+                            val result = validateInput()
 
                             // 유효한 입력이면
-                            showMessage(true)
-                            // 데이터를 저장하고
+                            if (result){
+                                // 데이터를 저장하고
 
-                            // 화면을 종료한다
-//                            removeFragment()
+                                // 화면을 종료한다
+                                removeFragment()
+                            }
+                            // 메시지 설정
+                            showMessage(result)
                         }
                     }
                     true
                 }
             }
         }
+    }
+
+    // 유효성 검사
+    fun validateInput(): Boolean{
+        val name = viewModel.studentName.value ?: ""
+        val grade = viewModel.studentGrade.value ?: ""
+        val korean = viewModel.studentKorean.value ?: ""
+        val english = viewModel.studentEnglish.value ?: ""
+        val math = viewModel.studnetMath.value ?: ""
+
+        if (name.isEmpty()) return false
+        if (grade.isEmpty()) return false
+        if (korean.isEmpty()) return false
+        if (english.isEmpty()) return false
+        if (math.isEmpty()) return false
+
+        return true
     }
 
     // 메시지 설정
