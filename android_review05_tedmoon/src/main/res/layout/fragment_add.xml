@@ -48,6 +48,8 @@
                         android:id="@+id/textInputEditText_add_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={addViewModel.studentName}"
                         android:hint="이름"
                         android:textSize="16dp" />
 
@@ -68,6 +70,7 @@
                         android:id="@+id/textInputEditText_add_grade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@={addViewModel.studentGrade}"
                         android:hint="학년"
                         android:inputType="number"
                         android:textSize="16dp" />
@@ -89,6 +92,7 @@
                         android:id="@+id/textInputEditText_add_korean"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@={addViewModel.studentKorean}"
                         android:hint="국어 점수"
                         android:inputType="numberDecimal"
                         android:textSize="16dp" />
@@ -110,6 +114,7 @@
                         android:id="@+id/textInputEditText_add_english"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@={addViewModel.studentEnglish}"
                         android:hint="영어 점수"
                         android:inputType="numberDecimal"
                         android:textSize="16dp" />
@@ -131,6 +136,7 @@
                         android:id="@+id/textInputEditText_add_math"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@={addViewModel.studnetMath}"
                         android:hint="수학 점수"
                         android:inputType="numberDecimal"
                         android:textSize="16dp" />
