@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".fragment.MainFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleCentered="true"
-        app:title="학생정보관리"
-        app:titleTextColor="#FF9889"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        tools:context=".fragment.MainFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_main"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarMain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:title="학생정보관리"
+            app:titleCentered="true"
+            app:titleTextColor="#FF9889" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>
