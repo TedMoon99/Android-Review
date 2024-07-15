@@ -6,5 +6,6 @@ data class ScoreInfo(
     val grade: Int,
     val korean: Double,
     val english: Double,
-    val math: Double
+    val math: Double,
+    val state: Boolean
 )
