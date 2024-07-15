@@ -8,22 +8,27 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.activityViewModels
 import com.example.android_review05_tedmoon.R
 import com.example.android_review05_tedmoon.databinding.DialogAddCustomBinding
 import com.example.android_review05_tedmoon.databinding.FragmentAddBinding
 import com.example.android_review05_tedmoon.utils.FragmentName
+import com.example.android_review05_tedmoon.viewmodel.AddViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
 class AddFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBinding
+    private val viewModel: AddViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add, container, false)
+        binding.addViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
