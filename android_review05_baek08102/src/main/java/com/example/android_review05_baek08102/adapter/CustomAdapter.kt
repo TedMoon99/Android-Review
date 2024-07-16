@@ -1,4 +1,4 @@
-package com.example.android_review05_baek08102.Adapter
+package com.example.android_review05_baek08102.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android_review05_baek08102.Fragment.ShowFragment
-import com.example.android_review05_baek08102.Model.StudentData
+import com.example.android_review05_baek08102.model.StudentData
 import com.example.android_review05_baek08102.R
 
 class CustomAdapter(

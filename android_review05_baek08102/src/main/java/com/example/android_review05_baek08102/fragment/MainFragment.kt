@@ -1,4 +1,4 @@
-package com.example.android_review05_baek08102.Fragment
+package com.example.android_review05_baek08102.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.android_review05_baek08102.Utils.FragmentName
+import com.example.android_review05_baek08102.utils.FragmentName
 import com.example.android_review05_baek08102.R
 import com.example.android_review05_baek08102.databinding.FragmentMainBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
