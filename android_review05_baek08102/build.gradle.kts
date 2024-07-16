@@ -41,6 +41,10 @@ dependencies {
     // firebase 연동 위한 종속성 추가
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.firestore.ktx)
+
+    implementation(libs.androidx.fragment.ktx.v181)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx.v262)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
