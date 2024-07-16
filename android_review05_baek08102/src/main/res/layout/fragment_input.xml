@@ -1,141 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="inputViewModel"
+            type="com.example.android_review05_baek08102.viewmodel.InputViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/input_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="학생 정보 입력"
-            app:navigationIcon="@drawable/arrow_back_24px"
-            app:menu="@menu/menu_confirm"
-            />
+            app:title="menu_title" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_inputLayout_name"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                app:boxCornerRadiusTopStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
-                app:hintEnabled="false"
-                app:hintAnimationEnabled="false"
-                app:errorEnabled="true"
-                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeErrorColor="#b22222"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:errorTextColor="#c71585"
-                >
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_editText_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={inputViewModel.name}"
                     android:hint="학생 이름"
-                    android:inputType="text"
-                    />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_inputLayout_grade"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                app:boxCornerRadiusTopStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
-                app:hintEnabled="false"
-                app:hintAnimationEnabled="false"
-                app:errorEnabled="true"
-                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeErrorColor="#b22222"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:errorTextColor="#c71585"
-                >
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_editText_grade"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={inputViewModel.grade}"
                     android:hint="학년"
-                    android:inputType="number"
-                    />
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_inputLayout_korean"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                app:boxCornerRadiusTopStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
-                app:hintEnabled="false"
-                app:hintAnimationEnabled="false"
-                app:errorEnabled="true"
-                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeErrorColor="#b22222"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:errorTextColor="#c71585"
-                >
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_editText_korean"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={inputViewModel.koreanScore}"
                     android:hint="국어 점수"
-                    android:inputType="numberDecimal"
-                    />
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_inputLayout_english"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                app:boxCornerRadiusTopStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
-                app:hintEnabled="false"
-                app:hintAnimationEnabled="false"
-                app:errorEnabled="true"
-                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeErrorColor="#b22222"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:errorTextColor="#c71585"
-                >
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_editText_english"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={inputViewModel.englishScore}"
                     android:hint="영어 점수"
-                    android:inputType="numberDecimal"
-                    />
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_inputLayout_math"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                app:boxCornerRadiusTopStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
-                app:hintEnabled="false"
-                app:hintAnimationEnabled="false"
-                app:errorEnabled="true"
-                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeErrorColor="#b22222"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:errorTextColor="#c71585"
-                >
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_editText_math"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={inputViewModel.mathScore}"
                     android:hint="수학 점수"
-                    android:inputType="numberDecimal"
-                    />
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
