@@ -69,5 +69,22 @@ class ScoreDao {
                 null
             }
         }
+
+        // 모든 학생 정보를 불러온다
+        suspend fun getAllData(): ArrayList<ScoreInfo>{
+            return try {
+                // 컬랙션에 접근 가능한 객체 생성
+                val querySnapshot = Firebase.firestore.collection("ScoreData").get().await()
+                // ScoreInfo 데이터를 담아줄 arrayList 생성
+                val list = arrayListOf<ScoreInfo>()
+                querySnapshot.forEach { data ->
+                    val scoreInfo = data.toObject(ScoreInfo::class.java)
+                    list.add(scoreInfo)
+                }
+                return list
+            } catch (e: Exception){
+                arrayListOf()
+            }
+        }
     }
 }
