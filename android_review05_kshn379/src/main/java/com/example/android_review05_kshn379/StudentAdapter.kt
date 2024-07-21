@@ -63,9 +63,9 @@ class StudentAdapter(
             CoroutineScope(Dispatchers.IO).launch {
                 // 예외 처리
                 try {
-                    // firestore 에서 studentIdx 해당 하는 항목의 dataState를 false로 업데이트
+                    // 비동기 작업 - firestore 에서 studentIdx 해당 하는 항목의 dataState를 false로 업데이트
                     AddDao.removeItem(studentIdx, false)
-                    // 메인 스레드에서 UI 작업 수행
+                    // 메인 Dispatchers에서 UI 변경 처리
                     withContext(Dispatchers.Main) {
                         // dataSet에서 studentIdx 항목 모두 제거
                         dataSet.removeAll{it.studentIdx == studentIdx}
