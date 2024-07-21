@@ -27,7 +27,7 @@ class CustomAdapter(val dataSet: ArrayList<ScoreInfo>, val menuInflater: MenuInf
             // RecyclerView의 항목에 컨텍스트 메뉴를 설정해준다
             rowMainBinding.root.setOnCreateContextMenuListener { menu, v, menuInfo ->
                 // 메뉴의 헤더
-                menu?.setHeaderTitle("삭제하시겠습니까?")
+//                menu?.setHeaderTitle("삭제하시겠습니까?")
                 // 메뉴를 구성한다
                 menuInflater.inflate(R.menu.menu_customadapter_contextmenu, menu)
                 // 각 메뉴 아이템을 추출하여 리스너를 설정해준다
