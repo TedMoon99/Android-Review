@@ -23,6 +23,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.*
 
 class InputFragment : Fragment() {
     private lateinit var binding: FragmentInputBinding
@@ -114,9 +115,9 @@ class InputFragment : Fragment() {
                 val math = viewModel.mathScore.value!!.toDouble()
 
                 val total = korean + english + math
-                val average = total / 3
+                val average = round((total / 3) * 10) / 10
 
-                val data = StudentData(index, name, grade, korean, english, math, total, average)
+                val data = StudentData(index, name, grade, korean, english, math, total, average, true)
 
                 withContext(Dispatchers.IO) { StudentDao.inputStudentData(data) }
 
@@ -138,7 +139,10 @@ class InputFragment : Fragment() {
         val english = viewModel.englishScore.value ?: ""
         val math = viewModel.mathScore.value ?: ""
 
-        Log.d("validateInput", "name : $name, grade : $grade, korean : $korean, english : $english, math : $math")
+        Log.d(
+            "validateInput",
+            "name : $name, grade : $grade, korean : $korean, english : $english, math : $math"
+        )
 
         if (name.isEmpty() || name.length < 2 || name.length > 5) { // 입력 완료 조건에 부합하지 못할 시
             return false // false 반환 후 함수 종료
