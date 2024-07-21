@@ -2,22 +2,29 @@ package com.example.android_review05_kshn379
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.isInvisible
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android_review05_kshn379.databinding.FragmentMainBinding
 import com.example.android_review05_kshn379.databinding.RowBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StudentAdapter(
     private val dataSet: ArrayList<ManageInfo>, private val manager: FragmentManager
 ) : RecyclerView.Adapter<StudentAdapter.StoreViewHolder>() {
 
     // ViewHolder class 생성
-    class StoreViewHolder(rowBinding: RowBinding) : RecyclerView.ViewHolder(rowBinding.root) {
+    inner class StoreViewHolder(rowBinding: RowBinding) : RecyclerView.ViewHolder(rowBinding.root) {
         val rowBinding: RowBinding
 
         init {
@@ -35,11 +42,43 @@ class StudentAdapter(
                     setHeaderTitle("데이터가 삭제됩니다")
                     // ContextMenu 항목 클릭 시 데이터 삭제 구현
                     add("삭제").setOnMenuItemClickListener {
-                        ManageInfo.
+                        // 현재 항목의 위치를 가져 온다
+                        val position = adapterPosition
+                        // 위치가 유효 한지 확인 한다
+                        if(position != RecyclerView.NO_POSITION) {
+                            // 현재 항목의 studentIdx 를 가져 온다
+                            val studentIdx = dataSet[position].studentIdx
+                            // deleteItem 함수 호출 하여 항목 삭제 표시 한다
+                            deleteItem(studentIdx)
+                        }
+                        true
                     }
                 }
             }
         }
+
+        // 데이터 항목 삭제 하는 함수 구현 하기
+        private fun deleteItem(studentIdx: Int) {
+            // IO 스레드 - 네트워크나 파일 입출력 작업 처럼 시간이 걸리는 작업 처리 하는 데 적합
+            CoroutineScope(Dispatchers.IO).launch {
+                // 예외 처리
+                try {
+                    // firestore 에서 studentIdx 해당 하는 항목의 dataState를 false로 업데이트
+                    AddDao.removeItem(studentIdx, false)
+                    // 메인 스레드에서 UI 작업 수행
+                    withContext(Dispatchers.Main) {
+                        // dataSet에서 studentIdx 항목 모두 제거
+                        dataSet.removeAll{it.studentIdx == studentIdx}
+                        // RecyclerView 데이터 변경 알림
+                        notifyDataSetChanged()
+                    }
+                } catch (e:Exception) {
+                    e.printStackTrace()
+                    Log.e("StudentAdapter", "아이템 데이터 삭제 실패 : ${e.message}")
+                }
+            }
+        }
+
 
 
         // ViewHolder(리사이클러 뷰 아이템) 클릭 시 작동
@@ -79,4 +118,6 @@ class StudentAdapter(
             holder.onClicked(manager, position)
         }
     }
+
+
 }
