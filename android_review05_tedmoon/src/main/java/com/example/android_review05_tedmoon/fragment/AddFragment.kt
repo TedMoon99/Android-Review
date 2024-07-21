@@ -41,6 +41,8 @@ class AddFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // 입력요소 초기화
+        initData()
         // View 설정
         settingView()
         // Event 설정
@@ -90,31 +92,15 @@ class AddFragment : Fragment() {
             }
         }
     }
+
+    // 입력요소 초기화
+    fun initData(){
+        viewModel.initData()
+    }
+
     // 데이터 저장
     fun saveData(){
-        try {
-            CoroutineScope(Dispatchers.Main).launch{
-                // 입력 요소를 받아온다
-                val name = viewModel.studentName.value!!
-                val grade = viewModel.studentGrade.value!!.toInt()
-                val korean = viewModel.studentKorean.value!!.toDouble()
-                val english = viewModel.studentEnglish.value!!.toDouble()
-                val math = viewModel.studnetMath.value!!.toDouble()
-
-                // DB에서 Sequence 정보를 불러온다
-                val sequence = withContext(Dispatchers.IO){ ScoreDao.getSequence() }
-                // DB에 Sequence 정보를 업데이트 한다
-                withContext(Dispatchers.IO){ ScoreDao.updateSequence(sequence + 1) }
-
-                // data에 담아준다
-                val studentData = ScoreInfo(-1, name, grade, korean, english, math, true)
-
-                // DB에 정보를 저장한다
-                withContext(Dispatchers.IO){ ScoreDao.insertStudentData(studentData)}
-            }
-        } catch (e: Exception){
-            Log.e("AddFragment", "${e.message}")
-        }
+        viewModel.saveData()
     }
 
     // 유효성 검사
@@ -123,7 +109,7 @@ class AddFragment : Fragment() {
         val grade = viewModel.studentGrade.value ?: ""
         val korean = viewModel.studentKorean.value ?: ""
         val english = viewModel.studentEnglish.value ?: ""
-        val math = viewModel.studnetMath.value ?: ""
+        val math = viewModel.studentMath.value ?: ""
 
         if (name.isEmpty()) { return false }
         if (grade.isEmpty()) { return false }
