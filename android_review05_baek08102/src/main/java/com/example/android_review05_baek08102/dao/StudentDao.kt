@@ -3,7 +3,9 @@ package com.example.android_review05_baek08102.dao
 import android.util.Log
 import com.example.android_review05_baek08102.model.StudentData
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.tasks.await
 
 
@@ -42,7 +44,7 @@ class StudentDao {
             }
         }
 
-        suspend fun gettingStudentDataByStudentIdx(studentIdx: Int): StudentData? {
+        suspend fun gettingStudentDataByStudentIndex(studentIdx: Int): StudentData? {
             return try {
                 val collectionReference = Firebase.firestore.collection("StudentData")
                 val querySnapshot = collectionReference.whereEqualTo("studentIdx", studentIdx).get().await()
@@ -58,7 +60,9 @@ class StudentDao {
         suspend fun getAllData(): ArrayList<StudentData> {
             val data = arrayListOf<StudentData>()
             try {
-                val querySnapshot = Firebase.firestore.collection("StudentData").get().await()
+                val collectionReference = Firebase.firestore.collection("StudentData")
+                val querySnapshot = collectionReference.whereEqualTo("dataState", true).get().await()
+
                 querySnapshot.forEach {
                     val studentData = it.toObject(StudentData::class.java)
                     data.add(studentData)
@@ -68,5 +72,47 @@ class StudentDao {
             }
             return data
         }
+
+        suspend fun updateDataState(studentIdx: Int) {
+            try {
+                val collectionReference = Firebase.firestore.collection("StudentData")
+                val querySnapshot = collectionReference.whereEqualTo("studentIdx", studentIdx).get().await()
+
+                val selectedDocumentId = querySnapshot.documents.firstOrNull()?.id
+
+                if (selectedDocumentId != null) {
+                    collectionReference.document(selectedDocumentId).update("dataState", false).await()
+                }
+
+            } catch (e: Exception) {
+                Log.e("StudentDao", "deleteData 실패 : ${e.message}")
+            }
+        }
+
+        suspend fun deleteData(position: Int) {
+            try {
+                Log.d("deleting data process", "in Dao -> received position : $position")
+
+                val collectionReference = Firebase.firestore.collection("StudentData")
+                val querySnapshot = collectionReference
+                    .whereEqualTo("dataState", true)
+                    .orderBy("studentIdx", Query.Direction.ASCENDING)
+                    .get().await()
+
+                val index = querySnapshot.documents[position].getLong("studentIdx")
+
+                Log.d("deleting data process", "in Dao -> studentIdx by received position : ${index?.toInt()}")
+
+                if (index != null) {
+                    updateDataState(index.toInt())
+                }
+
+            } catch (e: Exception) {
+                Log.e("StudentDao", "returnIndex 실패 : ${e.message}")
+                -1
+            }
+        }
     }
+
+
 }
