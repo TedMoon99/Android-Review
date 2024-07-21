@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="showViewModel"
+            type="com.example.android_review05_baek08102.viewmodel.ShowViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/show_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title="학생 정보 보기"
-            app:navigationIcon="@drawable/arrow_back_24px"
             />
 
         <LinearLayout
@@ -25,14 +31,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="이름"
+                android:text="@{showViewModel.name}"
                 />
             <TextView
                 android:id="@+id/show_textView_grade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="학년"
+                android:text="@{showViewModel.grade}"
                 />
 
             <TextView
@@ -41,21 +47,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="16sp"
-                android:text="국어 점수"
+                android:text="@{showViewModel.koreanScore}"
                 />
             <TextView
                 android:id="@+id/show_textView_english"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="영어 점수"
+                android:text="@{showViewModel.englishScore}"
                 />
             <TextView
                 android:id="@+id/show_textView_math"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="수학 점수"
+                android:text="@{showViewModel.mathScore}"
                 />
 
             <TextView
@@ -64,14 +70,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="16sp"
-                android:text="총점"
+                android:text="@{showViewModel.totalScore}"
                 />
             <TextView
                 android:id="@+id/show_textView_average"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="평균"
+                android:text="@{showViewModel.average}"
                 />
 
         </LinearLayout>
