@@ -88,7 +88,8 @@ class AddDao {
                 val collectionReference = Firebase.firestore.collection("DataStore")
                 // 쿼리 실행 - studentIdx 값과 일치 하는 문서를 검색 한다
                 // whereEqualTo() - 특정 필드가 주어진 값과 동일한 문서 검색 / get() - 쿼리 실행 후 결과 반환 / await() - 비동기 작업이 완료될 때까지 대기
-                val querySnapshot = collectionReference.whereEqualTo("studentIdx", studentIdx).get().await()
+                val querySnapshot =
+                    collectionReference.whereEqualTo("studentIdx", studentIdx).get().await()
                 // 쿼리 실행 결과 후 문서 들을 반복 검색 한다
                 for (document in querySnapshot.documents) {
                     // 각 문서의 dataState 필드를 주어진 값으로 업데이트 한다

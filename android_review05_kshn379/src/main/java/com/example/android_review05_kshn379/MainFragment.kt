@@ -73,7 +73,7 @@ class MainFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 // 백그라운드 스레드에서 데이터 가져오기
-                val data = withContext(Dispatchers.IO){AddDao.getAllData()}
+                val data = withContext(Dispatchers.IO) { AddDao.getAllData() }
 
                 dataList.clear()
                 dataList.addAll(data)
@@ -81,7 +81,7 @@ class MainFragment : Fragment() {
                 dataList.sortBy { it.studentIdx }
                 // Adapter 변경 알림
                 binding.recyclerViewMain.adapter?.notifyDataSetChanged()
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }

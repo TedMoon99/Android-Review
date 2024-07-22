@@ -1,7 +1,7 @@
 package com.example.android_review05_kshn379
 
 class Tool {
-    companion object{
+    companion object {
 
     }
 }

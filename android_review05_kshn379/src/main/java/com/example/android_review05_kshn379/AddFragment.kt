@@ -96,7 +96,7 @@ class AddFragment : Fragment() {
         binding.apply {
             // name
             viewModel.studentName.observe(viewLifecycleOwner) { name ->
-                if(name != null && name.isNotEmpty()) {
+                if (name != null && name.isNotEmpty()) {
                     if (name.length in 2..5) {
                         editTextAddName.error = null
                     } else {
@@ -195,24 +195,24 @@ class AddFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 // studentIdx 불러오기
-                val studentSequence = withContext(Dispatchers.IO) {AddDao.getSequence()}
+                val studentSequence = withContext(Dispatchers.IO) { AddDao.getSequence() }
                 // DB에 Sequence 업데이트
-                withContext(Dispatchers.IO) {AddDao.updateSequence(studentSequence + 1)}
+                withContext(Dispatchers.IO) { AddDao.updateSequence(studentSequence + 1) }
 
                 // index 저장
                 val studentIdx = studentSequence + 1
                 // 입력 요소 불러오기
                 val name = viewModel.studentName.value ?: ""
-                val grade = viewModel.studentGrade.value !!.toInt()
-                val kor = viewModel.studentKor.value !!.toDouble()
-                val eng = viewModel.studentEng.value !!.toDouble()
-                val math = viewModel.studentMath.value !!.toDouble()
+                val grade = viewModel.studentGrade.value!!.toInt()
+                val kor = viewModel.studentKor.value!!.toDouble()
+                val eng = viewModel.studentEng.value!!.toDouble()
+                val math = viewModel.studentMath.value!!.toDouble()
 
                 // 저장 데이터 만들기
                 val data = ManageInfo(studentIdx, name, grade, kor, eng, math)
 
                 // 사용자 정보 저장
-                withContext(Dispatchers.IO){AddDao.saveStudentData(data)}
+                withContext(Dispatchers.IO) { AddDao.saveStudentData(data) }
             } catch (e: Exception) {
                 e.printStackTrace()
             }

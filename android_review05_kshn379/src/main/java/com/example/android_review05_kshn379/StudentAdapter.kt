@@ -45,7 +45,7 @@ class StudentAdapter(
                         // 현재 항목의 위치를 가져 온다
                         val position = adapterPosition
                         // 위치가 유효 한지 확인 한다
-                        if(position != RecyclerView.NO_POSITION) {
+                        if (position != RecyclerView.NO_POSITION) {
                             // 현재 항목의 studentIdx 를 가져 온다
                             val studentIdx = dataSet[position].studentIdx
                             // deleteItem 함수 호출 하여 항목 삭제 표시 한다
@@ -68,11 +68,11 @@ class StudentAdapter(
                     // 메인 Dispatchers에서 UI 변경 처리
                     withContext(Dispatchers.Main) {
                         // dataSet에서 studentIdx 항목 모두 제거
-                        dataSet.removeAll{it.studentIdx == studentIdx}
+                        dataSet.removeAll { it.studentIdx == studentIdx }
                         // RecyclerView 데이터 변경 알림
                         notifyDataSetChanged()
                     }
-                } catch (e:Exception) {
+                } catch (e: Exception) {
                     e.printStackTrace()
                     Log.e("StudentAdapter", "아이템 데이터 삭제 실패 : ${e.message}")
                 }
@@ -80,21 +80,23 @@ class StudentAdapter(
         }
 
 
-
         // ViewHolder(리사이클러 뷰 아이템) 클릭 시 작동
         fun onClicked(manager: FragmentManager, position: Int) {
             val infoFragment = InfoFragment().apply {
+                // Bundle 객체를 생성 하여 data(position)를 담는다
                 val data = Bundle().apply {
+                    // position 값을 키로 번들 추가 한다
                     putInt("position", position)
                 }
+                // InfoFragment 에 데이터를 전달 하기 위해 arguments 로 설정
                 arguments = data
             }
             // 화면 전환
             manager
-                .beginTransaction()
+                .beginTransaction() // 트랜잭션 실행
                 .replace(R.id.containerMain, infoFragment)
                 .addToBackStack(FragmentName.INFO_FRAGMENT.str)
-                .commit()
+                .commit() // 실행
         }
     }
 

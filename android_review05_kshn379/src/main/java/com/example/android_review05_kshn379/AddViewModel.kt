@@ -3,7 +3,7 @@ package com.example.android_review05_kshn379
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class AddViewModel: ViewModel() {
+class AddViewModel : ViewModel() {
     val studentName = MutableLiveData<String>()
     val studentGrade = MutableLiveData<String>()
     val studentKor = MutableLiveData<String>()
