@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="showViewModel"
+            type="com.example.android_review05_baek08102.viewmodel.ShowViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/show_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="학생 정보 보기"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            >
+            <TextView
+                android:id="@+id/show_textView_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@{showViewModel.name}"
+                />
+            <TextView
+                android:id="@+id/show_textView_grade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@{showViewModel.grade}"
+                />
+
+            <TextView
+                android:id="@+id/show_textView_korean"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:text="@{showViewModel.koreanScore}"
+                />
+            <TextView
+                android:id="@+id/show_textView_english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@{showViewModel.englishScore}"
+                />
+            <TextView
+                android:id="@+id/show_textView_math"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@{showViewModel.mathScore}"
+                />
+
+            <TextView
+                android:id="@+id/show_textView_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:text="@{showViewModel.totalScore}"
+                />
+            <TextView
+                android:id="@+id/show_textView_average"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@{showViewModel.average}"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</layout>
