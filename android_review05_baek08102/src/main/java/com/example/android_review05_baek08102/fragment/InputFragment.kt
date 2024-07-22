@@ -128,6 +128,9 @@ class InputFragment : Fragment() {
                 // Dao통하여 firestore에 저장
                 withContext(Dispatchers.IO) { StudentDao.inputStudentData(data) }
 
+                // 작업 종료 시 화면 종료
+                removeFragment()
+
             } catch (e: Exception) {
                 Log.e("saveInput", "데이터 저장 실패 : ${e.message}")
             }
@@ -266,9 +269,7 @@ class InputFragment : Fragment() {
         if (result) { // 유효성 검사 통과 시
 
             showSnackbar() // snackbar 띄우고
-            saveInput() // db에 입력받은 데이터 저장ㅏㅎ며
-            removeFragment() // MainFragment로 이동한다
-
+            saveInput() // db에 입력받은 데이터 저장한다
         } else { // 유효성 검사 통과 실패 시
             showDialog() // dialog만 띄운다
         }
