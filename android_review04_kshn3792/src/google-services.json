@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "988844022890",
+    "project_id": "mvvmkshn",
+    "storage_bucket": "mvvmkshn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988844022890:android:f3f0743ef264108b543e13",
+        "android_client_info": {
+          "package_name": "com.example.android_review04_kshn3792"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRBlhRAGIRlaQNrTOpiIvcspNLsjDM1aw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
