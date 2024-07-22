@@ -98,16 +98,20 @@ class InputFragment : Fragment() {
     }
 
     // firestore에 입력값 저장하는 함수
-    // 추후 추가 주석 작업 필요
     fun saveInput() {
+        // 메인 스레드에서 코루틴이 실행되도록
         CoroutineScope(Dispatchers.Main).launch {
             try {
+                // 아래 두 작업은 백그라운드 스레드에서 실행
 
+                // firestore로부터 시퀀스 데이터 받아오고
                 val studentSequence = withContext(Dispatchers.IO) { StudentDao.getSequence() }
+                // 받아온 시퀀스 데이터를 바탕으로 firestore의 시퀀스 업데이트
                 withContext(Dispatchers.IO) { StudentDao.updateSequence(studentSequence + 1) }
 
                 val index = studentSequence + 1
 
+                // 사용자가 입력한, InputViewModel에 저장된 데이터
                 val name = viewModel.name.value!!
                 val grade = viewModel.grade.value!!.toInt()
                 val korean = viewModel.koreanScore.value!!.toDouble()
@@ -117,8 +121,11 @@ class InputFragment : Fragment() {
                 val total = korean + english + math
                 val average = round((total / 3) * 10) / 10
 
+                // StudentData 타입으로 담아서
                 val data = StudentData(index, name, grade, korean, english, math, total, average, true)
 
+                // 역시 백그라운드 스레드에서
+                // Dao통하여 firestore에 저장
                 withContext(Dispatchers.IO) { StudentDao.inputStudentData(data) }
 
             } catch (e: Exception) {

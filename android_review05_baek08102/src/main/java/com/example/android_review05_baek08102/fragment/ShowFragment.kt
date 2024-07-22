@@ -23,7 +23,6 @@ import kotlinx.coroutines.withContext
 
 class ShowFragment : Fragment() {
     private lateinit var binding: FragmentShowBinding
-    private val data: ArrayList<StudentData> = arrayListOf()
     private val viewModel: ShowViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -32,7 +31,7 @@ class ShowFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_show, container, false)
-        binding.showViewModel = viewModel
+        binding.showViewModel = viewModel // 바인딩에 ShowViewModel 연결
         binding.lifecycleOwner = this
 
         return binding.root
@@ -46,6 +45,7 @@ class ShowFragment : Fragment() {
         settingData()
     }
 
+    // 뷰 설정 함수
     fun settingView() {
         binding.apply {
             showToolbar.apply {
@@ -55,6 +55,7 @@ class ShowFragment : Fragment() {
         }
     }
 
+    // 이벤트 설정 함수
     fun settingEvent() {
         binding.apply {
             showToolbar.apply {
@@ -65,12 +66,15 @@ class ShowFragment : Fragment() {
         }
     }
 
+    // 출력 데이터 설정 함수
     fun settingData() {
+
         viewModel.getData()
 
         Log.d("showFragment", "getData() 함수 실행 완료")
     }
 
+    // 프래그먼트 삭제 함수
     fun removeFragment() {
         parentFragmentManager.popBackStack(
             FragmentName.Show_Fragment.name,
