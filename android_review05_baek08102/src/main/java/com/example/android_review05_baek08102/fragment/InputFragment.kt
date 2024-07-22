@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -59,6 +60,7 @@ class InputFragment : Fragment() {
                 inflateMenu(R.menu.menu_confirm)
             }
         }
+        hideErrorIcon() // 에러 아이콘 숨김
     }
 
     // 이벤트 설정
@@ -118,7 +120,7 @@ class InputFragment : Fragment() {
                 val english = viewModel.englishScore.value!!.toDouble()
                 val math = viewModel.mathScore.value!!.toDouble()
 
-                val total = korean + english + math
+                val total = round((korean + english + math) * 10) / 10
                 val average = round((total / 3) * 10) / 10
 
                 // StudentData 타입으로 담아서
@@ -178,63 +180,74 @@ class InputFragment : Fragment() {
     // 유효성 검사와 error를 관리하는 함수를 별도로 세팅
     fun settingError() { // error 설정하는 함수
         binding.apply {
-            viewModel.name.observe(viewLifecycleOwner) { name -> // observe를 통해 livedata 타입의 데이터 실시간 감시
-                if (name.isNotEmpty() && name != null) { // 입력을 받았고, 받은 입력값이 null이 아니라면
-                    if (name.length in 2..5) {
-                        inputInputLayoutName.error = null
+
+            inputEditTextName.doAfterTextChanged { // 화면 첫 진입 시 에러 출력 막음 (텍스트 입력 시점부터 출력)
+                viewModel.name.observe(viewLifecycleOwner) { name ->// observe를 통해 livedata 타입의 데이터 실시간 감시
+                    if (name.isNotEmpty() && name != null) { // 입력을 받았고, 받은 입력값이 null이 아니라면
+                        if (name.length in 2..5) {
+                            inputInputLayoutName.error = null
+                        } else {
+                            inputInputLayoutName.error = "이름은 두 자에서 다섯 자 사이여야 합니다"
+                        }
                     } else {
-                        inputInputLayoutName.error = "이름은 두 자에서 다섯 자 사이여야 합니다"
+                        inputInputLayoutName.error = "이름을 입력해주세요"
                     }
-                } else {
-                    inputInputLayoutName.error = "이름을 입력해주세요"
                 }
             }
 
-            viewModel.grade.observe(viewLifecycleOwner) { grade ->
-                if (grade.isNotEmpty() && grade != null) {
-                    if (grade.toInt() in 1..6) {
-                        inputInputLayoutGrade.error = null
+            inputEditTextGrade.doAfterTextChanged {
+                viewModel.grade.observe(viewLifecycleOwner) { grade ->
+                    if (grade.isNotEmpty() && grade != null) {
+                        if (grade.toInt() in 1..6) {
+                            inputInputLayoutGrade.error = null
+                        } else {
+                            inputInputLayoutGrade.error = "학년은 1학년에서 6학년 사이여야 합니다"
+                        }
                     } else {
-                        inputInputLayoutGrade.error = "학년은 1학년에서 6학년 사이여야 합니다"
+                        inputInputLayoutGrade.error = "학년을 입력해주세요"
                     }
-                } else {
-                    inputInputLayoutGrade.error = "학년을 입력해주세요"
                 }
             }
 
-            viewModel.koreanScore.observe(viewLifecycleOwner) { korean ->
-                if (korean.isNotEmpty() && korean != null) {
-                    if (korean.toDouble() in 0.0..100.0) {
-                        inputInputLayoutKorean.error = null
+            inputEditTextKorean.doAfterTextChanged {
+                viewModel.koreanScore.observe(viewLifecycleOwner) { korean ->
+                    if (korean.isNotEmpty() && korean != null) {
+                        if (korean.toDouble() in 0.0..100.0) {
+                            inputInputLayoutKorean.error = null
+                        } else {
+                            inputInputLayoutKorean.error = "점수는 0점에서 100점 사이여야 합니다"
+                        }
                     } else {
-                        inputInputLayoutKorean.error = "점수는 0점에서 100점 사이여야 합니다"
+                        inputInputLayoutKorean.error = "점수를 입력해주세요"
                     }
-                } else {
-                    inputInputLayoutKorean.error = "점수를 입력해주세요"
                 }
             }
 
-            viewModel.englishScore.observe(viewLifecycleOwner) { english ->
-                if (english.isNotEmpty() && english != null) {
-                    if (english.toDouble() in 0.0..100.0) {
-                        inputInputLayoutEnglish.error = null
+            inputEditTextEnglish.doAfterTextChanged {
+                viewModel.englishScore.observe(viewLifecycleOwner) { english ->
+                    if (english.isNotEmpty() && english != null) {
+                        if (english.toDouble() in 0.0..100.0) {
+                            inputInputLayoutEnglish.error = null
+                        } else {
+                            inputInputLayoutEnglish.error = "점수는 0점에서 100점 사이여야 합니다"
+                        }
                     } else {
-                        inputInputLayoutEnglish.error = "점수는 0점에서 100점 사이여야 합니다"
+                        inputInputLayoutEnglish.error = "점수를 입력해주세요"
                     }
-                } else {
-                    inputInputLayoutEnglish.error = "점수를 입력해주세요"
                 }
             }
 
-            viewModel.mathScore.observe(viewLifecycleOwner) { math ->
-                if (math.isNotEmpty() && math != null) {
-                    if (math.toDouble() in 0.0..100.0) {
-                        inputInputLayoutMath.error = null
+            inputEditTextMath.doAfterTextChanged {
+                viewModel.mathScore.observe(viewLifecycleOwner) { math ->
+                    if (math.isNotEmpty() && math != null) {
+                        if (math.toDouble() in 0.0..100.0) {
+                            inputInputLayoutMath.error = null
+                        } else {
+                            inputInputLayoutMath.error = "점수는 0점에서 100점 사이여야 합니다"
+                        }
                     } else {
-                        inputInputLayoutMath.error = "점수는 0점에서 100점 사이여야 합니다"
+                        inputInputLayoutMath.error = "점수를 입력해주세요"
                     }
-                } else {
-                    inputInputLayoutMath.error = "점수를 입력해주세요"
                 }
             }
         }
@@ -272,6 +285,17 @@ class InputFragment : Fragment() {
             saveInput() // db에 입력받은 데이터 저장한다
         } else { // 유효성 검사 통과 실패 시
             showDialog() // dialog만 띄운다
+        }
+    }
+
+    // 에러 아이콘 표시하지 않도록 하는 함수
+    fun hideErrorIcon() {
+        binding.apply {
+            inputInputLayoutName.errorIconDrawable = null
+            inputInputLayoutGrade.errorIconDrawable = null
+            inputInputLayoutKorean.errorIconDrawable = null
+            inputInputLayoutEnglish.errorIconDrawable = null
+            inputInputLayoutMath.errorIconDrawable = null
         }
     }
 
