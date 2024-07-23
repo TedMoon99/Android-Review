@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="mainViewModel"
+            type="com.example.android_review05_tedmoon.viewmodel.MainViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
