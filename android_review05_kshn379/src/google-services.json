@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "782642184928",
+    "project_id": "review05-ksh",
+    "storage_bucket": "review05-ksh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782642184928:android:198627e7487b1ecbf7c685",
+        "android_client_info": {
+          "package_name": "com.example.android_review05_kshn379"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA080o8iCizcQ0celtwpj4mnO4VaF782Wg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
