@@ -78,8 +78,6 @@ class AddFragment : Fragment() {
                                 saveData()
                                 // 스낵바 메시지 출력
                                 Snackbar.make(binding.root, "등록되었습니다", Snackbar.LENGTH_SHORT).show()
-                                // 뒤로 가기
-                                removeFragment()
                             } else {
                                 popErrorDialog()
                             }
@@ -213,6 +211,9 @@ class AddFragment : Fragment() {
 
                 // 사용자 정보 저장
                 withContext(Dispatchers.IO){AddDao.saveStudentData(data)}
+
+                // 뒤로 가기
+                removeFragment()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
