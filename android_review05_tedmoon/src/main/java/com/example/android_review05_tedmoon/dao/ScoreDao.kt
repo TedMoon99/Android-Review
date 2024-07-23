@@ -61,7 +61,7 @@ class ScoreDao {
                 // 컬랙션에 접근 가능한 객체 생성
                 val collectionReference = Firebase.firestore.collection("ScoreData")
                 // studentIdx가 parameter와 같은 데이터를 불러온다
-                val querySnapshot = collectionReference.whereEqualTo("studentIdx", studentIdx).get().await()
+                val querySnapshot = collectionReference.whereEqualTo("studentIdx", studentIdx).whereEqualTo("state", true).get().await()
                 // 불러온 데이터를 ScoreInfo에 맞게 바꾸어 반환한다
                 querySnapshot.documents.firstOrNull()?.toObject(ScoreInfo::class.java)
             } catch (e: Exception){
@@ -74,7 +74,7 @@ class ScoreDao {
         suspend fun getAllData(): ArrayList<ScoreInfo>{
             return try {
                 // 컬랙션에 접근 가능한 객체 생성
-                val querySnapshot = Firebase.firestore.collection("ScoreData").get().await()
+                val querySnapshot = Firebase.firestore.collection("ScoreData").whereEqualTo("state", true).get().await()
                 // ScoreInfo 데이터를 담아줄 arrayList 생성
                 val list = arrayListOf<ScoreInfo>()
                 querySnapshot.forEach { data ->
