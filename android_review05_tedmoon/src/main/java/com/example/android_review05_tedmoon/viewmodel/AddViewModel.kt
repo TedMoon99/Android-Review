@@ -42,7 +42,7 @@ class AddViewModel : ViewModel() {
 
                 // data에 담아준다
                 val studentData = ScoreInfo(sequence + 1, name, grade, korean, english, math, true)
-                val totalData = TotalInfo(sequence+1, total, average)
+                val totalData = TotalInfo(sequence+1, total, average, true)
 
                 // DB에 정보를 저장한다
                 withContext(Dispatchers.IO) { ScoreDao.insertStudentData(studentData) }
