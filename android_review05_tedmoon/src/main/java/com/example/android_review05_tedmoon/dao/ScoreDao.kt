@@ -2,6 +2,7 @@ package com.example.android_review05_tedmoon.dao
 
 import android.util.Log
 import com.example.android_review05_tedmoon.model.ScoreInfo
+import com.example.android_review05_tedmoon.utils.ScoreDataState
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
@@ -67,6 +68,23 @@ class ScoreDao {
             } catch (e: Exception){
                 Log.e("ScoreDao", "학생정보 조회 실패 : ${e.message}")
                 null
+            }
+        }
+        // studentIdx를 이용해 학생 정보 데이터의 state를 false로 변경한다
+        suspend fun setStateWithFalse(studentIdx: Int, newState: ScoreDataState){
+            try {
+                // 컬랙션에 접근 가능한 객체 생성
+                val collectionReference = Firebase.firestore.collection("ScoreData")
+                // studentIdx가 parameter와 같은 데이터를 불러온다
+                val querySnapshot = collectionReference.whereEqualTo("studentIdx", studentIdx).get().await()
+                // 저장할 데이터를 담을 HashMap을 만들어준다
+                val map = mutableMapOf<String, Any>()
+                map["state"] = newState.state
+                // 저장한다
+                // 가져온 문서 중에 첫 번째 문서에 접근하여 데이터를 수정한다
+                querySnapshot.documents[0].reference.update(map).await()
+            } catch (e: Exception){
+                Log.e("ScoreDao", "정보 상태 변경 실패 : ${e.message}")
             }
         }
 
