@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493436801439",
+    "project_id": "anroid-review-06-kshn379",
+    "storage_bucket": "anroid-review-06-kshn379.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493436801439:android:02e30335aa1bc250a7edaa",
+        "android_client_info": {
+          "package_name": "com.example.android_review06_kshn379"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0VXkMyC6l3VlrYOz8GT_9Ikary0nt6l8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
