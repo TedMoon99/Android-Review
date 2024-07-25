@@ -25,6 +25,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         // containerMain에 보여지는 화면 -> MainFragment로 설정
-        supportFragmentManager.beginTransaction().replace(R.id.containerMain, MainFragment()).addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.containerMain, MainFragment()).commit()
     }
 }
