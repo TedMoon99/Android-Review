@@ -11,8 +11,9 @@ import com.example.android_review05_tedmoon.fragment.ShowFragment
 import com.example.android_review05_tedmoon.model.ScoreInfo
 import com.example.android_review05_tedmoon.utils.FragmentName
 import com.example.android_review05_tedmoon.viewmodel.MainViewModel
+import com.example.android_review05_tedmoon.viewmodel.ShowViewModel
 
-class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>?, val menuInflater: MenuInflater, val manager: FragmentManager, val viewModel: MainViewModel): RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
+class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>, val menuInflater: MenuInflater, val manager: FragmentManager, val viewModel: MainViewModel, val showViewModel: ShowViewModel): RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
 
     inner class CustomViewHolder(val rowMainBinding: RowMainBinding): RecyclerView.ViewHolder(rowMainBinding.root){
         init {
@@ -40,7 +41,6 @@ class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>?, val menuInflater
                         if (scoreInfo != null) {
                             viewModel.removeData(scoreInfo.studentIdx)
                         }
-
                         dataSet?.removeAt(position) // dataSet에서 position번째 데이터 제거
                         notifyItemRemoved(position) // position번째 데이터 삭제를 알림
                     }
@@ -51,6 +51,7 @@ class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>?, val menuInflater
 
         // Adapter 항목 클릭 시 화면 이동
         fun onClicked(manager: FragmentManager){
+            showViewModel.studentIdx.value = dataSet.get(adapterPosition).studentIdx
             manager
                 .beginTransaction()
                 .replace(R.id.containerMain, ShowFragment())
@@ -64,12 +65,12 @@ class CustomAdapter(private val dataSet: ArrayList<ScoreInfo>?, val menuInflater
     }
 
     override fun getItemCount(): Int {
-        return dataSet?.size ?: 0
+        return dataSet.size
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.rowMainBinding.textViewRowMainName.text = "이름 : ${dataSet?.get(position)?.name}"
-        holder.rowMainBinding.textViewRowMainGrade.text = "학년 : ${dataSet?.get(position)?.grade}학년"
+        holder.rowMainBinding.textViewRowMainName.text = "이름 : ${dataSet.get(position)?.name}"
+        holder.rowMainBinding.textViewRowMainGrade.text = "학년 : ${dataSet.get(position)?.grade}학년"
 
         // 항목 클릭 시 화면 전환
         holder.itemView.setOnClickListener {

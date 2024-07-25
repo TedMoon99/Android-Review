@@ -2,6 +2,7 @@ package com.example.android_review05_tedmoon.fragment
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -166,6 +167,7 @@ class AddFragment : Fragment() {
 
     // 뒤로가기
     fun removeFragment() {
+        SystemClock.sleep(200)
         parentFragmentManager.popBackStack(
             FragmentName.ADD_FRAGMENT.str,
             FragmentManager.POP_BACK_STACK_INCLUSIVE

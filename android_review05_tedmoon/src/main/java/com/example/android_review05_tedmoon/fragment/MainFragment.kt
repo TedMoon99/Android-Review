@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_review05_tedmoon.R
 import com.example.android_review05_tedmoon.adapter.CustomAdapter
@@ -15,19 +17,26 @@ import com.example.android_review05_tedmoon.databinding.FragmentMainBinding
 import com.example.android_review05_tedmoon.model.ScoreInfo
 import com.example.android_review05_tedmoon.utils.FragmentName
 import com.example.android_review05_tedmoon.viewmodel.MainViewModel
+import com.example.android_review05_tedmoon.viewmodel.ShowViewModel
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by activityViewModels()
+    private val showViewModel: ShowViewModel by activityViewModels()
+    var dataList: ArrayList<ScoreInfo> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         binding.mainViewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -37,8 +46,6 @@ class MainFragment : Fragment() {
         settingView()
         // Event 설정
         settingEvent()
-        // Data 설정
-        gettingData()
     }
 
     override fun onResume() {
@@ -67,9 +74,7 @@ class MainFragment : Fragment() {
                 // FragmentManager 받아오기
                 val manager = parentFragmentManager
                 // adapter
-                // 임시 연결
-                adapter = CustomAdapter(viewModel.dataList.value, menuInflater, manager, viewModel)
-
+                adapter = CustomAdapter(dataList, menuInflater, manager, viewModel, showViewModel)
                 // layoutManager
                 layoutManager = LinearLayoutManager(context)
                 // 구분선 적용
@@ -77,10 +82,19 @@ class MainFragment : Fragment() {
             }
         }
     }
-
     // DB에서 정보 불러오기
     fun gettingData(){
-        viewModel.getAllData()
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val data = withContext(Dispatchers.IO) { viewModel.getAllData() }
+                dataList.clear()
+                dataList.addAll(data)
+                binding.recyclerviewMain.adapter?.notifyDataSetChanged()
+                Log.d("MainFragment", "데이터 조회 성공 : ${dataList}")
+            } catch (e: Exception){
+                Log.e("MainFragment", "데이터 조회 실패 : ${e.message}")
+            }
+        }
     }
 
     // Event 설정
