@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import com.example.android_review06_kshn379.databinding.FragmentAddBinding
@@ -39,8 +40,14 @@ class AddFragment : Fragment() {
 
     // View 설정
     private fun settingView() {
-        // Toolbar 설정
         binding.apply {
+            // TextField 숨기기
+            editTextAnimalName.visibility = View.INVISIBLE
+            editTextAnimalAge.visibility = View.INVISIBLE
+            editTextAnimalCount.visibility = View.INVISIBLE
+            editTextAnimalDetail.visibility = View.INVISIBLE
+
+            // Toolbar 설정
             toolBarAdd.apply {
                 inflateMenu(R.menu.menu_items)
             }
@@ -50,6 +57,77 @@ class AddFragment : Fragment() {
     // Event 설정
     private fun settingEvent() {
         binding.apply {
+            // 동물 버튼 클릭 설정
+            // Lion
+            buttonAddLion.apply {
+                setOnClickListener { lion ->
+                    when (lion.id) {
+                        R.id.button_add_lion -> {
+                            editTextAnimalName.text.toString()
+                            editTextAnimalName.hint = "이름"
+                            editTextAnimalAge.text.toString()
+                            editTextAnimalAge.hint = "나이"
+                            editTextAnimalCount.text.toString()
+                            editTextAnimalCount.hint = "털의 갯수"
+                            editTextAnimalDetail.text.toString()
+                            editTextAnimalDetail.hint = "성별(암컷 또는 수컷)"
+                            textViewSelectAnimal.text = "사자"
+                            editTextAnimalName.visibility = View.VISIBLE
+                            editTextAnimalAge.visibility = View.VISIBLE
+                            editTextAnimalCount.visibility = View.VISIBLE
+                            editTextAnimalDetail.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
+
+            // Tiger
+            buttonAddTiger.apply {
+                setOnClickListener { tiger ->
+                    when (tiger.id) {
+                        R.id.button_add_tiger -> {
+                            editTextAnimalName.text.toString()
+                            editTextAnimalName.hint = "이름"
+                            editTextAnimalAge.text.toString()
+                            editTextAnimalAge.hint = "나이"
+                            editTextAnimalCount.text.toString()
+                            editTextAnimalCount.hint = "줄무늬 갯수"
+                            editTextAnimalDetail.text.toString()
+                            editTextAnimalDetail.hint = "몸무게"
+                            textViewSelectAnimal.text = "호랑이"
+                            editTextAnimalName.visibility = View.VISIBLE
+                            editTextAnimalAge.visibility = View.VISIBLE
+                            editTextAnimalCount.visibility = View.VISIBLE
+                            editTextAnimalDetail.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
+
+            // Giraffe
+            buttonAddGiraffe.apply {
+                setOnClickListener { giraffe ->
+                    when (giraffe.id) {
+                        R.id.button_add_giraffe -> {
+                            editTextAnimalName.text.toString()
+                            editTextAnimalName.hint = "이름"
+                            editTextAnimalAge.text.toString()
+                            editTextAnimalAge.hint = "나이"
+                            editTextAnimalCount.text.toString()
+                            editTextAnimalCount.hint = "목의 길이"
+                            editTextAnimalDetail.text.toString()
+                            editTextAnimalDetail.hint = "달리는 속도"
+                            textViewSelectAnimal.text = "기린"
+                            editTextAnimalName.visibility = View.VISIBLE
+                            editTextAnimalAge.visibility = View.VISIBLE
+                            editTextAnimalCount.visibility = View.VISIBLE
+                            editTextAnimalDetail.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
+
+            // Toolbar 설정
             toolBarAdd.apply {
                 // navigationIcon 설정
                 setNavigationOnClickListener {
