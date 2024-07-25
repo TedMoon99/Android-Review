@@ -69,7 +69,7 @@ class MainFragment : Fragment() {
             // Floating Action Button 설정
             faButtonMain.apply {
                 setOnClickListener { fab ->
-                    when(fab.id) {
+                    when (fab.id) {
                         R.id.faButton_main -> {
                             // AddFragment 화면 이동
                             moveFragment(FragmentName.ADD_FRAGMENT)
@@ -97,6 +97,19 @@ class MainFragment : Fragment() {
                                 .setView(mDialogView.root)
                             // AlertDialog 객체 생성 및 화면 표시
                             val mAlertDialog = mBuilder.show()
+                            // Dialog 외부 클릭 시 화면 닫히지 않게 설정
+                            mAlertDialog.setCancelable(false)
+                            mAlertDialog.setCanceledOnTouchOutside(false)
+
+                            // 확인 버튼 클릭 시 데이터 전달 후 다이얼로그 닫기
+                            mDialogView.buttonSelectConfirm.setOnClickListener {
+                                mAlertDialog.dismiss()
+                            }
+
+                            // 취소 버튼 클릭 시 다이얼로그 닫기
+                            mDialogView.buttonSelectCancel.setOnClickListener {
+                                mAlertDialog.dismiss()
+                            }
                             // Dialog의 CheckedTextView 설정
                             checkedDialog(mDialogView)
                         }
@@ -109,7 +122,7 @@ class MainFragment : Fragment() {
 
     // 화면 이동
     private fun moveFragment(name: FragmentName) {
-        when(name) {
+        when (name) {
             // AddFragment 로 이동
             FragmentName.ADD_FRAGMENT -> {
                 parentFragmentManager
