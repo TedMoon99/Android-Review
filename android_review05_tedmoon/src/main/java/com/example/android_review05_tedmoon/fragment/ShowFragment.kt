@@ -1,6 +1,7 @@
 package com.example.android_review05_tedmoon.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,19 +25,26 @@ class ShowFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_show, container, false)
         binding.showViewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Event 설정
+
+        initData()
         settingEvent()
+        gettingData()
+    }
+    fun initData(){
+        viewModel.initData()
     }
 
     // 데이터를 불러와서 화면에 띄워준다
     fun gettingData() {
-
+        val studentIdx = viewModel.studentIdx.value ?: -1
+        Log.d("ShowFragment", "인덱스 확인 : ${studentIdx}")
+        viewModel.getData(studentIdx)
     }
 
     // Event 설정

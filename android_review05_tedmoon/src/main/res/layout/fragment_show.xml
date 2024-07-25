@@ -34,7 +34,7 @@
                 android:id="@+id/textView_show_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="이름 : "
+                android:text="@{showViewModel.studentName}"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="학년 : "
+                android:text="@{showViewModel.studentGrade}"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="국어 점수 : "
+                android:text="@{showViewModel.studentKorean}"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="영어 점수 : "
+                android:text="@{showViewModel.studentEnglish}"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="수학 점수 : "
+                android:text="@{showViewModel.studentKorean}"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="총점 : "
+                android:text="@{showViewModel.studentTotal}"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -88,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="평균 : "
+                android:text="@{showViewModel.studentAverage}"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
