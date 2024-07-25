@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="GradleMigrationSettings" migrationVersion="1" />
-  <component name="GradleSettings">
-    <option name="linkedExternalProjectsSettings">
-      <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/android_review01_baek08102" />
-            <option value="$PROJECT_DIR$/android_review01_kshn379" />
-            <option value="$PROJECT_DIR$/android_review01_tedmoon" />
-            <option value="$PROJECT_DIR$/android_review02_baek08102" />
-            <option value="$PROJECT_DIR$/android_review02_tedmoon" />
-            <option value="$PROJECT_DIR$/android_review03_baek08102" />
-            <option value="$PROJECT_DIR$/android_review03_kshn379" />
-            <option value="$PROJECT_DIR$/android_review03_tedmoon" />
-            <option value="$PROJECT_DIR$/android_review04_baek08102" />
-            <option value="$PROJECT_DIR$/android_review04_kshn3792" />
-            <option value="$PROJECT_DIR$/android_review04_tedmoon" />
-            <option value="$PROJECT_DIR$/android_review05_baek08102" />
-            <option value="$PROJECT_DIR$/android_review05_kshn379" />
-            <option value="$PROJECT_DIR$/app" />
-          </set>
+    <component name="GradleMigrationSettings" migrationVersion="1" />
+    <component name="GradleSettings">
+        <option name="linkedExternalProjectsSettings">
+            <GradleProjectSettings>
+                <option name="externalProjectPath" value="$PROJECT_DIR$" />
+                <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+                <option name="modules">
+                    <set>
+                        <option value="$PROJECT_DIR$" />
+                        <option value="$PROJECT_DIR$/android_review01_baek08102" />
+                        <option value="$PROJECT_DIR$/android_review01_kshn379" />
+                        <option value="$PROJECT_DIR$/android_review01_tedmoon" />
+                        <option value="$PROJECT_DIR$/android_review02_baek08102" />
+                        <option value="$PROJECT_DIR$/android_review02_tedmoon" />
+                        <option value="$PROJECT_DIR$/android_review03_baek08102" />
+                        <option value="$PROJECT_DIR$/android_review03_kshn379" />
+                        <option value="$PROJECT_DIR$/android_review03_tedmoon" />
+                        <option value="$PROJECT_DIR$/android_review04_baek08102" />
+                        <option value="$PROJECT_DIR$/android_review04_kshn3792" />
+                        <option value="$PROJECT_DIR$/android_review04_tedmoon" />
+                        <option value="$PROJECT_DIR$/android_review05_baek08102" />
+                        <option value="$PROJECT_DIR$/android_review05_kshn379" />
+                        <option value="$PROJECT_DIR$/android_review05_tedmoon" />
+                        <option value="$PROJECT_DIR$/app" />
+                    </set>
+                </option>
+                <option name="resolveExternalAnnotations" value="false" />
+            </GradleProjectSettings>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
-      </GradleProjectSettings>
-    </option>
-  </component>
+    </component>
 </project>
