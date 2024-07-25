@@ -22,7 +22,6 @@
             app:titleCentered="true"
             app:titleTextColor="@color/black" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_main"
             android:layout_width="0dp"
