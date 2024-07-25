@@ -66,6 +66,17 @@ class MainFragment : Fragment() {
     // Event 설정
     private fun settingEvent() {
         binding.apply {
+            // Floating Action Button 설정
+            faButtonMain.apply {
+                setOnClickListener { fab ->
+                    when(fab.id) {
+                        R.id.faButton_main -> {
+                            // AddFragment 화면 이동
+                            moveFragment(FragmentName.ADD_FRAGMENT)
+                        }
+                    }
+                }
+            }
             // Toolbar 설정
             toolBarMain.apply {
                 // menu 클릭 설정
@@ -88,11 +99,24 @@ class MainFragment : Fragment() {
                             val mAlertDialog = mBuilder.show()
                             // Dialog의 CheckedTextView 설정
                             checkedDialog(mDialogView)
-//                            checkedTextViewState(mDialogView)
                         }
                     }
                     true
                 }
+            }
+        }
+    }
+
+    // 화면 이동
+    private fun moveFragment(name: FragmentName) {
+        when(name) {
+            // AddFragment 로 이동
+            FragmentName.ADD_FRAGMENT -> {
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.containerMain, AddFragment())
+                    .addToBackStack(name.str)
+                    .commit()
             }
         }
     }
@@ -106,48 +130,38 @@ class MainFragment : Fragment() {
             checkedTextViewTiger.isChecked = true
             checkedTextViewGiraffe.isChecked = true
             // '전체' 클릭 시 상태 설정
-            checkedTextViewAll.apply {
+            checkedTextViewAll.setOnClickListener {
+                if (checkedTextViewAll.isChecked) {
+                    checkedTextViewAll.isChecked = false
+                    checkedTextViewLion.isChecked = false
+                    checkedTextViewTiger.isChecked = false
+                    checkedTextViewGiraffe.isChecked = false
+                } else {
+                    checkedTextViewAll.isChecked = true
+                    checkedTextViewLion.isChecked = true
+                    checkedTextViewTiger.isChecked = true
+                    checkedTextViewGiraffe.isChecked = true
+                }
+            }
+            checkedTextViewLion.apply {
                 setOnClickListener {
-                    if (checkedTextViewAll.isChecked) {
+                    if (checkedTextViewLion.isChecked) {
                         checkedTextViewAll.isChecked = false
                         checkedTextViewLion.isChecked = false
-                        checkedTextViewTiger.isChecked = false
-                        checkedTextViewGiraffe.isChecked = false
-                    } else {
+                    } else if (!checkedTextViewLion.isChecked && checkedTextViewTiger.isChecked && checkedTextViewGiraffe.isChecked) {
                         checkedTextViewAll.isChecked = true
                         checkedTextViewLion.isChecked = true
-                        checkedTextViewTiger.isChecked = true
-                        checkedTextViewGiraffe.isChecked = true
-                    }
-                }
-                checkedTextViewLion.apply {
-                    setOnClickListener {
-                        if (checkedTextViewLion.isChecked) {
-                            checkedTextViewAll.isChecked = false
-                            checkedTextViewLion.isChecked = false
-                            checkedTextViewTiger.isChecked = true
-                            checkedTextViewGiraffe.isChecked = true
-                        } else if (!checkedTextViewLion.isChecked) {
-                            checkedTextViewAll.isChecked = false
-                            checkedTextViewLion.isChecked = true
-                            checkedTextViewTiger.isChecked = true
-                            checkedTextViewGiraffe.isChecked = true
-                        } else {
-                            checkedTextViewLion.isChecked = true
-                        }
+                    } else {
+                        checkedTextViewLion.isChecked = true
                     }
                     checkedTextViewTiger.apply {
                         setOnClickListener {
                             if (checkedTextViewTiger.isChecked) {
                                 checkedTextViewAll.isChecked = false
-                                checkedTextViewLion.isChecked = true
                                 checkedTextViewTiger.isChecked = false
-                                checkedTextViewGiraffe.isChecked = true
-                            } else if (!checkedTextViewTiger.isChecked) {
-                                checkedTextViewAll.isChecked = false
-                                checkedTextViewLion.isChecked = true
+                            } else if (checkedTextViewLion.isChecked && !checkedTextViewTiger.isChecked && checkedTextViewGiraffe.isChecked) {
+                                checkedTextViewAll.isChecked = true
                                 checkedTextViewTiger.isChecked = true
-                                checkedTextViewGiraffe.isChecked = true
                             } else {
                                 checkedTextViewTiger.isChecked = true
                             }
@@ -156,13 +170,9 @@ class MainFragment : Fragment() {
                             setOnClickListener {
                                 if (checkedTextViewGiraffe.isChecked) {
                                     checkedTextViewAll.isChecked = false
-                                    checkedTextViewLion.isChecked = true
-                                    checkedTextViewTiger.isChecked = true
                                     checkedTextViewGiraffe.isChecked = false
-                                } else if (!checkedTextViewGiraffe.isChecked) {
-                                    checkedTextViewAll.isChecked = false
-                                    checkedTextViewLion.isChecked = true
-                                    checkedTextViewTiger.isChecked = true
+                                } else if (checkedTextViewLion.isChecked && checkedTextViewTiger.isChecked && !checkedTextViewGiraffe.isChecked) {
+                                    checkedTextViewAll.isChecked = true
                                     checkedTextViewGiraffe.isChecked = true
                                 } else {
                                     checkedTextViewGiraffe.isChecked = true
@@ -174,32 +184,4 @@ class MainFragment : Fragment() {
             }
         }
     }
-
-    // CheckedTextView 상태 설정 하기
-    private fun checkedTextViewState(dialogBinding: CustomDialogBinding) {
-        dialogBinding.apply {
-            checkedTextViewAll.isChecked = true
-            checkedTextViewLion.isChecked = true
-            checkedTextViewTiger.isChecked = true
-            checkedTextViewGiraffe.isChecked = true
-
-            checkedTextViewLion.apply {
-                setOnClickListener {
-                    if (checkedTextViewLion.isChecked) {
-                        checkedTextViewAll.isChecked = true
-                        checkedTextViewLion.isChecked = true
-                        checkedTextViewTiger.isChecked = true
-                        checkedTextViewGiraffe.isChecked = true
-                    } else {
-                        checkedTextViewAll.isChecked = false
-                        checkedTextViewLion.isChecked = true
-                        checkedTextViewTiger.isChecked = true
-                        checkedTextViewGiraffe.isChecked = false
-                    }
-                }
-            }
-        }
-    }
 }
-
-
