@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuitems_item_complete"
+        android:icon="@drawable/done"
+        android:title="complete"
+        app:showAsAction="ifRoom" />
+</menu>
