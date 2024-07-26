@@ -30,9 +30,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
+
+    implementation(libs.androidx.fragment.ktx.v181)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx.v262)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
