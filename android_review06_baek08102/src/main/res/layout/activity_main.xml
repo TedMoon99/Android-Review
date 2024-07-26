@@ -11,6 +11,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/main_container"
+            android:name="com.example.android_review06_baek08102.fragment.MainFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
