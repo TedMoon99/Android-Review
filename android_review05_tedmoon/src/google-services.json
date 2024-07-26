@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "774100601569",
+    "project_id": "review-347f8",
+    "storage_bucket": "review-347f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774100601569:android:737be7e624c38c771c85a0",
+        "android_client_info": {
+          "package_name": "com.example.android_review05_tedmoon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFQRHuU9l24fV0fh7_VoKaQ-32aTkG5QU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
