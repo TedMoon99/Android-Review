@@ -10,10 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.example.android_review06_kshn379.databinding.FragmentInfoBinding
+import com.google.android.material.snackbar.Snackbar
 
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
     private val viewModel: AddViewModel by activityViewModels()
+    private var position: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +34,10 @@ class InfoFragment : Fragment() {
         settingEvent()
         // View 설정
         settingView()
+        // Data 초기화
+        clearText()
+        // Data 가져오기
+        getData()
 
     }
 
@@ -65,8 +71,21 @@ class InfoFragment : Fragment() {
                         }
                         // menu delete icon 설정
                         R.id.menuitem_edit_delete -> {
+                            // RecyclerView Item 삭제 설정
+                            // position 값을 arguments에서 가져오고, 기본값은 -1
+                            val position = arguments?.getInt("position") ?: -1
+                            // position 값이 유효한지 확인 -> 0 이상일 경우 유효
+                            if (position != -1) {
+                                // position + 1 값을 removeItem에 전달하여 삭제 요청
+                                // position은 0부터 시작하는 Index이므로 1을 더한다
+                                viewModel.removeItem(position + 1)
+                            }
+
                             // 뒤로 가기
                             removeFragment()
+                            // SnackBar Message 출력
+                            Snackbar.make(binding.root, "해당 정보가 삭제 되었습니다!!!", Snackbar.LENGTH_SHORT)
+                                .show()
                             true
                         }
 
@@ -74,6 +93,19 @@ class InfoFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    // Data 초기화
+    fun clearText() {
+        viewModel.clearText()
+    }
+
+    // Data 가져오기
+    fun getData() {
+        val position = arguments?.getInt("position") ?: -1
+        viewLifecycleOwner.lifecycle.apply {
+            viewModel.getData(position + 1)
         }
     }
 
