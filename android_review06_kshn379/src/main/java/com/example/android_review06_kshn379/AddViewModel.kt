@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AddViewModel : ViewModel() {
+    val animalType = MutableLiveData<String>()
     val animalName = MutableLiveData<String>()
     val animalAge = MutableLiveData<String>()
     val animalCount = MutableLiveData<String>()
