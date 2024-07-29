@@ -71,18 +71,19 @@ class MainFragment : Fragment() {
                 recyclerViewMain.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                         super.onScrolled(recyclerView, dx, dy)
-                        with(binding.faButtonMain) {
-                            // 리사이클러뷰가 아래로 스크롤 할 때 FAB를 투명하게 설정
-                            // direction -> 1은 하단, -1은 상단
-                            if (binding.recyclerViewMain.canScrollVertically(1)) {
-                                // alpha 값 1f 는 완전히 불투명한 상태
-                                animate().alpha(1f).duration = 200
-                                visibility = View.VISIBLE
-                            } else {
-                                visibility = View.GONE
-                                // alpha 값 0f는 투명한 상태로 200밀리초 동안 없어지게 설정
-                                animate().alpha(0f).duration = 200
-                            }
+                        // FAB 숨기거나 보이게 설정
+                        if (dy > 0) {
+                            // 아래로 스크롤 이동 했을 때 설정
+                            binding.faButtonMain.animate()
+                                .alpha(0f) // 투명
+                                .setDuration(200) // 200 미리 초
+                                .withEndAction { binding.faButtonMain.visibility = View.GONE }
+                        } else {
+                            // 위로 스크롤 이동 했을 때 또는 스크롤이 없는 경우 설정
+                            binding.faButtonMain.animate()
+                                .alpha(1f) // 불투명
+                                .setDuration(200)
+                                .withEndAction { binding.faButtonMain.visibility = View.VISIBLE }
                         }
                     }
                 })
