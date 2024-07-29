@@ -54,9 +54,18 @@ class ZooAdapter(
     }
 
     override fun onBindViewHolder(holder: ZooAdapter.AnimalViewHolder, position: Int) {
-        holder.rowBinding.imageViewRowAnimal.setImageResource(R.drawable.animals)
         holder.rowBinding.textViewRowName.text = "이름 : ${dataSet[position].animalName}"
         holder.rowBinding.textViewRowType.text = "종류 : ${dataSet[position].animalType}"
+
+        // 종류에 따라 이미지 변경 설정
+        val imageChange = when(dataSet[position].animalType) {
+            "사자" -> R.drawable.lion
+            "호랑이" -> R.drawable.tiger
+            "기린" -> R.drawable.giraffe
+            else -> R.drawable.animals // 기본 이미지 설정
+        }
+        holder.rowBinding.imageViewRowAnimal.setImageResource(imageChange)
+
         // Click Listener 설정
         holder.itemView.setOnClickListener {
             // 화면 전환
