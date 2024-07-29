@@ -77,9 +77,6 @@ class EditFragment : Fragment() {
 
     // 뒤로 가기 설정
     private fun removeFragment() {
-        parentFragmentManager.popBackStack(
-            FragmentName.INFO_FRAGMENT.str,
-            FragmentManager.POP_BACK_STACK_INCLUSIVE
-        )
+        parentFragmentManager.popBackStack()
     }
 }
