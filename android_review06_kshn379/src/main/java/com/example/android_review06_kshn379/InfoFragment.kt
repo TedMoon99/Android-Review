@@ -1,17 +1,19 @@
 package com.example.android_review06_kshn379
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.activityViewModels
 import com.example.android_review06_kshn379.databinding.FragmentInfoBinding
 
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
-//    private val viewModel: InfoViewModel by activityViewModels()
+    private val viewModel: AddViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,7 +21,7 @@ class InfoFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_info, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-//        binding.infoViewModel = viewModel
+        binding.addViewModel = viewModel
         return binding.root
     }
 
@@ -32,6 +34,7 @@ class InfoFragment : Fragment() {
         settingView()
 
     }
+
     // View 설정
     private fun settingView() {
         binding.apply {
@@ -51,29 +54,47 @@ class InfoFragment : Fragment() {
                     // 뒤로 가기
                     removeFragment()
                 }
-                // menu Edit Icon 설정
-                setOnMenuItemClickListener { edit ->
-                    when (edit.itemId) {
+
+                setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        // menu edit icon 설정
                         R.id.menuitem_edit_item -> {
                             // EditFragment 화면 이동
-//                            moveFragment(FragmentName.EDIT_FRAGMENT)
+                            moveFragment(FragmentName.EDIT_FRAGMENT)
+                            true
                         }
-                    }
-                    true
-                }
-                // menu delete icon 설정
-                setOnMenuItemClickListener { delete ->
-                    when(delete.itemId) {
+                        // menu delete icon 설정
                         R.id.menuitem_edit_delete -> {
                             // 뒤로 가기
                             removeFragment()
+                            true
                         }
+
+                        else -> false
                     }
-                    true
                 }
             }
         }
     }
+
+
+    // menu Edit Icon 설정
+    private fun moveFragment(name: FragmentName) {
+        when (name) {
+            // EditFragment 화면 이동
+            FragmentName.EDIT_FRAGMENT -> {
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.containerMain, EditFragment())
+                    .addToBackStack(name.str)
+                    .commit()
+            }
+
+            else -> Log.d("Wrong page", "Page 404 Error")
+
+        }
+    }
+
 
     // 뒤로 가기
     private fun removeFragment() {
