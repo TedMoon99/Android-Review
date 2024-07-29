@@ -11,6 +11,8 @@ import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android_review06_kshn379.databinding.FragmentAddBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -31,7 +33,34 @@ class AddFragment : Fragment() {
         binding.addViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        // 동물 종류 선택 시 선택한 동물에 대한 데이터 입,출력 설정
+        selectAnimalType()
+
         return binding.root
+    }
+
+    private fun selectAnimalType() {
+        viewModel.animalType.observe(viewLifecycleOwner, Observer { type ->
+            when (type) {
+                "사자" -> saveAnimalType("이름", "나이", "털의 갯수", "성별(암컷 또는 수컷)")
+                "호랑이" -> saveAnimalType("이름", "나이", "줄무늬 갯수", "몸무게")
+                "기린" -> saveAnimalType("이름", "나이", "목의 길이", "달리는 속도")
+            }
+        })
+    }
+
+    private fun saveAnimalType(nameHint: String, ageHint:String, countHint: String, detailHint: String) {
+        binding.apply {
+            editTextAnimalName.hint = nameHint
+            editTextAnimalAge.hint = ageHint
+            editTextAnimalCount.hint = countHint
+            editTextAnimalDetail.hint = detailHint
+
+            editTextAnimalName.visibility = View.VISIBLE
+            editTextAnimalAge.visibility = View.VISIBLE
+            editTextAnimalCount.visibility = View.VISIBLE
+            editTextAnimalDetail.visibility = View.VISIBLE
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -132,6 +161,8 @@ class AddFragment : Fragment() {
                 setOnClickListener { lion ->
                     when (lion.id) {
                         R.id.button_add_lion -> {
+                            // RecyclerView Item '사자' Type 설정
+                            viewModel.animalType.value = "사자"
                             editTextAnimalName.text.toString()
                             editTextAnimalName.hint = "이름"
                             editTextAnimalAge.text.toString()
@@ -155,6 +186,8 @@ class AddFragment : Fragment() {
                 setOnClickListener { tiger ->
                     when (tiger.id) {
                         R.id.button_add_tiger -> {
+                            // RecyclerView Item '호랑이' Type 설정
+                            viewModel.animalType.value = "호랑이"
                             editTextAnimalName.text.toString()
                             editTextAnimalName.hint = "이름"
                             editTextAnimalAge.text.toString()
@@ -178,6 +211,8 @@ class AddFragment : Fragment() {
                 setOnClickListener { giraffe ->
                     when (giraffe.id) {
                         R.id.button_add_giraffe -> {
+                            // RecyclerView Item '기린' Type 설정
+                            viewModel.animalType.value = "기린"
                             editTextAnimalName.text.toString()
                             editTextAnimalName.hint = "이름"
                             editTextAnimalAge.text.toString()
