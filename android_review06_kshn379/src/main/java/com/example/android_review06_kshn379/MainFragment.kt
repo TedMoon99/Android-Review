@@ -1,5 +1,6 @@
 package com.example.android_review06_kshn379
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,11 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android_review06_kshn379.databinding.CustomDialogBinding
 import com.example.android_review06_kshn379.databinding.FragmentMainBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainFragment : Fragment() {
 
@@ -39,6 +47,7 @@ class MainFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         // Fragment 화면 전환 시 마다 데이터 갱신
+        getAdapterData()
 
     }
 
@@ -52,14 +61,49 @@ class MainFragment : Fragment() {
             }
             // RecyclerView 설정
             recyclerViewMain.apply {
-                // 구분선 설정
-                val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL)
                 // Adapter 연결
-
+                adapter = ZooAdapter(animalList, parentFragmentManager)
                 // LayoutManager 적용
+                layoutManager = LinearLayoutManager(context)
+                // RecyclerView Item 간격 추가
+                addItemDecoration(VerticalSpaceItemDecoration(16))
+                // FAB 설정 - 리사이클러뷰 하단 스크롤 시 FAB 서서히 사라지게 설정
+                recyclerViewMain.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+                        with(binding.faButtonMain) {
+                            // 리사이클러뷰가 아래로 스크롤 할 때 FAB를 투명하게 설정
+                            // direction -> 1은 하단, -1은 상단
+                            if (binding.recyclerViewMain.canScrollVertically(1)) {
+                                // alpha 값 1f 는 완전히 불투명한 상태
+                                animate().alpha(1f).duration = 200
+                                visibility = View.VISIBLE
+                            } else {
+                                visibility = View.GONE
+                                // alpha 값 0f는 투명한 상태로 200밀리초 동안 없어지게 설정
+                                animate().alpha(0f).duration = 200
+                            }
+                        }
+                    }
+                })
+            }
+        }
+    }
 
-                // 구분선 추가
-                addItemDecoration(deco)
+    private fun getAdapterData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                // 백그라운드 Thread에서 데이터 가져오기
+                val data = withContext(Dispatchers.IO) { AddDao.getAllData() }
+
+                animalList.clear()
+                animalList.addAll(data)
+                // zooIdx로 정렬
+                animalList.sortBy { it.zooIdx }
+                // Adapter 변경 알림
+                binding.recyclerViewMain.adapter?.notifyDataSetChanged()
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
@@ -121,6 +165,7 @@ class MainFragment : Fragment() {
         }
     }
 
+
     // 화면 이동
     private fun moveFragment(name: FragmentName) {
         when (name) {
@@ -133,7 +178,7 @@ class MainFragment : Fragment() {
                     .commit()
             }
 
-           else -> Log.d("wrong page", "Page 404 Error")
+            else -> Log.d("wrong page", "Page 404 Error")
         }
     }
 
@@ -199,5 +244,18 @@ class MainFragment : Fragment() {
                 }
             }
         }
+    }
+}
+
+// RecyclerView Item 간격 추가
+class VerticalSpaceItemDecoration(private val verticalSpaceHeight: Int) :
+    RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        outRect.bottom = verticalSpaceHeight
     }
 }
