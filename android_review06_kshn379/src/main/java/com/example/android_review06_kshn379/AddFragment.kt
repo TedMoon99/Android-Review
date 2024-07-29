@@ -214,8 +214,7 @@ class AddFragment : Fragment() {
                             val result = validateInput()
                             if (result) {
                                 // Data 저장
-//                                saveData()
-
+                                saveData()
                                 // snackbar message 출력
                                 Snackbar.make(
                                     binding.root,
@@ -266,16 +265,38 @@ class AddFragment : Fragment() {
 
     }
 
-//    // Data 저장
-//    private fun saveData() {
-//        CoroutineScope(Dispatchers.Main).launch {
-//            try {
-//                // animalIdx 불러오기
-//                val animalSequence = withContext(Dispatchers.IO) { AddDao.getSequence()}
-//
-//            }
-//        }
-//    }
+    // Data 저장
+    private fun saveData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                // animalIdx 불러오기
+                val zooSequence = withContext(Dispatchers.IO) { AddDao.getSequence() }
+                // DB에 Sequence 업데이트
+                withContext(Dispatchers.IO) { AddDao.updateSequence(zooSequence + 1) }
+
+                // Index Save
+                val zooIdx = zooSequence + 1
+                // Animal Type
+                val type = viewModel.animalType.value ?: ""
+                // 입력 요소 Upload
+                val name = viewModel.animalName.value ?: ""
+                val age = viewModel.animalAge.value!!.toInt()
+                val count = viewModel.animalCount.value!!.toInt()
+                val detail = viewModel.animalDetail.value ?: ""
+
+                // 저장 데이터 만들기
+                val data = ZooInfo(zooIdx, type, name, age, count, detail)
+
+                // 정보 저장
+                withContext(Dispatchers.IO) { AddDao.saveAnimalData(data) }
+
+                // 뒤로가기
+                removeFragment()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 
     // Error Dialog 설정
     fun popErrorDialog() {
@@ -284,7 +305,7 @@ class AddFragment : Fragment() {
             .setMessage("모든 정보가 입력되지 않았습니다!")
             // 아이콘 설정
             .setPositiveButtonIcon(ContextCompat.getDrawable(requireContext(), R.drawable.animal))
-            .setPositiveButton("확인") {dialog, _ -> dialog.dismiss()}
+            .setPositiveButton("확인") { dialog, _ -> dialog.dismiss() }
             .show()
     }
 
