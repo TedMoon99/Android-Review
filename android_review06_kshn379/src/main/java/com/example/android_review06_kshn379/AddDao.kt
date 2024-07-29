@@ -47,7 +47,7 @@ class AddDao {
             }
         }
 
-        // 동물 Index 번호로 동물 정보 가져와서 변환
+        // 동물 Index 번호로 동물 정보 가져 와서 변환
         suspend fun getZooInfoByZooIdx(zooIdx: Int):ZooInfo? {
             return try {
                 val collectionReference = Firebase.firestore.collection("ZooData")
@@ -76,6 +76,19 @@ class AddDao {
                 Log.e("getAllData", "Data load failed : ${e.message}")
             }
             return zooData
+        }
+
+        // 동물 데이터 삭제하기
+        suspend fun removeItemData(zooIdx: Int, dataState: Boolean) {
+            try {
+                val collectionReference = Firebase.firestore.collection("ZooData")
+                val querySnapshot = collectionReference.whereEqualTo("zooIdx", zooIdx).get().await()
+               for (document in querySnapshot.documents) {
+                   collectionReference.document(document.id).update("dataState", dataState).await()
+               }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 }
