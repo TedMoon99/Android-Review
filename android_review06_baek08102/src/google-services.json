@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "427194643273",
+    "project_id": "animaldata-97e4f",
+    "storage_bucket": "animaldata-97e4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427194643273:android:460bd6d41cb5f42b45a098",
+        "android_client_info": {
+          "package_name": "com.example.android_review06_baek08102"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYBLOlNqh1k12SGz8BVlJxdeFv102skOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
