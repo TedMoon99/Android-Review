@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -39,6 +42,10 @@ dependencies {
 
     implementation(libs.androidx.fragment.ktx.v181)
     implementation(libs.androidx.lifecycle.viewmodel.ktx.v262)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.firestore.ktx)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
