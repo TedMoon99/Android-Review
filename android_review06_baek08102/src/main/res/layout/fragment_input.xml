@@ -26,120 +26,38 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
-                >
+                app:singleSelection="true">
 
                 <Button
                     android:id="@+id/input_buttonToggleGroup_lion"
+                    style="@style/toggleButtonGroupStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#bdb76b"
-                    android:text="button1"
-                    android:textSize="16sp" />
+                    android:padding="14dp"
+                    android:text="button1" />
 
                 <Button
                     android:id="@+id/input_buttonToggleGroup_tiger"
+                    style="@style/toggleButtonGroupStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#bdb76b"
-                    android:text="button2"
-                    android:textSize="16sp" />
+                    android:padding="14dp"
+                    android:text="button2" />
 
                 <Button
                     android:id="@+id/input_buttonToggleGroup_giraffe"
+                    style="@style/toggleButtonGroupStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#bdb76b"
-                    android:text="button3"
-                    android:textSize="16sp" />
+                    android:padding="14dp"
+                    android:text="button3" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edit_textInputLayout_name"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/input_containter"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:errorEnabled="true"
-                app:hintAnimationEnabled="false"
-                app:hintEnabled="false">
+                android:layout_height="wrap_content" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_inputEdittext_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="동물 이름"
-                    android:inputType="text"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edit_textInputLayout_age"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:errorEnabled="true"
-                app:hintAnimationEnabled="false"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_inputEdittext_age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="나이"
-                    android:inputType="number"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edit_textInputLayout_item1"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:errorEnabled="true"
-                app:hintAnimationEnabled="false"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_inputEdittext_item1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="속성 1"
-                    android:inputType="text"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edit_textInputLayout_item2"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:errorEnabled="true"
-                app:hintAnimationEnabled="false"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_inputEdittext_item2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="속성 2"
-                    android:inputType="text"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>
