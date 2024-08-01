@@ -10,10 +10,19 @@ import kotlinx.coroutines.withContext
 
 class AddViewModel : ViewModel() {
     val animalType = MutableLiveData<String>()
+    val animalNameLabel = MutableLiveData<String>()
     val animalName = MutableLiveData<String>()
+    val animalAgeLabel = MutableLiveData<String>()
     val animalAge = MutableLiveData<String>()
+    val animalCountLabel = MutableLiveData<String>()
     val animalCount = MutableLiveData<String>()
+    val animalDetailLabel = MutableLiveData<String>()
     val animalDetail = MutableLiveData<String>()
+    val zooName = MutableLiveData<String>()
+    val zooAge = MutableLiveData<String>()
+    val zooCount = MutableLiveData<String>()
+    val zooDetail = MutableLiveData<String>()
+
 
     // DB 연동
     fun getData(position: Int) {
@@ -30,27 +39,62 @@ class AddViewModel : ViewModel() {
                         "사자" -> {
                             // Lion
                             animalType.value = "종류 : ${animalInfo.animalType}"
-                            animalName.value = "이름 : ${animalInfo.animalName}"
-                            animalAge.value = "나이 : ${animalInfo.animalAge}"
-                            animalCount.value = "털의 갯수 : ${animalInfo.animalCount}개"
-                            animalDetail.value = "성별(암컷 또는 수컷) : ${animalInfo.animalDetail}"
+
+                            zooName.value = "이름 : ${animalInfo.animalName}"
+                            animalNameLabel.value = "이름 : "
+                            animalName.value = animalInfo.animalName
+
+                            zooAge.value = "나이 : ${animalInfo.animalAge}"
+                            animalAge.value = "${animalInfo.animalAge}"
+                            animalAgeLabel.value = "나이 : "
+
+                            zooCount.value = "털의 갯수 : ${animalInfo.animalCount}개"
+                            animalCount.value = "${animalInfo.animalCount}"
+                            animalCountLabel.value = "털의 갯수 : "
+
+                            zooDetail.value = "성별(암컷 또는 수컷) : ${animalInfo.animalDetail}"
+                            animalDetail.value = animalInfo.animalDetail
+                            animalDetailLabel.value = "성별(암컷 또는 수컷) : "
                         }
 
                         "호랑이" -> {
-                            animalType.value = "종류 : 호랑이"
-                            animalName.value = "이름 : ${animalInfo.animalName}"
-                            animalAge.value = "나이 : ${animalInfo.animalAge}"
-                            animalCount.value = "줄무늬 갯수 : ${animalInfo.animalCount}개"
-                            animalDetail.value = "몸무게 : ${animalInfo.animalDetail}"
+                            animalType.value = "종류 : ${animalInfo.animalType}"
+                            zooName.value = "이름 : ${animalInfo.animalName}"
+                            animalNameLabel.value = "이름 : "
+                            animalName.value = animalInfo.animalName
+
+                            zooAge.value = "나이 : ${animalInfo.animalAge}"
+                            animalAge.value = "${animalInfo.animalAge}"
+                            animalAgeLabel.value = "나이 : "
+
+                            zooCount.value = "줄무늬 갯수 : ${animalInfo.animalCount}개"
+                            animalCount.value = "${animalInfo.animalCount}"
+                            animalCountLabel.value = "줄무늬 갯수 : "
+
+                            zooDetail.value = "몸무게 : ${animalInfo.animalDetail}kg"
+                            animalDetail.value = "${animalInfo.animalDetail}"
+                            animalDetailLabel.value = "몸무게"
                         }
 
                         "기린" -> {
-                            animalType.value = "종류 : 기린"
-                            animalName.value = "이름 : ${animalInfo.animalName}"
-                            animalAge.value = "나이 : ${animalInfo.animalAge}"
-                            animalCount.value = "목의 길이 : ${animalInfo.animalCount}cm"
-                            animalDetail.value = "달리는 속도 : ${animalInfo.animalDetail}km/h"
+                            animalType.value = "종류 : ${animalInfo.animalType}"
+                            zooName.value = "이름 : ${animalInfo.animalName}"
+                            animalNameLabel.value = "이름 : "
+                            animalName.value = animalInfo.animalName
+
+                            zooAge.value = "나이 : ${animalInfo.animalAge}"
+                            animalAge.value = "${animalInfo.animalAge}"
+                            animalAgeLabel.value = "나이 : "
+
+                            zooCount.value = "목의 길이 : ${animalInfo.animalCount}cm"
+                            animalCount.value = "${animalInfo.animalCount}"
+                            animalCountLabel.value = "목의 길이 : "
+
+                            zooDetail.value = "달리는 속도 : ${animalInfo.animalDetail}km/h"
+                            animalDetail.value = "${animalInfo.animalDetail}"
+                            animalDetailLabel.value = "달리는 속도"
                         }
+
                         else -> {
                             // 오류 설정
                             animalType.value = "종류 : 알 수 없음"
@@ -75,7 +119,7 @@ class AddViewModel : ViewModel() {
                 withContext(Dispatchers.IO) {
                     AddDao.removeItemData(zooIdx, false)
                 }
-            } catch (e:Exception) {
+            } catch (e: Exception) {
                 Log.e("AddViewModel", "Delete not completed : ${e.message}")
             }
         }
