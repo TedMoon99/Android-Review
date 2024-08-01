@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{addViewModel.animalName}"
+                android:text="@{addViewModel.zooName}"
                 android:textSize="16dp" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{addViewModel.animalAge}"
+                android:text="@{addViewModel.zooAge}"
                 android:textSize="16dp" />
 
             <TextView
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{addViewModel.animalCount}"
+                android:text="@{addViewModel.zooCount}"
                 android:textSize="16dp" />
 
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{addViewModel.animalDetail}"
+                android:text="@{addViewModel.zooDetail}"
                 android:textSize="16dp" />
 
         </LinearLayout>
