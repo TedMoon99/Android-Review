@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import com.example.android_review06_baek08102.R
 import com.example.android_review06_baek08102.databinding.DialogMainBinding
 import com.example.android_review06_baek08102.databinding.FragmentMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.example.android_review06_baek08102.utils.FragmentName
+import com.google.android.material.snackbar.Snackbar
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -43,6 +47,8 @@ class MainFragment : Fragment() {
                 // adapter 연결
                 // deco 추가
             }
+
+            onSaveSuccess()
         }
 
     }
@@ -57,9 +63,15 @@ class MainFragment : Fragment() {
                             showDialog()
                         }
                     }
-
                     true
                 }
+            }
+            mainFabMain.setOnClickListener {
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, InputFragment())
+                    .addToBackStack(FragmentName.Input_Fragment.name)
+                    .commit()
             }
         }
         // 메뉴 클릭 이벤트
@@ -123,6 +135,24 @@ class MainFragment : Fragment() {
             dialogCheckBoxTiger.setOnCheckedChangeListener { _, _ -> updateAllCheckBoxState() }
             dialogCheckBoxGiraffe.setOnCheckedChangeListener { _, _ -> updateAllCheckBoxState() }
         }
+    }
+
+    fun onSaveSuccess() {
+        setFragmentResultListener("Success") { requestKey, bundle ->
+            val success = bundle.getBoolean("success")
+
+            if (success) {
+                showToast("데이터 저장 성공 !!")
+            } else {
+                showToast("데이터 저장 실패 ㅠㅠ")
+            }
+        }
+
+    }
+
+    fun showToast(message: String) {
+        val toast = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
+        toast.show()
     }
 
     fun settingViewByChecked(binding: DialogMainBinding) {
