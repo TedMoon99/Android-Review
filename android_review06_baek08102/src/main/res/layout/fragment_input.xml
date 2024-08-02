@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
+                app:selectionRequired="true"
                 app:singleSelection="true">
 
                 <Button
@@ -33,24 +34,39 @@
                     style="@style/toggleButtonGroupStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="14dp"
-                    android:text="button1" />
+                    android:paddingStart="34dp"
+                    android:paddingEnd="34dp"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="13dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="사자" />
 
                 <Button
                     android:id="@+id/input_buttonToggleGroup_tiger"
                     style="@style/toggleButtonGroupStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="14dp"
-                    android:text="button2" />
+                    android:paddingStart="34dp"
+                    android:paddingEnd="34dp"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="13dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="호랑이" />
 
                 <Button
                     android:id="@+id/input_buttonToggleGroup_giraffe"
                     style="@style/toggleButtonGroupStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="14dp"
-                    android:text="button3" />
+                    android:paddingStart="34dp"
+                    android:paddingEnd="34dp"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="13dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="기린" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <androidx.fragment.app.FragmentContainerView
