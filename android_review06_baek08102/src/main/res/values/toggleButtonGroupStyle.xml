@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="toggleButtonGroupStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">#bdb76b</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">@color/custom_selector_stroke_color</item>
+        <item name="android:textColor">@color/custom_selector_text_color</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>
