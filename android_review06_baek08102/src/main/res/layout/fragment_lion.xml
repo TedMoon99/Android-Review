@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="lionViewModel"
+            type="com.example.android_review06_baek08102.viewmodel.LionViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lion_textInputLayout_name"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lion_inputEdittext_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="동물 이름"
+                android:inputType="text"
+                android:text="@={lionViewModel.lionName}"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lion_textInputLayout_age"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:suffixText="살">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lion_inputEdittext_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="나이"
+                android:inputType="number"
+                android:text="@={lionViewModel.lionAge}"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lion_textInputLayout_hairCount"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:suffixText="가닥">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lion_inputEdittext_hairCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="털의 개수"
+                android:inputType="number"
+                android:text="@={lionViewModel.hairCount}"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lion_textInputLayout_sex"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:errorEnabled="true">
+
+            <AutoCompleteTextView
+                android:id="@+id/lion_autoCompleteTextView_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="성별"
+                android:inputType="none"
+                android:text="@={lionViewModel.sex}"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+</layout>
