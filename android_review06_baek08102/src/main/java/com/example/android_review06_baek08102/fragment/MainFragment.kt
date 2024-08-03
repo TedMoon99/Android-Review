@@ -137,7 +137,9 @@ class MainFragment : Fragment() {
         }
     }
 
+    // 데이터 입력 성공 여부에 따라 동작하는 함수
     fun onSaveSuccess() {
+        // InputFragment로부터 데이터 전달 성공 여부 전달받음
         setFragmentResultListener("Success") { requestKey, bundle ->
             val success = bundle.getBoolean("success")
 
@@ -150,6 +152,7 @@ class MainFragment : Fragment() {
 
     }
 
+    // 출력하고자 하는 message 인자로 받아 Toast 띄우는 ㅎ마수
     fun showToast(message: String) {
         val toast = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
         toast.show()
