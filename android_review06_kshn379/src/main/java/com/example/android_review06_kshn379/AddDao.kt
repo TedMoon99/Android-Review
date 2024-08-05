@@ -16,11 +16,11 @@ class AddDao {
                 // document 접근할 객체 가져오기
                 val documentReference = collectionReference.document("ZooSequence")
                 val documentSnapShot = documentReference.get().await()
-
                 documentSnapShot.getLong("value")?.toInt() ?: -1
             } catch (e: Exception) {
                 e.printStackTrace()
                 Log.e("AddDao", "Sequence checked failed : ${e.message}")
+                -1
             }
         }
 
@@ -86,6 +86,7 @@ class AddDao {
                for (document in querySnapshot.documents) {
                    collectionReference.document(document.id).update("dataState", dataState).await()
                }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
