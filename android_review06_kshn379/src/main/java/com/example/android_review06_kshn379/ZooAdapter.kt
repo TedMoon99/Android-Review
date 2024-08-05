@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android_review06_kshn379.databinding.RowBinding
 
 class ZooAdapter(
-    private val dataSet: ArrayList<ZooInfo>, private val manager: FragmentManager
+    private var dataSet: ArrayList<ZooInfo>, private val manager: FragmentManager
 ) : RecyclerView.Adapter<ZooAdapter.AnimalViewHolder>() {
     // ViewHolder Class 생성
     inner class AnimalViewHolder(rowBinding: RowBinding) :
@@ -75,6 +75,14 @@ class ZooAdapter(
 
     override fun getItemCount(): Int {
         return dataSet.size
+    }
+
+    // RecyclerView 데이터 업데이트 구현
+    fun updateData(filterAnimal: List<ZooInfo>) {
+        // filterAnimal 로 dataSet 변경
+        dataSet = filterAnimal as ArrayList<ZooInfo>
+        // dataSet 변경 RecyclerView 알림
+        notifyDataSetChanged()
     }
 }
 
