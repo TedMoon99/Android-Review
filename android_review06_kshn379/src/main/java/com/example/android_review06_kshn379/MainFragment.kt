@@ -3,20 +3,17 @@ package com.example.android_review06_kshn379
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_review06_kshn379.databinding.CustomDialogBinding
 import com.example.android_review06_kshn379.databinding.FragmentMainBinding
-import com.google.android.material.divider.MaterialDividerItemDecoration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -147,8 +144,60 @@ class MainFragment : Fragment() {
                             mAlertDialog.setCancelable(false)
                             mAlertDialog.setCanceledOnTouchOutside(false)
 
+                            // 선택된 동물 종류를 저장할 mutableSetOf 설정
+                            val selectAnimal = mutableSetOf("사자", "호랑이", "기린")
+
+                            // 다이얼로그 필터 초기 전체 선택 설정
+                            mDialogView.apply {
+                                checkedTextViewAll.isChecked = true
+                                checkedTextViewLion.isChecked = true
+                                checkedTextViewTiger.isChecked = true
+                                checkedTextViewGiraffe.isChecked = true
+
+                                // 전체 선택 / 해제 설정
+                                checkedTextViewAll.setOnClickListener {
+                                    val isChecked = !checkedTextViewAll.isChecked
+                                    checkedTextViewAll.isChecked = isChecked
+                                    checkedTextViewLion.isChecked = isChecked
+                                    checkedTextViewTiger.isChecked = isChecked
+                                    checkedTextViewGiraffe.isChecked = isChecked
+                                    // 선택된 동물 종류 업데이트
+                                    if (isChecked) {
+                                        selectAnimal.addAll(listOf("사자", "호랑이", "기린"))
+                                    } else {
+                                        // 전체 선택 해제 시 선택된 동물 종류 모두 제거
+                                        selectAnimal.clear()
+                                    }
+                                }
+
+                                // 동물 종류 선택 / 해제 시 설정
+
+                                checkedTextViewLion.setOnClickListener {
+                                    val isChecked = !checkedTextViewLion.isChecked
+                                    checkedTextViewLion.isChecked = isChecked
+                                    // 선택된 동물 상태 업데이트
+                                    updateSelection("사자", isChecked, selectAnimal)
+                                    // 전체 선택 상태 업데이트
+                                    updateAllCheckState(mDialogView, selectAnimal)
+                                }
+                                checkedTextViewTiger.setOnClickListener {
+                                    val isChecked = !checkedTextViewTiger.isChecked
+                                    checkedTextViewTiger.isChecked = isChecked
+                                    updateSelection("호랑이", isChecked, selectAnimal)
+                                    updateAllCheckState(mDialogView, selectAnimal)
+                                }
+                                checkedTextViewGiraffe.setOnClickListener {
+                                    val isChecked = !checkedTextViewGiraffe.isChecked
+                                    checkedTextViewGiraffe.isChecked = isChecked
+                                    updateSelection("기린", isChecked, selectAnimal)
+                                    updateAllCheckState(mDialogView, selectAnimal)
+                                }
+                            }
+
                             // 확인 버튼 클릭 시 데이터 전달 후 다이얼로그 닫기
                             mDialogView.buttonSelectConfirm.setOnClickListener {
+                                // 선택된 동물 종류 RecyclerView 업데이트
+                                updateRecyclerView(selectAnimal)
                                 mAlertDialog.dismiss()
                             }
 
@@ -156,14 +205,38 @@ class MainFragment : Fragment() {
                             mDialogView.buttonSelectCancel.setOnClickListener {
                                 mAlertDialog.dismiss()
                             }
-                            // Dialog의 CheckedTextView 설정
-                            checkedDialog(mDialogView)
                         }
                     }
                     true
                 }
             }
         }
+    }
+
+    // RecyclerView Item 필터링 후 업데이트
+    fun updateRecyclerView(selectedTypes: Set<String>) {
+        // 선택된 동물 종류에 맞게 리스트 필터링
+        val filteredList = animalList.filter { it.animalType in selectedTypes }
+        // 필터링된 데이터 Adapter에 업데이트 하여 RecyclerView 업데이트
+        (binding.recyclerViewMain.adapter as? ZooAdapter)?.updateData(filteredList)
+    }
+
+
+    // 선택된 동물 종류 업데이트
+    fun updateSelection(animalType: String, isCheck: Boolean, selectAnimal: MutableSet<String>) {
+        if (isCheck) {
+            // 선택 활성화 시 선택된 동물 종류 추가
+            selectAnimal.add(animalType)
+        } else {
+            // 선택 비활성화 시 선택된 동물 종류 제거
+            selectAnimal.remove(animalType)
+        }
+    }
+
+    // 전체 선택 상태 업데이트
+    fun updateAllCheckState(dialogView: CustomDialogBinding, selectedTypes: Set<String>) {
+        // 선택된 동물 종류가 전체 선택된 경우 전체 선택 활성화
+        dialogView.checkedTextViewAll.isChecked = selectedTypes.size == 3
     }
 
 
@@ -182,71 +255,8 @@ class MainFragment : Fragment() {
             else -> Log.d("wrong page", "Page 404 Error")
         }
     }
-
-    // Dialog CheckedTextView 설정
-    private fun checkedDialog(dialogBinding: CustomDialogBinding) {
-        dialogBinding.apply {
-            // 초기 전체 선택 설정
-            checkedTextViewAll.isChecked = true
-            checkedTextViewLion.isChecked = true
-            checkedTextViewTiger.isChecked = true
-            checkedTextViewGiraffe.isChecked = true
-            // '전체' 클릭 시 상태 설정
-            checkedTextViewAll.setOnClickListener {
-                if (checkedTextViewAll.isChecked) {
-                    checkedTextViewAll.isChecked = false
-                    checkedTextViewLion.isChecked = false
-                    checkedTextViewTiger.isChecked = false
-                    checkedTextViewGiraffe.isChecked = false
-                } else {
-                    checkedTextViewAll.isChecked = true
-                    checkedTextViewLion.isChecked = true
-                    checkedTextViewTiger.isChecked = true
-                    checkedTextViewGiraffe.isChecked = true
-                }
-            }
-            checkedTextViewLion.apply {
-                setOnClickListener {
-                    if (checkedTextViewLion.isChecked) {
-                        checkedTextViewAll.isChecked = false
-                        checkedTextViewLion.isChecked = false
-                    } else if (!checkedTextViewLion.isChecked && checkedTextViewTiger.isChecked && checkedTextViewGiraffe.isChecked) {
-                        checkedTextViewAll.isChecked = true
-                        checkedTextViewLion.isChecked = true
-                    } else {
-                        checkedTextViewLion.isChecked = true
-                    }
-                    checkedTextViewTiger.apply {
-                        setOnClickListener {
-                            if (checkedTextViewTiger.isChecked) {
-                                checkedTextViewAll.isChecked = false
-                                checkedTextViewTiger.isChecked = false
-                            } else if (checkedTextViewLion.isChecked && !checkedTextViewTiger.isChecked && checkedTextViewGiraffe.isChecked) {
-                                checkedTextViewAll.isChecked = true
-                                checkedTextViewTiger.isChecked = true
-                            } else {
-                                checkedTextViewTiger.isChecked = true
-                            }
-                        }
-                        checkedTextViewGiraffe.apply {
-                            setOnClickListener {
-                                if (checkedTextViewGiraffe.isChecked) {
-                                    checkedTextViewAll.isChecked = false
-                                    checkedTextViewGiraffe.isChecked = false
-                                } else if (checkedTextViewLion.isChecked && checkedTextViewTiger.isChecked && !checkedTextViewGiraffe.isChecked) {
-                                    checkedTextViewAll.isChecked = true
-                                    checkedTextViewGiraffe.isChecked = true
-                                } else {
-                                    checkedTextViewGiraffe.isChecked = true
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
+
 
 // RecyclerView Item 간격 추가
 class VerticalSpaceItemDecoration(private val verticalSpaceHeight: Int) :
