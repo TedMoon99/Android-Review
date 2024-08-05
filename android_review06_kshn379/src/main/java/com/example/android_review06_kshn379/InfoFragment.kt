@@ -97,12 +97,12 @@ class InfoFragment : Fragment() {
     }
 
     // Data 초기화
-    fun clearText() {
+    private fun clearText() {
         viewModel.clearText()
     }
 
     // Data 가져오기
-    fun getData() {
+    private fun getData() {
         val position = arguments?.getInt("position") ?: -1
         viewLifecycleOwner.lifecycle.apply {
             viewModel.getData(position + 1)
