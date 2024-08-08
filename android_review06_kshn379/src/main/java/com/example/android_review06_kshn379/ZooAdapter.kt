@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.replace
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_review06_kshn379.databinding.RowBinding
 
@@ -27,11 +28,13 @@ class ZooAdapter(
 
         // RecyclerView Item 클릭 시 작동
         fun onClick(manager: FragmentManager, position: Int) {
+
             val infoFragment = InfoFragment().apply {
                 // Bundle 객체 생성하여 data(position)를 담는다
                 val data = Bundle().apply {
+                    val idx = dataSet[position].zooIdx
                     // position 값을 키로 번들 추가
-                    putInt("position", position)
+                    putInt("position", idx)
                 }
                 // InfoFragment 에 데이터 전달하기 위해 arguments 로 설정
                 arguments = data
