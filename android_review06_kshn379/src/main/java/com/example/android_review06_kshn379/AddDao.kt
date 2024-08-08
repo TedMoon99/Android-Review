@@ -48,12 +48,12 @@ class AddDao {
         }
 
         // 동물 Index 번호로 동물 정보 가져 와서 변환
-        suspend fun getZooInfoByZooIdx(zooIdx: Int):ZooInfo? {
+        suspend fun getZooInfoByZooIdx(zooIdx: Int): ZooInfo? {
             return try {
                 val collectionReference = Firebase.firestore.collection("ZooData")
                 val querySnapshot = collectionReference.whereEqualTo("zooIdx", zooIdx).get().await()
                 querySnapshot.documents.firstOrNull()?.toObject(ZooInfo::class.java)
-            } catch (e:Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
                 Log.e("AddDao", "ZooData checked Failed : ${e.message}")
                 null
@@ -72,7 +72,7 @@ class AddDao {
                     // List 에 담아준다
                     zooData.add(zooInfo)
                 }
-            } catch (e:Exception) {
+            } catch (e: Exception) {
                 Log.e("getAllData", "Data load failed : ${e.message}")
             }
             return zooData
@@ -83,13 +83,35 @@ class AddDao {
             try {
                 val collectionReference = Firebase.firestore.collection("ZooData")
                 val querySnapshot = collectionReference.whereEqualTo("zooIdx", zooIdx).get().await()
-               for (document in querySnapshot.documents) {
-                   collectionReference.document(document.id).update("dataState", dataState).await()
-               }
+                for (document in querySnapshot.documents) {
+                    collectionReference.document(document.id).update("dataState", dataState).await()
+                }
 
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+        }
+
+        // Edit Data Save
+        suspend fun updateEditData(zooInfo: ZooInfo) {
+            try {
+                val collectionReference = Firebase.firestore.collection("ZooData")
+                val querySnapshot =
+                    collectionReference.whereEqualTo("zooIdx", zooInfo.zooIdx).get().await()
+                val map = mutableMapOf<String, Any>()
+                map["animalType"] = zooInfo.animalType
+                map["animalName"] = zooInfo.animalName
+                map["animalAge"] = zooInfo.animalAge.toLong()
+                map["animalCount"] = zooInfo.animalCount.toLong()
+                map["animalDetail"] = zooInfo.animalDetail
+                map["dataState"] = zooInfo.dataState
+                map["zooIdx"] = zooInfo.zooIdx.toLong()
+
+                querySnapshot.documents[0].reference.update(map).await()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
         }
     }
 }
