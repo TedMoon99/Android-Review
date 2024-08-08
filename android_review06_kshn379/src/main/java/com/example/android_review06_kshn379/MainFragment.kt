@@ -96,8 +96,6 @@ class MainFragment : Fragment() {
 
                 animalList.clear()
                 animalList.addAll(data)
-                // zooIdx로 정렬
-                animalList.sortBy { it.zooIdx }
                 // Adapter 변경 알림
                 binding.recyclerViewMain.adapter?.notifyDataSetChanged()
             } catch (e: Exception) {
