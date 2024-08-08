@@ -1,6 +1,7 @@
 package com.example.android_review06_kshn379
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.example.android_review06_kshn379.databinding.FragmentEditBinding
 import com.google.android.material.snackbar.Snackbar
@@ -40,6 +40,8 @@ class EditFragment : Fragment() {
         settingView()
         // Event 설정
         settingEvent()
+        // Error 설정
+        setError()
 
     }
 
@@ -51,8 +53,7 @@ class EditFragment : Fragment() {
                 inflateMenu(R.menu.menu_rename)
             }
         }
-        // Error 설정
-        setError()
+
     }
 
     // Error 설정
@@ -136,8 +137,7 @@ class EditFragment : Fragment() {
                                     binding.root,
                                     "동물 정보가 변경 되었습니다",
                                     Snackbar.LENGTH_SHORT
-                                )
-                                    .show()
+                                ).show()
                                 // 뒤로 가기
                                 removeFragment()
                             } else {
@@ -158,6 +158,10 @@ class EditFragment : Fragment() {
         val animalAge = viewModel.animalAge.value ?: ""
         val animalCount = viewModel.animalCount.value ?: ""
         val animalDetail = viewModel.animalDetail.value ?: ""
+        Log.d("EditFragment", "animalName : ${animalName}")
+        Log.d("EditFragment", "animalAge : ${animalAge}")
+        Log.d("EditFragment", "animalCount : ${animalCount}")
+        Log.d("EditFragment", "animalDetail : ${animalDetail}")
 
         // name
         if (animalName.isEmpty() || animalName.length < 2 || animalName.length > 7) {
@@ -197,14 +201,38 @@ class EditFragment : Fragment() {
     private fun editData() {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                // animalIdx 불러오기
-                val zooSequence = withContext(Dispatchers.IO) { AddDao.getSequence() }
+                val zooSequence = viewModel.zooIdx.value!!.toString().toInt()
 
+                val animalType = viewModel.animalType.value ?: ""
+                val animalName = viewModel.animalName.value ?: ""
+                val animalAge = viewModel.animalAge.value!!.toString().toInt()
+                val animalCount = viewModel.animalCount.value!!.toString().toInt()
+                val animalDetail = viewModel.animalDetail.value ?: ""
 
-                // 뒤로가기
+                val editData =
+                    ZooInfo(
+                        zooSequence,
+                        animalType,
+                        animalName,
+                        animalAge,
+                        animalCount,
+                        animalDetail,
+                        true
+                    )
+
+                withContext(Dispatchers.IO) { AddDao.updateEditData(editData) }
+
+                val position = arguments?.getInt("position") ?: -1
+                viewLifecycleOwner.lifecycle.apply {
+                    viewModel.getData(position)
+                }
+
+                // Back
                 removeFragment()
+
             } catch (e: Exception) {
                 e.printStackTrace()
+
             }
         }
 
