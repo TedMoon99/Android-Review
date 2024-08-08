@@ -22,7 +22,8 @@ class AddViewModel : ViewModel() {
     val zooAge = MutableLiveData<String>()
     val zooCount = MutableLiveData<String>()
     val zooDetail = MutableLiveData<String>()
-
+    val zooType = MutableLiveData<String>()
+    val zooIdx = MutableLiveData<String>()
 
     // DB 연동
     fun getData(position: Int) {
@@ -38,7 +39,10 @@ class AddViewModel : ViewModel() {
                     when (animalInfo.animalType) {
                         "사자" -> {
                             // Lion
-                            animalType.value = "종류 : ${animalInfo.animalType}"
+                            zooIdx.value = position.toString()
+
+                            zooType.value = "종류 : ${animalInfo.animalType}"
+                            animalType.value = animalInfo.animalType
 
                             zooName.value = "이름 : ${animalInfo.animalName}"
                             animalNameLabel.value = "이름 : "
@@ -58,7 +62,11 @@ class AddViewModel : ViewModel() {
                         }
 
                         "호랑이" -> {
-                            animalType.value = "종류 : ${animalInfo.animalType}"
+                            zooIdx.value = position.toString()
+
+                            zooType.value = "종류 : ${animalInfo.animalType}"
+                            animalType.value = animalInfo.animalType
+
                             zooName.value = "이름 : ${animalInfo.animalName}"
                             animalNameLabel.value = "이름 : "
                             animalName.value = animalInfo.animalName
@@ -77,7 +85,11 @@ class AddViewModel : ViewModel() {
                         }
 
                         "기린" -> {
-                            animalType.value = "종류 : ${animalInfo.animalType}"
+                            zooIdx.value = position.toString()
+
+                            zooType.value = "종류 : ${animalInfo.animalType}"
+                            animalType.value = animalInfo.animalType
+
                             zooName.value = "이름 : ${animalInfo.animalName}"
                             animalNameLabel.value = "이름 : "
                             animalName.value = animalInfo.animalName
