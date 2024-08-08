@@ -32,51 +32,35 @@ class AddFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add, container, false)
         binding.addViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
-        // 동물 종류 선택 시 선택한 동물에 대한 데이터 입,출력 설정
-        selectAnimalType()
-
         return binding.root
     }
 
-    private fun selectAnimalType() {
-        viewModel.animalType.observe(viewLifecycleOwner, Observer { type ->
-            when (type) {
-                "사자" -> saveAnimalType("이름", "나이", "털의 갯수", "성별(암컷 또는 수컷)")
-                "호랑이" -> saveAnimalType("이름", "나이", "줄무늬 갯수", "몸무게")
-                "기린" -> saveAnimalType("이름", "나이", "목의 길이", "달리는 속도")
-            }
-        })
-    }
-
-    private fun saveAnimalType(nameHint: String, ageHint:String, countHint: String, detailHint: String) {
-        binding.apply {
-            editTextAnimalName.hint = nameHint
-            editTextAnimalAge.hint = ageHint
-            editTextAnimalCount.hint = countHint
-            editTextAnimalDetail.hint = detailHint
-
-            editTextAnimalName.visibility = View.VISIBLE
-            editTextAnimalAge.visibility = View.VISIBLE
-            editTextAnimalCount.visibility = View.VISIBLE
-            editTextAnimalDetail.visibility = View.VISIBLE
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Error 설정
+        settingError()
         // View 설정
         settingView()
         // Event 설정
         settingEvent()
         // 입력 요소 초기화
         settingInput()
+        // 동물 종류 선택 시 선택한 동물에 대한 데이터 입,출력 설정
+        selectAnimalType()
     }
 
     // 입력 요소 초기화
     private fun settingInput() {
         viewModel.clearText()
+        binding.apply {
+            // TextField 숨기기
+            editTextName.visibility = View.INVISIBLE
+            editTextAge.visibility = View.INVISIBLE
+            editTextCount.visibility = View.INVISIBLE
+            editTextDetail.visibility = View.INVISIBLE
+        }
     }
 
     // View 설정
@@ -93,8 +77,6 @@ class AddFragment : Fragment() {
                 inflateMenu(R.menu.menu_items)
             }
         }
-        // Error 설정
-        settingError()
     }
 
     // Error 설정
@@ -172,10 +154,10 @@ class AddFragment : Fragment() {
                             editTextAnimalDetail.text.toString()
                             editTextAnimalDetail.hint = "성별(암컷 또는 수컷)"
                             textViewSelectAnimal.text = "사자"
-                            editTextAnimalName.visibility = View.VISIBLE
-                            editTextAnimalAge.visibility = View.VISIBLE
-                            editTextAnimalCount.visibility = View.VISIBLE
-                            editTextAnimalDetail.visibility = View.VISIBLE
+                            editTextName.visibility = View.VISIBLE
+                            editTextAge.visibility = View.VISIBLE
+                            editTextCount.visibility = View.VISIBLE
+                            editTextDetail.visibility = View.VISIBLE
                         }
                     }
                 }
@@ -197,10 +179,10 @@ class AddFragment : Fragment() {
                             editTextAnimalDetail.text.toString()
                             editTextAnimalDetail.hint = "몸무게"
                             textViewSelectAnimal.text = "호랑이"
-                            editTextAnimalName.visibility = View.VISIBLE
-                            editTextAnimalAge.visibility = View.VISIBLE
-                            editTextAnimalCount.visibility = View.VISIBLE
-                            editTextAnimalDetail.visibility = View.VISIBLE
+                            editTextName.visibility = View.VISIBLE
+                            editTextAge.visibility = View.VISIBLE
+                            editTextCount.visibility = View.VISIBLE
+                            editTextDetail.visibility = View.VISIBLE
                         }
                     }
                 }
@@ -222,10 +204,10 @@ class AddFragment : Fragment() {
                             editTextAnimalDetail.text.toString()
                             editTextAnimalDetail.hint = "달리는 속도"
                             textViewSelectAnimal.text = "기린"
-                            editTextAnimalName.visibility = View.VISIBLE
-                            editTextAnimalAge.visibility = View.VISIBLE
-                            editTextAnimalCount.visibility = View.VISIBLE
-                            editTextAnimalDetail.visibility = View.VISIBLE
+                            editTextName.visibility = View.VISIBLE
+                            editTextAge.visibility = View.VISIBLE
+                            editTextCount.visibility = View.VISIBLE
+                            editTextDetail.visibility = View.VISIBLE
                         }
                     }
                 }
@@ -265,6 +247,30 @@ class AddFragment : Fragment() {
                     true
                 }
             }
+        }
+    }
+
+    private fun selectAnimalType() {
+        viewModel.animalType.observe(viewLifecycleOwner, Observer { type ->
+            when (type) {
+                "사자" -> saveAnimalType("이름", "나이", "털의 갯수", "성별(암컷 또는 수컷)")
+                "호랑이" -> saveAnimalType("이름", "나이", "줄무늬 갯수", "몸무게")
+                "기린" -> saveAnimalType("이름", "나이", "목의 길이", "달리는 속도")
+            }
+        })
+    }
+
+    private fun saveAnimalType(nameHint: String, ageHint:String, countHint: String, detailHint: String) {
+        binding.apply {
+            editTextAnimalName.hint = nameHint
+            editTextAnimalAge.hint = ageHint
+            editTextAnimalCount.hint = countHint
+            editTextAnimalDetail.hint = detailHint
+
+            editTextAnimalName.visibility = View.VISIBLE
+            editTextAnimalAge.visibility = View.VISIBLE
+            editTextAnimalCount.visibility = View.VISIBLE
+            editTextAnimalDetail.visibility = View.VISIBLE
         }
     }
 
