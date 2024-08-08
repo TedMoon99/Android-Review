@@ -43,6 +43,7 @@
                 android:padding="16dp"
                 android:text="사자"
                 android:textColor="@color/white"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -55,6 +56,7 @@
                 android:padding="16dp"
                 android:text="호랑이"
                 android:textColor="@color/white"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -67,6 +69,7 @@
                 android:padding="16dp"
                 android:text="기린"
                 android:textColor="@color/white"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -80,15 +83,22 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_select_animal">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editText_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_animal_name"
@@ -102,53 +112,65 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editText_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_animal_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="@={addViewModel.animalAge}"
                     android:maxLength="3"
+                    android:text="@={addViewModel.animalAge}"
                     android:textSize="16dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editText_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_age">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_animal_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="@={addViewModel.animalCount}"
                     android:maxLength="4"
+                    android:text="@={addViewModel.animalCount}"
                     android:textSize="16dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editText_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_count">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_animal_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="@={addViewModel.animalDetail}"
                     android:maxLength="6"
+                    android:text="@={addViewModel.animalDetail}"
                     android:textSize="16dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </layout>
