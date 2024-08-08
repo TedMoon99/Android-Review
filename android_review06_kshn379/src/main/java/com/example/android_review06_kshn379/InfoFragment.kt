@@ -12,10 +12,11 @@ import androidx.fragment.app.activityViewModels
 import com.example.android_review06_kshn379.databinding.FragmentInfoBinding
 import com.google.android.material.snackbar.Snackbar
 
+
+// InfoFragment Index send(mainFragment position value) -> To EditFragment Index
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
     private val viewModel: AddViewModel by activityViewModels()
-    private var position: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +40,12 @@ class InfoFragment : Fragment() {
         // Data 가져오기
         getData()
 
+    }
+
+    // Data 갱신
+    override fun onResume() {
+        super.onResume()
+        getData()
     }
 
     // View 설정
@@ -78,7 +85,7 @@ class InfoFragment : Fragment() {
                             if (position != -1) {
                                 // position + 1 값을 removeItem에 전달하여 삭제 요청
                                 // position은 0부터 시작하는 Index이므로 1을 더한다
-                                viewModel.removeItem(position + 1)
+                                viewModel.removeItem(position)
                             }
 
                             // 뒤로 가기
@@ -105,7 +112,7 @@ class InfoFragment : Fragment() {
     private fun getData() {
         val position = arguments?.getInt("position") ?: -1
         viewLifecycleOwner.lifecycle.apply {
-            viewModel.getData(position + 1)
+            viewModel.getData(position)
         }
     }
 
