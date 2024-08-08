@@ -301,9 +301,7 @@ class AddFragment : Fragment() {
         if (detail.isEmpty() || detail.length < 2 || detail.length > 10) {
             return false
         }
-
         return true
-
     }
 
     // Data 저장
