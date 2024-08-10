@@ -5,6 +5,7 @@ import com.example.android_review06_baek08102.model.AnimalData
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.tasks.await
 
 class AnimalDao {
@@ -52,6 +53,38 @@ class AnimalDao {
                 collectionReference.add(animalData).await()
             } catch (e: Exception) {
                 Log.e("AnimalDao", "데이터 저장 실패 :${e.message}")
+            }
+        }
+
+        //
+        fun getAllDataRealTime(onDataChanged: (List<AnimalData>) -> Unit) {
+            try {
+                val collectionReference = Firebase.firestore.collection("AnimalData")
+
+                collectionReference.whereEqualTo("dataState", true)
+                    .addSnapshotListener { querySnapshot, e ->
+                        if (e != null) {
+                            Log.e("AnimalDao", "Listen falied : ${e.message}")
+
+                            // Return at Label
+                            // addSnapshotListener 블록 종료
+                            return@addSnapshotListener
+                        }
+                        val dataList = mutableListOf<AnimalData>()
+                        if (querySnapshot != null) {
+                            for (document in querySnapshot.documents) {
+                                val animalData = document.toObject(AnimalData::class.java)
+
+                                if (animalData != null) {
+                                    dataList.add(animalData)
+                                }
+                            }
+                        }
+                        onDataChanged(dataList)
+                    }
+
+            } catch (e: Exception) {
+                Log.e("AnimalDao", "getAllDataRealtime falied : ${e.message}")
             }
         }
 
