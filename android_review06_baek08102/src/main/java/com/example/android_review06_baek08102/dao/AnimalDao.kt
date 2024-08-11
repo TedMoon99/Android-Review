@@ -46,25 +46,28 @@ class AnimalDao {
             }
         }
 
-        // firestore에 데이터 저장
+        // AnimalData 타입으로 데이터 저장
         suspend fun saveAnimalData(animalData: AnimalData) {
             try {
                 val collectionReference = Firebase.firestore.collection("AnimalData")
                 collectionReference.add(animalData).await()
             } catch (e: Exception) {
-                Log.e("AnimalDao", "데이터 저장 실패 :${e.message}")
+                Log.e("AnimalDao", "saveAnimalData failed :${e.message}")
             }
         }
 
         //
-        fun getAllDataRealTime(onDataChanged: (List<AnimalData>) -> Unit) {
+        fun getAllDataRealTime(onDataChanged: (ArrayList<AnimalData>) -> Unit) {
+
+            Log.d("addSnapshotListener process", "AnimalDao -> getAllDataRealTime called")
+
             try {
                 val collectionReference = Firebase.firestore.collection("AnimalData")
 
                 collectionReference.whereEqualTo("dataState", true)
                     .addSnapshotListener { querySnapshot, e ->
                         if (e != null) {
-                            Log.e("AnimalDao", "Listen falied : ${e.message}")
+                            Log.e("AnimalDao", "getAll Listen falied : ${e.message}")
 
                             // Return at Label
                             // addSnapshotListener 블록 종료
@@ -80,13 +83,46 @@ class AnimalDao {
                                 }
                             }
                         }
-                        onDataChanged(dataList)
+                        onDataChanged(ArrayList(dataList))
                     }
+
+                Log.d("addSnapshotListener process", "AnimalDao -> getAllDataRealTime finished")
 
             } catch (e: Exception) {
                 Log.e("AnimalDao", "getAllDataRealtime falied : ${e.message}")
             }
         }
 
+
+
+
+        fun getDataByAnimalIdx(animalIdx: Int, onDataChanged: (ArrayList<AnimalData>) -> Unit) {
+            try {
+                val collectionReference = Firebase.firestore.collection("AnimalData")
+
+                collectionReference.whereEqualTo("AnimalData", animalIdx)
+                    .addSnapshotListener { querySnapshot, e ->
+                        if (e != null) {
+                            Log.e("AnimalDao", "getByIdx Listen failed : ${e.message}")
+
+                            return@addSnapshotListener
+                        }
+                        val dataList = mutableListOf<AnimalData>()
+                        if (querySnapshot != null) {
+                            val animalData =
+                                querySnapshot.documents.firstOrNull()?.toObject(AnimalData::class.java)
+
+                            if (animalData != null) {
+                                dataList.add(animalData)
+                            }
+                        }
+                        onDataChanged(ArrayList(dataList))
+                    }
+
+
+            } catch (e: Exception) {
+                Log.e("AnimalDao", "getDataByAnimalIdx failed : ${e.message}")
+            }
+        }
     }
 }
