@@ -69,6 +69,7 @@ class InputFragment : Fragment() {
                 setOnMenuItemClickListener {
 
                     Log.d("saveDataProcess", "confirm button clicked!")
+
                     // 각 동물들의 fragment를 담는 container 비어있지 않을 시
                     // 다시말해 toggle button 클릭으로 fragment가 출력되는 상황에서만
                     if (childFragmentManager.findFragmentById(R.id.input_containter) != null) {
