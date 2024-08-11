@@ -1,22 +1,39 @@
 package com.example.android_review06_baek08102.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_review06_baek08102.R
+import com.example.android_review06_baek08102.adapter.CustomAdapter
+import com.example.android_review06_baek08102.dao.AnimalDao
 import com.example.android_review06_baek08102.databinding.DialogMainBinding
 import com.example.android_review06_baek08102.databinding.FragmentMainBinding
+import com.example.android_review06_baek08102.model.AnimalData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.example.android_review06_baek08102.utils.FragmentName
+import com.example.android_review06_baek08102.viewmodel.ShowViewModel
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
+    private val dataList: ArrayList<AnimalData> = arrayListOf()
+    private val viewModel: ShowViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +48,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        settingData()
         settingView()
         settingEvent()
     }
@@ -43,9 +61,16 @@ class MainFragment : Fragment() {
                 inflateMenu(R.menu.menu_main)
             }
 
+            val context = requireContext()
+            val deco = MaterialDividerItemDecoration(context, LinearLayoutManager.VERTICAL).apply {
+                isLastItemDecorated = false
+            }
             mainRecyclerView.apply {
-                // adapter 연결
-                // deco 추가
+
+                layoutManager = LinearLayoutManager(context)
+                addItemDecoration(deco)
+
+                adapter = CustomAdapter(dataList, parentFragmentManager, viewModel)
             }
 
             onSaveSuccess()
@@ -76,7 +101,6 @@ class MainFragment : Fragment() {
         }
         // 메뉴 클릭 이벤트
 
-        // 다이얼로그 띄우기
     }
 
     // 다이얼로그 출력
@@ -134,6 +158,30 @@ class MainFragment : Fragment() {
             dialogCheckBoxLion.setOnCheckedChangeListener { _, _ -> updateAllCheckBoxState() }
             dialogCheckBoxTiger.setOnCheckedChangeListener { _, _ -> updateAllCheckBoxState() }
             dialogCheckBoxGiraffe.setOnCheckedChangeListener { _, _ -> updateAllCheckBoxState() }
+        }
+    }
+
+    fun settingData() {
+
+        Log.d("addSnapshotListener process","mainFragment - settingData called")
+
+        binding.apply {
+            viewModel.mainDataList.observe(viewLifecycleOwner) { viewModelData ->
+
+                Log.d("addSnapshotListener process","settingData -> before process dataList : $dataList")
+
+                val data = viewModel.mainDataList.value!!
+
+                Log.d("addSnapshotListener process","settingData -> LiveDataList : $data")
+
+                dataList.clear()
+                dataList.addAll(data)
+                dataList.sortBy { it.animalIdx }
+
+                Log.d("addSnapshotListener process","settingData -> after process dataList : $dataList")
+
+                mainRecyclerView.adapter?.notifyDataSetChanged()
+            }
         }
     }
 
