@@ -161,11 +161,15 @@ class MainFragment : Fragment() {
         }
     }
 
+    // 어댑터로 전달해 줄 데이터 세팅 함수
     fun settingData() {
 
         Log.d("addSnapshotListener process","mainFragment - settingData called")
 
         binding.apply {
+            // Dao에서 addSnapshotListener를 통한 실시간 감시 가능하도록 만듬,
+            // viewModel 내의 LiveData 타입 mainDataList 감시하여
+            // 해당 데이터 변경 시 자동으로 dataList 갱신
             viewModel.mainDataList.observe(viewLifecycleOwner) { viewModelData ->
 
                 Log.d("addSnapshotListener process","settingData -> before process dataList : $dataList")
@@ -180,6 +184,7 @@ class MainFragment : Fragment() {
 
                 Log.d("addSnapshotListener process","settingData -> after process dataList : $dataList")
 
+                // dataList 갱신 후 adapter에게 연결된 데이터의 변경 알림
                 mainRecyclerView.adapter?.notifyDataSetChanged()
             }
         }
