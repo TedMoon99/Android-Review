@@ -11,16 +11,8 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.android_review06_baek08102.R
-import com.example.android_review06_baek08102.dao.AnimalDao
-import com.example.android_review06_baek08102.databinding.FragmentLionBinding
 import com.example.android_review06_baek08102.databinding.FragmentTigerBinding
-import com.example.android_review06_baek08102.model.AnimalData
-import com.example.android_review06_baek08102.viewmodel.GiraffeViewModel
 import com.example.android_review06_baek08102.viewmodel.TigerViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class TigerFragment : Fragment(), InputFragment.DataInputListener {
     private lateinit var binding: FragmentTigerBinding
@@ -145,27 +137,7 @@ class TigerFragment : Fragment(), InputFragment.DataInputListener {
     }
 
     fun saveInput() {
-        CoroutineScope(Dispatchers.Main).launch {
-            try {
-
-                val animalSequence = withContext(Dispatchers.IO) { AnimalDao.getSequence() }
-                withContext(Dispatchers.IO) { AnimalDao.updateSequence(animalSequence + 1) }
-
-                val index = animalSequence + 1
-
-                val tigerName = viewModel.tigerName.value ?: ""
-                val tigerAge = viewModel.tigerAge.value?.toInt() ?: 0
-                val stripeCount = viewModel.stripeCount.value ?: ""
-                val weight = viewModel.weight.value ?: ""
-
-                val inputData = AnimalData(1, tigerName, tigerAge, stripeCount, weight, index, true)
-
-                withContext(Dispatchers.IO) { AnimalDao.saveAnimalData(inputData) }
-
-            } catch (e: Exception) {
-                Log.e("TigerFragment", "save Tiger Input failed : ${e.message}")
-            }
-        }
+        viewModel.saveTigerData()
     }
 
     fun emptyInput() {

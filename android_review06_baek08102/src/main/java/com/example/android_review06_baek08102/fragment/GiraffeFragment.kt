@@ -1,6 +1,5 @@
 package com.example.android_review06_baek08102.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,15 +10,8 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.android_review06_baek08102.R
-import com.example.android_review06_baek08102.dao.AnimalDao
 import com.example.android_review06_baek08102.databinding.FragmentGiraffeBinding
-import com.example.android_review06_baek08102.databinding.FragmentLionBinding
-import com.example.android_review06_baek08102.model.AnimalData
 import com.example.android_review06_baek08102.viewmodel.GiraffeViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class GiraffeFragment : Fragment(), InputFragment.DataInputListener {
     private lateinit var binding: FragmentGiraffeBinding
@@ -144,38 +136,18 @@ class GiraffeFragment : Fragment(), InputFragment.DataInputListener {
     }
 
     fun saveInput() {
-        CoroutineScope(Dispatchers.Main).launch {
-            try {
-
-                val animalSequence = withContext(Dispatchers.IO) { AnimalDao.getSequence() }
-                withContext(Dispatchers.IO) { AnimalDao.updateSequence(animalSequence + 1) }
-
-                val index = animalSequence + 1
-
-                val giraffeName = viewModel.giraffeName.value ?: ""
-                val giraffeAge = viewModel.giraffeAge.value?.toInt() ?: 0
-                val neckLength = viewModel.neckLength.value ?: ""
-                val runningSpeed = viewModel.runningSpeed.value ?: ""
-
-                val inputData = AnimalData(2, giraffeName, giraffeAge, neckLength, runningSpeed, index, true)
-
-                withContext(Dispatchers.IO) { AnimalDao.saveAnimalData(inputData) }
-
-            } catch (e: Exception) {
-                Log.e("GiraffeFragment", "save Giraffe Input failed : ${e.message}")
-            }
-        }
+        viewModel.saveGiraffeData()
     }
 
     fun emptyInput() {
-        if(!isInitialized) {
+        if (!isInitialized) {
             viewModel.apply {
                 giraffeName.value = ""
                 giraffeAge.value = ""
                 neckLength.value = ""
                 runningSpeed.value = ""
             }
-            isInitialized=true
+            isInitialized = true
         }
     }
 

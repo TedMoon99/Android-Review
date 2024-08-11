@@ -9,22 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.appcompat.widget.ContentFrameLayout.OnAttachListener
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
 import com.example.android_review06_baek08102.R
-import com.example.android_review06_baek08102.dao.AnimalDao
 import com.example.android_review06_baek08102.databinding.FragmentLionBinding
-import com.example.android_review06_baek08102.model.AnimalData
-import com.example.android_review06_baek08102.model.LionData
 import com.example.android_review06_baek08102.viewmodel.LionViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class LionFragment : Fragment(), InputFragment.DataInputListener {
     private lateinit var binding: FragmentLionBinding
@@ -151,32 +141,7 @@ class LionFragment : Fragment(), InputFragment.DataInputListener {
 
     // 입력값 저장
     fun saveInput() {
-        CoroutineScope(Dispatchers.Main).launch {
-            try {
-                // 현재 시퀀스값 받아와서
-                val animalSequence = withContext(Dispatchers.IO) { AnimalDao.getSequence() }
-                // 데이터 저장 시마다 업데이트 해주고
-                withContext(Dispatchers.IO) { AnimalDao.updateSequence(animalSequence + 1) }
-
-                // 시퀀스 + 1로 인덱스값 설정
-                val index = animalSequence + 1
-
-                // 나이 제외한 모든 값 입력 시에는 String 타입으로
-                val lionName = viewModel.lionName.value ?: ""
-                val lionAge = viewModel.lionAge.value?.toInt() ?: 0
-                val hairCount = viewModel.hairCount.value ?: ""
-                val sex = viewModel.sex.value ?: ""
-
-                // 각 동물들 모두 AnimalData 타입으로 통일하여 입력
-                val inputData = AnimalData(0, lionName, lionAge, hairCount, sex, index, true)
-
-                withContext(Dispatchers.IO) { AnimalDao.saveAnimalData(inputData) }
-
-            } catch (e: Exception) {
-                Log.e("LionFragment", "save Lion Input failed : ${e.message}")
-            }
-        }
-
+        viewModel.saveLionInput()
     }
 
     // 인스턴스 재생성 시
