@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class LionData(
-    val animalType: String, // 동물의 종류
+    val animalType: Int, // 동물의 종류
     val name: String,
     val age: Int,
     val hairCount: Int,

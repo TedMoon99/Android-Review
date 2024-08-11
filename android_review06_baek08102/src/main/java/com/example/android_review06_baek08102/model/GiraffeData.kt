@@ -1,7 +1,7 @@
 package com.example.android_review06_baek08102.model
 
 data class GiraffeData(
-    val animalType: String, // 동물의 종류
+    val animalType: Int, // 동물의 종류
     val name: String,
     val age: Int,
     val neckLength: Double,
