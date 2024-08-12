@@ -111,6 +111,24 @@ class InfoFragment : Fragment() {
     // Data 가져오기
     private fun getData() {
         val position = arguments?.getInt("position") ?: -1
+        viewModel.getData(position)
+
+        viewModel.zooName.observe(viewLifecycleOwner) { name ->
+            binding.textViewInfoName.text = name
+        }
+
+        viewModel.zooAge.observe(viewLifecycleOwner) { age ->
+            binding.textViewInfoAge.text = age
+        }
+
+        viewModel.zooCount.observe(viewLifecycleOwner) { count ->
+            binding.textViewInfoCount.text = count
+        }
+
+        viewModel.zooDetail.observe(viewLifecycleOwner) { detail ->
+            binding.textViewInfoDetail.text = detail
+        }
+
         viewLifecycleOwner.lifecycle.apply {
             viewModel.getData(position)
         }
