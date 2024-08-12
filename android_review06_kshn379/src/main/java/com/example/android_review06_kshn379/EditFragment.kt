@@ -90,7 +90,7 @@ class EditFragment : Fragment() {
                     if (count.toInt() in 1..100) {
                         textViewEditCount.error = null
                     } else {
-                        textViewEditCount.error = "0~100 사이의 값을 입력해 주세요"
+                        textViewEditCount.error = "갯수 또는 길이는 0~100 사이의 값을 입력해 주세요"
                     }
                 } else {
                     textViewEditCount.error = null
@@ -221,6 +221,9 @@ class EditFragment : Fragment() {
                     )
 
                 withContext(Dispatchers.IO) { AddDao.updateEditData(editData) }
+
+                // viewModel LiveData 수정된 데이터 반영 및 수정된 데이터 다시 가져오기
+                viewModel.getData(zooSequence)
 
                 val position = arguments?.getInt("position") ?: -1
                 viewLifecycleOwner.lifecycle.apply {
