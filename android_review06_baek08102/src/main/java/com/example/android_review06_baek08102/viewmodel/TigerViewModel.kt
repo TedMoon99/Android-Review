@@ -6,13 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_review06_baek08102.dao.AnimalDao
 import com.example.android_review06_baek08102.dao.TigerDao
-import com.example.android_review06_baek08102.model.AnimalData
-import com.example.android_review06_baek08102.model.TigerData
+import com.example.android_review06_baek08102.model.SpecificAnimalData
+import com.example.android_review06_baek08102.model.UnifiedAnimalData
 import com.example.android_review06_baek08102.utils.AnimalType
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.withContext
 
 class TigerViewModel : ViewModel() {
@@ -36,8 +34,8 @@ class TigerViewModel : ViewModel() {
                 val stripeCount = stripeCount.value ?: ""
                 val weight = weight.value ?: ""
 
-                val inputAnimalData = AnimalData(
-                    AnimalType.ANIMAL_TIGER.num,
+                val inputAnimalData = UnifiedAnimalData(
+                    AnimalType.ANIMAL_TIGER,
                     name,
                     age,
                     stripeCount,
@@ -46,8 +44,8 @@ class TigerViewModel : ViewModel() {
                     true
                 )
 
-                val inputTigerData = TigerData(
-                    AnimalType.ANIMAL_TIGER.num,
+                val inputTigerData = SpecificAnimalData.TigerData(
+                    AnimalType.ANIMAL_TIGER,
                     name,
                     age,
                     stripeCount.toInt(),

@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_review06_baek08102.dao.AnimalDao
 import com.example.android_review06_baek08102.dao.GiraffeDao
-import com.example.android_review06_baek08102.model.AnimalData
-import com.example.android_review06_baek08102.model.GiraffeData
+import com.example.android_review06_baek08102.model.UnifiedAnimalData
+import com.example.android_review06_baek08102.model.SpecificAnimalData
 import com.example.android_review06_baek08102.utils.AnimalType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,8 +33,8 @@ class GiraffeViewModel : ViewModel() {
                 val neckLength = neckLength.value ?: ""
                 val runningSpeed = runningSpeed.value ?: ""
 
-                val inputAnimalData = AnimalData(
-                    AnimalType.ANIMAL_GIRAFFE.num,
+                val inputAnimalData = UnifiedAnimalData(
+                    AnimalType.ANIMAL_GIRAFFE,
                     name,
                     age,
                     neckLength,
@@ -43,8 +43,8 @@ class GiraffeViewModel : ViewModel() {
                     true
                 )
 
-                val inputGiraffeData = GiraffeData(
-                    AnimalType.ANIMAL_GIRAFFE.num,
+                val inputGiraffeData = SpecificAnimalData.GiraffeData(
+                    AnimalType.ANIMAL_GIRAFFE,
                     name,
                     age,
                     neckLength.toDouble(),

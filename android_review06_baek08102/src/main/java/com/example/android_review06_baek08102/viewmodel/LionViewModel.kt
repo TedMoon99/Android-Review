@@ -1,14 +1,13 @@
 package com.example.android_review06_baek08102.viewmodel
 
 import android.util.Log
-import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_review06_baek08102.dao.AnimalDao
 import com.example.android_review06_baek08102.dao.LionDao
-import com.example.android_review06_baek08102.model.AnimalData
-import com.example.android_review06_baek08102.model.LionData
+import com.example.android_review06_baek08102.model.UnifiedAnimalData
+import com.example.android_review06_baek08102.model.SpecificAnimalData
 import com.example.android_review06_baek08102.utils.AnimalType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,8 +40,8 @@ class LionViewModel : ViewModel() {
                 // LionData 타입으로 분리하여 한 번
 
                 // 우선 AnimalData 타입으로 맞추어 입력 객체 설정
-                val inputAnimalData = AnimalData(
-                    AnimalType.ANIMAL_LION.num, // enum class 활용, num과 type 중 num 사용
+                val inputAnimalData = UnifiedAnimalData(
+                    AnimalType.ANIMAL_LION, // enum class 활용, num과 type 중 num 사용
                     name,
                     age,
                     // AnimalData 타입으로 입력 시 eature1, feature2로 통일하여 입력할 것이므로
@@ -53,8 +52,8 @@ class LionViewModel : ViewModel() {
                     true
                 )
 
-                val inputLionData = LionData(
-                    AnimalType.ANIMAL_LION.num,
+                val inputLionData = SpecificAnimalData.LionData(
+                    AnimalType.ANIMAL_LION,
                     name,
                     age,
                     hairCount.toInt(),
