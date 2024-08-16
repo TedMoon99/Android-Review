@@ -10,29 +10,20 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_review06_baek08102.R
 import com.example.android_review06_baek08102.adapter.CustomAdapter
-import com.example.android_review06_baek08102.dao.AnimalDao
 import com.example.android_review06_baek08102.databinding.DialogMainBinding
 import com.example.android_review06_baek08102.databinding.FragmentMainBinding
-import com.example.android_review06_baek08102.model.AnimalData
+import com.example.android_review06_baek08102.model.UnifiedAnimalData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.example.android_review06_baek08102.utils.FragmentName
 import com.example.android_review06_baek08102.viewmodel.ShowViewModel
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
-    private val dataList: ArrayList<AnimalData> = arrayListOf()
+    private val dataList: ArrayList<UnifiedAnimalData> = arrayListOf()
     private val viewModel: ShowViewModel by activityViewModels()
 
     override fun onCreateView(
