@@ -1,7 +1,7 @@
 package com.example.android_review06_baek08102.dao
 
 import android.util.Log
-import com.example.android_review06_baek08102.model.LionData
+import com.example.android_review06_baek08102.model.SpecificAnimalData
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.tasks.await
@@ -44,12 +44,29 @@ class LionDao {
             }
         }
 
-        suspend fun saveLionData(lionData: LionData) {
+        suspend fun saveLionData(lionData: SpecificAnimalData.LionData) {
             try {
                 val collectionReference = Firebase.firestore.collection("LionData")
                 collectionReference.add(lionData).await()
             } catch (e: Exception) {
                 Log.e("AnimalDao", "saveLionData failed : ${e.message}")
+            }
+        }
+
+        suspend fun getLionDataByAnimalIdx(animalIdx: Int): SpecificAnimalData.LionData? {
+
+            Log.d("initShowData","entering getLionDataByAnimalIdx")
+
+            return try {
+                val collectionReference = Firebase.firestore.collection("LionData")
+                val querySnapshot = collectionReference.whereEqualTo("animalIdx", animalIdx).get().await()
+
+                querySnapshot.documents.firstOrNull()?.toObject(SpecificAnimalData.LionData::class.java)
+
+            } catch (e: Exception) {
+
+                Log.e("LionDao", "getLionDataByAnimalIdx failed : ${e.message}")
+                null
             }
         }
     }

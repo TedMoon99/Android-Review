@@ -1,13 +1,13 @@
 package com.example.android_review06_baek08102.dao
 
 import android.util.Log
-import com.example.android_review06_baek08102.model.GiraffeData
+import com.example.android_review06_baek08102.model.SpecificAnimalData
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.tasks.await
 
 class GiraffeDao {
-    companion object{
+    companion object {
 
         // 시퀀스 값 불러오는 함수
         suspend fun getSequence(): Int {
@@ -44,12 +44,25 @@ class GiraffeDao {
             }
         }
 
-        suspend fun saveGiraffeData(giraffeData: GiraffeData) {
+        suspend fun saveGiraffeData(giraffeData: SpecificAnimalData.GiraffeData) {
             try {
                 val collectionReference = Firebase.firestore.collection("GiraffeData")
                 collectionReference.add(giraffeData).await()
             } catch (e: Exception) {
                 Log.e("AnimalDao", "saveLionData failed : ${e.message}")
+            }
+        }
+
+        suspend fun getLionDataByAnimalIdx(animalIdx: Int): SpecificAnimalData.GiraffeData? {
+            return try {
+                val collectionReference = Firebase.firestore.collection("GiraffeData")
+                val querySnapshot = collectionReference.whereEqualTo("animalIdx", animalIdx).get().await()
+
+                querySnapshot.documents.firstOrNull()?.toObject(SpecificAnimalData.GiraffeData::class.java)
+
+            } catch (e: Exception) {
+                Log.e("GiraffeData", "getGiraffeDataByAnimalIdx failed : ${e.message}")
+                null
             }
         }
     }
