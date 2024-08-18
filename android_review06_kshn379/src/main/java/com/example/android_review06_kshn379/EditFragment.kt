@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
@@ -68,7 +69,7 @@ class EditFragment : Fragment() {
                         textViewEditName.error = "동물 이름은 6자 이하로 입력 하세요"
                     }
                 } else {
-                    textViewEditName.error = null
+                    textViewEditName.error = "이름을 수정 하세요"
                 }
             }
             // age
@@ -80,7 +81,7 @@ class EditFragment : Fragment() {
                         textViewEditAge.error = "동물 나이는 100살 이하로 입력해 주세요"
                     }
                 } else {
-                    textViewEditAge.error = null
+                    textViewEditAge.error = "나이를 수정 하세요"
                 }
             }
 
@@ -93,7 +94,7 @@ class EditFragment : Fragment() {
                         textViewEditCount.error = "갯수 또는 길이는 0~100 사이의 값을 입력해 주세요"
                     }
                 } else {
-                    textViewEditCount.error = null
+                    textViewEditCount.error = "갯수 또는 길이를 수정 하세요"
                 }
             }
             // detail
@@ -105,11 +106,14 @@ class EditFragment : Fragment() {
                         textViewEditDetail.error = "1~10 사이의 값을 입력해 주세요"
                     }
                 } else {
-                    textViewEditDetail.error = null
+                    textViewEditDetail.error = "몸무게 또는 속도를 수정 하세요"
                 }
             }
         }
     }
+
+
+
 
     // Event 설정
     private fun settingEvent() {
@@ -164,7 +168,7 @@ class EditFragment : Fragment() {
         Log.d("EditFragment", "animalDetail : ${animalDetail}")
 
         // name
-        if (animalName.isEmpty() || animalName.length < 2 || animalName.length > 7) {
+        if (animalName.isEmpty() || animalName.length < 2 || animalName.length > 8) {
             return false
         }
         // Animal age
@@ -184,17 +188,6 @@ class EditFragment : Fragment() {
 
         return true
 
-    }
-
-    // Error Dialog 설정
-    private fun editErrorDialog() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("정보 수정 오류")
-            .setMessage("수정 하실 정보를 다시 확인 해주세요")
-            // 아이콘 설정
-            .setPositiveButtonIcon(ContextCompat.getDrawable(requireContext(), R.drawable.animal))
-            .setPositiveButton("확인") { dialog, _ -> dialog.dismiss() }
-            .show()
     }
 
     // Edit Data 저장
@@ -239,6 +232,17 @@ class EditFragment : Fragment() {
             }
         }
 
+    }
+
+    // Error Dialog 설정
+    private fun editErrorDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("정보 수정 오류")
+            .setMessage("수정 하실 정보를 다시 확인 해주세요")
+            // 아이콘 설정
+            .setPositiveButtonIcon(ContextCompat.getDrawable(requireContext(), R.drawable.animal))
+            .setPositiveButton("확인") { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 
     // 뒤로 가기 설정
