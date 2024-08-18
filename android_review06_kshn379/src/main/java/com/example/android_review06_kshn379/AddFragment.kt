@@ -1,18 +1,16 @@
 package com.example.android_review06_kshn379
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.example.android_review06_kshn379.databinding.FragmentAddBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -24,6 +22,9 @@ class AddFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBinding
     private val viewModel: AddViewModel by activityViewModels()
+    private val tigerViewModel: TigerViewModel by activityViewModels()
+    private val lionViewModel: LionViewModel by activityViewModels()
+    private val giraffeViewModel: GiraffeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,38 +40,21 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Error 설정
-        settingError()
         // View 설정
         settingView()
         // Event 설정
         settingEvent()
-        // 입력 요소 초기화
-        settingInput()
-        // 동물 종류 선택 시 선택한 동물에 대한 데이터 입,출력 설정
-        selectAnimalType()
+
     }
 
-    // 입력 요소 초기화
-    private fun settingInput() {
-        viewModel.clearText()
-        binding.apply {
-            // TextField 숨기기
-            editTextName.visibility = View.INVISIBLE
-            editTextAge.visibility = View.INVISIBLE
-            editTextCount.visibility = View.INVISIBLE
-            editTextDetail.visibility = View.INVISIBLE
-        }
-    }
 
     // View 설정
     private fun settingView() {
         binding.apply {
-            // TextField 숨기기
-            editTextAnimalName.visibility = View.INVISIBLE
-            editTextAnimalAge.visibility = View.INVISIBLE
-            editTextAnimalCount.visibility = View.INVISIBLE
-            editTextAnimalDetail.visibility = View.INVISIBLE
+            // 입력 요소 초기화
+            lionViewModel.initInput()
+            tigerViewModel.initInput()
+            giraffeViewModel.initInput()
 
             // Toolbar 설정
             toolBarAdd.apply {
@@ -79,138 +63,29 @@ class AddFragment : Fragment() {
         }
     }
 
-    // Error 설정
-    fun settingError() {
-        binding.apply {
-            // name
-            viewModel.animalName.observe(viewLifecycleOwner) { name ->
-                if (name != null && name.isNotEmpty()) {
-                    if (name.length in 2..7) {
-                        editTextAnimalName.error = null
-                    } else {
-                        editTextAnimalName.error = "동물 이름은 6자 이하로 입력 하세요"
-                    }
-                } else {
-                    editTextAnimalName.error = null
-                }
-            }
-            // age
-            viewModel.animalAge.observe(viewLifecycleOwner) { age ->
-                if (age != null && age.isNotEmpty()) {
-                    if (age.toInt() in 1..100) {
-                        editTextAnimalAge.error = null
-                    } else {
-                        editTextAnimalAge.error = "동물 나이는 100살 이하로 입력해 주세요"
-                    }
-                } else {
-                    editTextAnimalAge.error = null
-                }
-            }
-
-            // count
-            viewModel.animalCount.observe(viewLifecycleOwner) { count ->
-                if (count != null && count.isNotEmpty()) {
-                    if (count.toInt() in 1..100) {
-                        editTextAnimalCount.error = null
-                    } else {
-                        editTextAnimalCount.error = "0~100 사이의 값을 입력해 주세요"
-                    }
-                } else {
-                    editTextAnimalCount.error = null
-                }
-            }
-            // detail
-            viewModel.animalDetail.observe(viewLifecycleOwner) { detail ->
-                if (detail != null && detail.isNotEmpty()) {
-                    if (detail.length in 2..10) {
-                        editTextAnimalDetail.error = null
-                    } else {
-                        editTextAnimalDetail.error = "1~10 사이의 값을 입력해 주세요"
-                    }
-                } else {
-                    editTextAnimalDetail.error = null
-                }
-            }
-        }
-    }
-
     // Event 설정
     private fun settingEvent() {
         binding.apply {
-            // 동물 버튼 클릭 설정
-            // Lion
-            buttonAddLion.apply {
-                setOnClickListener { lion ->
-                    when (lion.id) {
-                        R.id.button_add_lion -> {
-                            // RecyclerView Item '사자' Type 설정
-                            viewModel.animalType.value = "사자"
-                            editTextAnimalName.text.toString()
-                            editTextAnimalName.hint = "이름"
-                            editTextAnimalAge.text.toString()
-                            editTextAnimalAge.hint = "나이"
-                            editTextAnimalCount.text.toString()
-                            editTextAnimalCount.hint = "털의 갯수"
-                            editTextAnimalDetail.text.toString()
-                            editTextAnimalDetail.hint = "성별(암컷 또는 수컷)"
-                            textViewSelectAnimal.text = "사자"
-                            editTextName.visibility = View.VISIBLE
-                            editTextAge.visibility = View.VISIBLE
-                            editTextCount.visibility = View.VISIBLE
-                            editTextDetail.visibility = View.VISIBLE
-                        }
-                    }
-                }
-            }
+            // 화면 전환
+            buttonAddLion.setOnClickListener { moveFragment(LionFragment(), "lionFragment") }
+            buttonAddTiger.setOnClickListener { moveFragment(TigerFragment(), "tigerFragment") }
+            buttonAddGiraffe.setOnClickListener { moveFragment(GiraffeFragment(), "giraffeFragment") }
 
-            // Tiger
-            buttonAddTiger.apply {
-                setOnClickListener { tiger ->
-                    when (tiger.id) {
-                        R.id.button_add_tiger -> {
-                            // RecyclerView Item '호랑이' Type 설정
-                            viewModel.animalType.value = "호랑이"
-                            editTextAnimalName.text.toString()
-                            editTextAnimalName.hint = "이름"
-                            editTextAnimalAge.text.toString()
-                            editTextAnimalAge.hint = "나이"
-                            editTextAnimalCount.text.toString()
-                            editTextAnimalCount.hint = "줄무늬 갯수"
-                            editTextAnimalDetail.text.toString()
-                            editTextAnimalDetail.hint = "몸무게"
-                            textViewSelectAnimal.text = "호랑이"
-                            editTextName.visibility = View.VISIBLE
-                            editTextAge.visibility = View.VISIBLE
-                            editTextCount.visibility = View.VISIBLE
-                            editTextDetail.visibility = View.VISIBLE
+            toolBarAdd.setOnMenuItemClickListener { menu ->
+                when (menu.itemId) {
+                    R.id.menuitems_item_complete -> {
+                        if (validateInput()) {
+                            saveLionData()
+                        } else if (validateTiger()) {
+                            saveTigerData()
+                        } else if (validateGiraffe()) {
+                            saveGiraffeData()
+                        } else {
+                            popErrorDialog()
                         }
                     }
                 }
-            }
-
-            // Giraffe
-            buttonAddGiraffe.apply {
-                setOnClickListener { giraffe ->
-                    when (giraffe.id) {
-                        R.id.button_add_giraffe -> {
-                            // RecyclerView Item '기린' Type 설정
-                            viewModel.animalType.value = "기린"
-                            editTextAnimalName.text.toString()
-                            editTextAnimalName.hint = "이름"
-                            editTextAnimalAge.text.toString()
-                            editTextAnimalAge.hint = "나이"
-                            editTextAnimalCount.text.toString()
-                            editTextAnimalCount.hint = "목의 길이"
-                            editTextAnimalDetail.text.toString()
-                            editTextAnimalDetail.hint = "달리는 속도"
-                            textViewSelectAnimal.text = "기린"
-                            editTextName.visibility = View.VISIBLE
-                            editTextAge.visibility = View.VISIBLE
-                            editTextCount.visibility = View.VISIBLE
-                            editTextDetail.visibility = View.VISIBLE
-                        }
-                    }
-                }
+                true
             }
 
             // Toolbar 설정
@@ -223,118 +98,247 @@ class AddFragment : Fragment() {
                     // 뒤로 가기
                     removeFragment()
                 }
-                // menu 설정
-                setOnMenuItemClickListener { menu ->
-                    when (menu.itemId) {
-                        R.id.menuitems_item_complete -> {
-                            // 유효성 검사
-                            val result = validateInput()
-                            if (result) {
-                                // Data 저장
-                                saveData()
-                                // snackbar message 출력
-                                Snackbar.make(
-                                    binding.root,
-                                    "동물 정보가 등록되었습니다.",
-                                    Snackbar.LENGTH_SHORT
-                                )
-                                    .show()
-                            } else {
-                                popErrorDialog()
-                            }
-                        }
-                    }
-                    true
-                }
             }
         }
     }
 
-    private fun selectAnimalType() {
-        viewModel.animalType.observe(viewLifecycleOwner, Observer { type ->
-            when (type) {
-                "사자" -> saveAnimalType("이름", "나이", "털의 갯수", "성별(암컷 또는 수컷)")
-                "호랑이" -> saveAnimalType("이름", "나이", "줄무늬 갯수", "몸무게")
-                "기린" -> saveAnimalType("이름", "나이", "목의 길이", "달리는 속도")
+
+    // 사자 데이터 저장
+    private fun saveLionData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                // animalIdx 불러오기
+                val zooSequence = withContext(Dispatchers.IO) { LionDao.getSequence() }
+                // DB에 Sequence 업데이트
+                withContext(Dispatchers.IO) { LionDao.updateSequence(zooSequence + 1) }
+
+                // Index Save
+                val zooIdx = zooSequence + 1
+
+                // 입력 요소 Upload
+                val type = "사자"
+                val name = lionViewModel.lionName.value ?: ""
+                val age = lionViewModel.lionAge.value!!.toInt()
+                val fur = lionViewModel.lionFur.value!!.toInt()
+                val gender = lionViewModel.lionGender.value!!
+
+                // 저장 데이터 만들기
+                val data = LionInfo(zooIdx, type, name, age, fur, gender)
+                Log.d("LionViewModel", "SaveLion: $data")
+
+                // 정보 저장
+                withContext(Dispatchers.IO) { LionDao.saveLionData(data) }
+
+                // ZooInfo 데이터
+                val zooInfo = ZooInfo(
+                    zooIdx = zooIdx,
+                    animalType = "사자",
+                    animalName = name,
+                    animalAge = age,
+                    animalCount = fur,
+                    animalDetail = gender,
+                    dataState = true
+                )
+                withContext(Dispatchers.IO) { LionDao.saveZooData(zooInfo) }
+                Snackbar.make(binding.root, "사자 정보가 등록되었습니다.", Snackbar.LENGTH_SHORT)
+                    .show()
+                removeFragment()
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("LionViewModel", "Error Lion: ${e.message}")
             }
-        })
-    }
-
-    private fun saveAnimalType(nameHint: String, ageHint:String, countHint: String, detailHint: String) {
-        binding.apply {
-            editTextAnimalName.hint = nameHint
-            editTextAnimalAge.hint = ageHint
-            editTextAnimalCount.hint = countHint
-            editTextAnimalDetail.hint = detailHint
-
-            editTextAnimalName.visibility = View.VISIBLE
-            editTextAnimalAge.visibility = View.VISIBLE
-            editTextAnimalCount.visibility = View.VISIBLE
-            editTextAnimalDetail.visibility = View.VISIBLE
         }
     }
 
-    // 유효성 검사
-    fun validateInput(): Boolean {
+    // 호랑이 데이터 저장
+    private fun saveTigerData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                // animalIdx 불러오기
+                val zooSequence = withContext(Dispatchers.IO) { TigerDao.getSequence() }
+                // DB에 Sequence 업데이트
+                withContext(Dispatchers.IO) { TigerDao.updateSequence(zooSequence + 1) }
+
+                // Index Save
+                val zooIdx = zooSequence + 1
+
+                // 입력 요소 Upload
+                val type = "호랑이"
+                val name = tigerViewModel.tigerName.value ?: ""
+                val age = tigerViewModel.tigerAge.value!!.toInt()
+                val strip = tigerViewModel.tigerStrip.value!!.toInt()
+                val weight = tigerViewModel.tigerWeight.value!!.toInt()
+
+                // 저장 데이터 만들기
+                val data = TigerInfo(zooIdx, type, name, age, strip, weight)
+                Log.d("TigerViewModel", "Save Tiger: $data")
+
+                // 정보 저장
+                withContext(Dispatchers.IO) { TigerDao.saveTigerData(data) }
+
+                // ZooInfo 데이터
+                val zooInfo = ZooInfo(
+                    zooIdx = zooIdx,
+                    animalType = "호랑이",
+                    animalName = name,
+                    animalAge = age,
+                    animalCount = strip,
+                    animalDetail = weight.toString(),
+                    dataState = true
+                )
+                withContext(Dispatchers.IO) { TigerDao.saveZooData(zooInfo) }
+                Snackbar.make(binding.root, "호랑이 정보가 등록되었습니다.", Snackbar.LENGTH_SHORT)
+                    .show()
+                removeFragment()
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("TigerViewModel", "Error Tiger: ${e.message}")
+            }
+        }
+    }
+
+    // 기린 데이터 저장
+    private fun saveGiraffeData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                // animalIdx 불러오기
+                val zooSequence = withContext(Dispatchers.IO) { GiraffeDao.getSequence() }
+                // DB에 Sequence Update
+                withContext(Dispatchers.IO) { GiraffeDao.updateSequence(zooSequence + 1) }
+
+                // Index Save
+                val zooIdx = zooSequence + 1
+
+                // 입력 요소 Upload
+                val type = "기린"
+                val name = giraffeViewModel.giraffeName.value ?: ""
+                val age = giraffeViewModel.giraffeAge.value!!.toInt()
+                val neck = giraffeViewModel.giraffeNeck.value!!.toInt()
+                val run = giraffeViewModel.giraffeRun.value!!.toInt()
+
+                // 저장 데이터 만들기
+                val data = GiraffeInfo(zooIdx, type, name, age, neck, run)
+                Log.d("GiraffeViewModel", "Save Giraffe: $data")
+
+                // 정보 저장
+                withContext(Dispatchers.IO) { GiraffeDao.saveGiraffeData(data) }
+
+                // ZooInfo 데이터
+                val zooInfo = ZooInfo(
+                    zooIdx = zooIdx,
+                    animalType = "기린",
+                    animalName = name,
+                    animalAge = age,
+                    animalCount = neck,
+                    animalDetail = run.toString(),
+                    dataState = true
+                )
+                withContext(Dispatchers.IO) { GiraffeDao.saveZooData(zooInfo) }
+                Snackbar.make(binding.root, "기린 정보가 등록되었습니다.", Snackbar.LENGTH_SHORT)
+                    .show()
+                removeFragment()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("GiraffeViewModel", "Error Giraffe: ${e.message}")
+            }
+        }
+    }
+
+    // 사자 유효성 검사
+    private fun validateInput(): Boolean {
         // 입력 요소 가져오기
-        val name = viewModel.animalName.value ?: ""
-        val age = viewModel.animalAge.value ?: ""
-        val count = viewModel.animalCount.value ?: ""
-        val detail = viewModel.animalDetail.value ?: ""
+        val name = lionViewModel.lionName.value ?: ""
+        val age = lionViewModel.lionAge.value ?: ""
+        val fur = lionViewModel.lionFur.value ?: ""
 
-        // Animal name
-        if (name.isEmpty() || name.length < 2 || name.length > 7) {
+        // Lion Name
+        if (name.isEmpty() || name.length < 2 || name.length > 8) {
             return false
         }
 
-        // Animal age
+        // Lion Age
         if (age.isEmpty() || age.toIntOrNull() == null || age.toInt() < 1 || age.toInt() > 100) {
             return false
         }
 
-        // Animal count
-        if (count.isEmpty() || count.toIntOrNull() == null || count.toInt() < 1 || count.toInt() > 100) {
-            return false
-        }
-
-        // Animal detail
-        if (detail.isEmpty() || detail.length < 2 || detail.length > 10) {
+        // Lion Fur
+        if (fur.isEmpty() || fur.toIntOrNull() == null || fur.toInt() < 1 || fur.toInt() > 100) {
             return false
         }
         return true
     }
 
-    // Data 저장
-    private fun saveData() {
-        CoroutineScope(Dispatchers.Main).launch {
-            try {
-                // animalIdx 불러오기
-                val zooSequence = withContext(Dispatchers.IO) { AddDao.getSequence() }
-                // DB에 Sequence 업데이트
-                withContext(Dispatchers.IO) { AddDao.updateSequence(zooSequence + 1) }
+    // 호랑이 유효성 검사
+    private fun validateTiger(): Boolean {
+        // 입력 요소 가져 오기
+        val name = tigerViewModel.tigerName.value ?: ""
+        val age = tigerViewModel.tigerAge.value ?: ""
+        val strip = tigerViewModel.tigerStrip.value ?: ""
+        val weight = tigerViewModel.tigerWeight.value ?: ""
 
-                // Index Save
-                val zooIdx = zooSequence + 1
-                // Animal Type
-                val type = viewModel.animalType.value ?: ""
-                // 입력 요소 Upload
-                val name = viewModel.animalName.value ?: ""
-                val age = viewModel.animalAge.value!!.toInt()
-                val count = viewModel.animalCount.value!!.toInt()
-                val detail = viewModel.animalDetail.value ?: ""
-
-                // 저장 데이터 만들기
-                val data = ZooInfo(zooIdx, type, name, age, count, detail)
-
-                // 정보 저장
-                withContext(Dispatchers.IO) { AddDao.saveAnimalData(data) }
-
-                // 뒤로가기
-                removeFragment()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+        // Tiger Name
+        if (name.isEmpty() || name.length < 2 || name.length > 8) {
+            return false
         }
+
+        // Tiger Age
+        if (age.isEmpty() || age.toIntOrNull() == null || age.toInt() < 1 || age.toInt() > 100) {
+            return false
+        }
+
+        // Tiger Strip
+        if (strip.isEmpty() || strip.toIntOrNull() == null || strip.toInt() < 1 || strip.toInt() > 100) {
+            return false
+        }
+
+        // Tiger Weight
+        if (weight.isEmpty() || weight.toIntOrNull() == null || weight.toInt() < 1 || weight.toInt() > 100) {
+            return false
+        }
+        return true
+    }
+
+    // 기린 유효성 검사
+    private fun validateGiraffe(): Boolean {
+        // 입력 요소 가져 오기
+        val name = giraffeViewModel.giraffeName.value ?: ""
+        val age = giraffeViewModel.giraffeAge.value ?: ""
+        val neck = giraffeViewModel.giraffeNeck.value ?: ""
+        val run = giraffeViewModel.giraffeRun.value ?: ""
+
+        // Giraffe Name
+        if (name.isEmpty() || name.length < 2 || name.length > 8) {
+            return false
+        }
+
+        // Giraffe Age
+        if (age.isEmpty() || age.toIntOrNull() == null || age.toInt() < 1 || age.toInt() > 100) {
+            return false
+        }
+
+        // Giraffe Neck
+        if (neck.isEmpty() || neck.toIntOrNull() == null || neck.toInt() < 1 || neck.toInt() > 100) {
+            return false
+        }
+
+        // Giraffe Run
+        if (run.isEmpty() || run.toIntOrNull() == null || run.toInt() < 1 || run.toInt() > 100) {
+            return false
+        }
+        return true
+    }
+
+
+    // 종류별 화면 전환
+    private fun moveFragment(fragment: Fragment, tag: String) {
+        childFragmentManager
+            .beginTransaction()
+            .replace(R.id.add_container, fragment, tag)
+            .addToBackStack(tag)
+            .commit()
+        binding.textViewSelectAnimal.visibility = View.INVISIBLE
     }
 
     // Error Dialog 설정
