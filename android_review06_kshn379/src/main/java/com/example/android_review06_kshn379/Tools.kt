@@ -6,7 +6,7 @@ class Tools {
     }
 }
 
-enum class FragmentName (var str: String) {
+enum class FragmentName(var str: String) {
     ADD_FRAGMENT("AddFragment"),
     INFO_FRAGMENT("InfoFragment"),
     EDIT_FRAGMENT("EditFragment")
