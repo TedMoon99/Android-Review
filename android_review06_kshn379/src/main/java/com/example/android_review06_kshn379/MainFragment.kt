@@ -49,6 +49,19 @@ class MainFragment : Fragment() {
 
     }
 
+    // RecyclerView Item 간격 추가
+    inner class VerticalSpaceItemDecoration(private val verticalSpaceHeight: Int) :
+        RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            outRect.bottom = verticalSpaceHeight
+        }
+    }
+
     // View 설정
     private fun settingView() {
         binding.apply {
@@ -261,15 +274,3 @@ class MainFragment : Fragment() {
 }
 
 
-// RecyclerView Item 간격 추가
-class VerticalSpaceItemDecoration(private val verticalSpaceHeight: Int) :
-    RecyclerView.ItemDecoration() {
-    override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
-    ) {
-        outRect.bottom = verticalSpaceHeight
-    }
-}

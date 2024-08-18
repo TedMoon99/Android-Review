@@ -1,6 +1,7 @@
 package com.example.android_review06_kshn379
 
-data class ZooInfo (
+
+data class ZooInfo(
     val zooIdx: Int,
     val animalType: String,
     val animalName: String,
@@ -10,5 +11,5 @@ data class ZooInfo (
     var dataState: Boolean = true
 ) {
 
-    constructor() : this(0,"","",0,0,"")
+    constructor() : this(0, "", "", 0, 0, "")
 }

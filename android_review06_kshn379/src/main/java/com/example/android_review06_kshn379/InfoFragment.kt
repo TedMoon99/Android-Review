@@ -12,8 +12,6 @@ import androidx.fragment.app.activityViewModels
 import com.example.android_review06_kshn379.databinding.FragmentInfoBinding
 import com.google.android.material.snackbar.Snackbar
 
-
-// InfoFragment Index send(mainFragment position value) -> To EditFragment Index
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
     private val viewModel: AddViewModel by activityViewModels()
@@ -110,9 +108,11 @@ class InfoFragment : Fragment() {
 
     // Data 가져오기
     private fun getData() {
+
         val position = arguments?.getInt("position") ?: -1
         viewModel.getData(position)
 
+        // 데이터 관찰 및 업데이트
         viewModel.zooName.observe(viewLifecycleOwner) { name ->
             binding.textViewInfoName.text = name
         }
@@ -127,10 +127,6 @@ class InfoFragment : Fragment() {
 
         viewModel.zooDetail.observe(viewLifecycleOwner) { detail ->
             binding.textViewInfoDetail.text = detail
-        }
-
-        viewLifecycleOwner.lifecycle.apply {
-            viewModel.getData(position)
         }
     }
 

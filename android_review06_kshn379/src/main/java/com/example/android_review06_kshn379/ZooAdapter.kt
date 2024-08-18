@@ -30,14 +30,11 @@ class ZooAdapter(
         fun onClick(manager: FragmentManager, position: Int) {
 
             val infoFragment = InfoFragment().apply {
-                // Bundle 객체 생성하여 data(position)를 담는다
-                val data = Bundle().apply {
-                    val idx = dataSet[position].zooIdx
-                    // position 값을 키로 번들 추가
-                    putInt("position", idx)
+                // InfoFragment 데이터 전달 목적으로 arguments 설정
+                arguments = Bundle().apply {
+                    // 클릭된 아이템의 고유 식별자(zooIdx) bundle에 추가
+                    putInt("position", dataSet[position].zooIdx)
                 }
-                // InfoFragment 에 데이터 전달하기 위해 arguments 로 설정
-                arguments = data
             }
             // 화면 전환
             manager.beginTransaction()
@@ -61,7 +58,7 @@ class ZooAdapter(
         holder.rowBinding.textViewRowType.text = "종류 : ${dataSet[position].animalType}"
 
         // 종류에 따라 이미지 변경 설정
-        val imageChange = when(dataSet[position].animalType) {
+        val imageChange = when (dataSet[position].animalType) {
             "사자" -> R.drawable.lion
             "호랑이" -> R.drawable.tiger
             "기린" -> R.drawable.giraffe
