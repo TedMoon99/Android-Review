@@ -46,7 +46,7 @@ class LionDao {
             }
         }
 
-        // ZooInfo 저장
+        // ZooInfo Data 저장
         suspend fun saveZooData(zooInfo: ZooInfo) {
             try {
                 val collectionReference = Firebase.firestore.collection("ZooData")
